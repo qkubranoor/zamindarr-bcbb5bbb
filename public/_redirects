@@ -1,0 +1,6 @@
+# Netlify redirects for form handling
+/*    /index.html   200
+
+# Handle form submissions
+/form-success    /index.html   200
+/form-error      /index.html   400
