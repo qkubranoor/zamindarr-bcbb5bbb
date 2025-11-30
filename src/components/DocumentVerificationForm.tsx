@@ -493,10 +493,13 @@ const DocumentVerificationForm = ({ onClose, serviceName, servicePrice }: Docume
                         <Info className="w-3.5 h-3.5 text-slate-400 hover:text-slate-300 cursor-pointer" />
                       </button>
                     </PopoverTrigger>
-                    <PopoverContent className="w-[calc(100vw-3rem)] max-w-xs bg-slate-800 border-slate-700 text-slate-200 text-xs p-3 z-[99999]" side="bottom" align="center" sideOffset={8}>
-                      <p className="font-medium mb-2 border-b border-red-500/40 pb-1 inline-block">Important Information</p>
-                      <p>This stamp paper is for printing your agreement only.</p>
-                      <p className="mt-2">Stamp duty (based on transaction type) must be paid separately via Kaveri Online Services or Sub-Registrar Office. An e-Stamp Certificate will be issued as legal validation.</p>
+                    <PopoverContent className="w-[calc(100vw-3rem)] max-w-xs bg-gradient-to-br from-slate-800 via-slate-800/95 to-slate-900 border border-slate-600/50 text-slate-200 text-xs p-4 z-[99999] shadow-xl shadow-black/30 rounded-xl" side="bottom" align="center" sideOffset={8}>
+                      <div className="flex items-center gap-2 mb-3 pb-2 border-b border-red-500/30">
+                        <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></div>
+                        <p className="font-semibold text-white tracking-wide text-[11px] uppercase">Important Information</p>
+                      </div>
+                      <p className="text-slate-300 leading-relaxed">This stamp paper is for printing your agreement only.</p>
+                      <p className="mt-2 text-slate-300 leading-relaxed">Stamp duty (based on transaction type) must be paid separately via <span className="text-primary font-medium">Kaveri Online Services</span> or <span className="text-primary font-medium">Sub-Registrar Office</span>. An e-Stamp Certificate will be issued as legal validation.</p>
                     </PopoverContent>
                   </Popover>
                 </label>
