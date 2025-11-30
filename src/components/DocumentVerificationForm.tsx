@@ -56,7 +56,7 @@ const DocumentVerificationForm = ({ onClose, serviceName, servicePrice }: Docume
         stampPaperPrice,
         deliveryPrice,
         total,
-        marketPrice: 12000
+        marketPrice: 18000
       };
     }
     return null;
@@ -495,9 +495,8 @@ const DocumentVerificationForm = ({ onClose, serviceName, servicePrice }: Docume
                     </PopoverTrigger>
                     <PopoverContent className="w-[calc(100vw-3rem)] max-w-xs bg-slate-800 border-slate-700 text-slate-200 text-xs p-3 z-[99999]" side="bottom" align="center" sideOffset={8}>
                       <p className="font-medium mb-2 border-b border-red-500/40 pb-1 inline-block">Important Information</p>
-                      <p>The selected stamp paper denomination serves exclusively as the printing medium for your agreement document.</p>
-                      <p className="mt-2">Applicable stamp duty charges, determined by transaction type (Sale Deed, Lease Agreement, Power of Attorney, Gift Deed, Partition Deed, Mortgage Deed, etc.), are payable separately via Kaveri Online Services or at the Sub-Registrar Office.</p>
-                      <p className="mt-2">Upon successful payment, an e-Stamp Certificate will be issued, which serves as the legally binding validation of your document.</p>
+                      <p>This stamp paper is for printing your agreement only.</p>
+                      <p className="mt-2">Stamp duty (based on transaction type) must be paid separately via Kaveri Online Services or Sub-Registrar Office. An e-Stamp Certificate will be issued as legal validation.</p>
                     </PopoverContent>
                   </Popover>
                 </label>
