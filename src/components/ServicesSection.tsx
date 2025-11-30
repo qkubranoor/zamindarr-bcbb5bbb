@@ -21,7 +21,7 @@ const ServicesSection = () => {
   const gradients = [
     'linear-gradient(135deg, #1e3a5f 0%, #1e40af 25%, #2563eb 50%, #3b82f6 75%, #60a5fa 100%)', // Elegant royal blue
     'linear-gradient(135deg, #1e293b 0%, #1e3a8a 25%, #1e40af 50%, #2563eb 75%, #3b82f6 100%)', // Deep navy blue (darker)
-    'linear-gradient(135deg, #1e1b4b 0%, #312e81 25%, #4338ca 50%, #4f46e5 75%, #6366f1 100%)'  // Rich indigo purple
+    'linear-gradient(135deg, #0c2340 0%, #1e3a5f 25%, #1e40af 50%, #2563eb 75%, #3b82f6 100%)'  // Deep blue
   ];
 
   // Ensure scroll starts at Document Drafting (first item)
@@ -141,7 +141,7 @@ const ServicesSection = () => {
                               {/* Subtle glassmorphism for Document Verification */}
                               <div className="absolute inset-0 bg-white/[0.05] backdrop-blur-[60px] rounded-[24px]"></div>
                               <div className="absolute inset-0 bg-gradient-to-br from-white/[0.08] via-white/[0.02] to-transparent rounded-[24px]"></div>
-                              <div className="absolute inset-0 border-2 border-purple-400/50 rounded-[24px]"></div>
+                              <div className="absolute inset-0 border-2 border-blue-400/50 rounded-[24px]"></div>
                             </>
                           ) : (
                             <>
@@ -251,7 +251,7 @@ const ServicesSection = () => {
                             {/* Subtle glassmorphism for Document Verification */}
                             <div className="absolute inset-0 bg-white/[0.05] backdrop-blur-[60px] rounded-[28px]"></div>
                             <div className="absolute inset-0 bg-gradient-to-br from-white/[0.08] via-white/[0.02] to-transparent rounded-[28px]"></div>
-                            <div className="absolute inset-0 border-2 border-purple-400/50 rounded-[28px]"></div>
+                            <div className="absolute inset-0 border-2 border-blue-400/50 rounded-[28px]"></div>
                           </>
                         ) : (
                           <>
