@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { PaymentButton } from "@/components/PaymentButton";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
 interface DocumentVerificationFormProps {
   onClose: () => void;
@@ -487,18 +487,18 @@ const DocumentVerificationForm = ({ onClose, serviceName, servicePrice }: Docume
               <div className="space-y-1">
                 <label className="text-xs font-medium text-slate-300 pl-1 flex items-center gap-1">
                   Statutory Document Type
-                  <TooltipProvider>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <Info className="w-3.5 h-3.5 text-slate-400 hover:text-slate-300 cursor-help" />
-                      </TooltipTrigger>
-                      <TooltipContent className="max-w-xs bg-slate-800 border-slate-700 text-slate-200 text-xs p-3">
-                        <p>This stamp paper is only used to print your agreement.</p>
-                        <p className="mt-2">The actual stamp duty, which varies by document type (Sale, Lease, POA, Gift, Partition, Mortgage, etc.), must be paid electronically through Kaveri Online Services or at the Sub-Registrar Office.</p>
-                        <p className="mt-2">Once paid, an e-Stamp certificate is issued which is what legally validates your document.</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <button type="button" className="inline-flex">
+                        <Info className="w-3.5 h-3.5 text-slate-400 hover:text-slate-300 cursor-pointer" />
+                      </button>
+                    </PopoverTrigger>
+                    <PopoverContent className="max-w-xs bg-slate-800 border-slate-700 text-slate-200 text-xs p-3 z-[99999]" side="top" align="start">
+                      <p>This stamp paper is only used to print your agreement.</p>
+                      <p className="mt-2">The actual stamp duty, which varies by document type (Sale, Lease, POA, Gift, Partition, Mortgage, etc.), must be paid electronically through Kaveri Online Services or at the Sub-Registrar Office.</p>
+                      <p className="mt-2">Once paid, an e-Stamp certificate is issued which is what legally validates your document.</p>
+                    </PopoverContent>
+                  </Popover>
                 </label>
                 <Select value={formData.statutoryType} onValueChange={(value) => handleInputChange('statutoryType', value)}>
                   <SelectTrigger className="h-10 bg-slate-800/50 border-slate-600/50 text-white text-xs focus:border-primary/60 focus:bg-slate-800/70 rounded-lg [&>span]:text-white tap-friendly">
