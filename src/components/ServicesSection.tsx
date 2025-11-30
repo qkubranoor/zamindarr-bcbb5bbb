@@ -17,11 +17,11 @@ const ServicesSection = () => {
   const [canScrollRight, setCanScrollRight] = useState(true);
   const [isManualScrolling, setIsManualScrolling] = useState(false);
 
-  // Ultra-premium gradients - luxurious deep navy & sapphire
+  // Ultra-premium gradients - luxurious deep navy & sapphire (consistent premium look)
   const gradients = [
-    'linear-gradient(145deg, #0a1628 0%, #162544 50%, #1e3a5f 100%)', // Midnight navy
     'linear-gradient(145deg, #071224 0%, #0f1f3d 50%, #1a3358 100%)', // Deep sapphire
-    'linear-gradient(145deg, #0c1929 0%, #142847 50%, #1c3a62 100%)'  // Royal midnight
+    'linear-gradient(145deg, #071224 0%, #0f1f3d 50%, #1a3358 100%)', // Deep sapphire (featured)
+    'linear-gradient(145deg, #071224 0%, #0f1f3d 50%, #1a3358 100%)'  // Deep sapphire
   ];
 
   // Ensure scroll starts at Document Drafting (first item)
@@ -133,23 +133,15 @@ const ServicesSection = () => {
                             style={{ background: gradients[index] }}
                           ></div>
                           
-                          {/* Clean border for Due Diligence, subtle glassmorphism for Document Verification */}
+                          {/* Clean border for Due Diligence, subtle glassmorphism for others */}
                           {index === 1 ? (
                             <div className="absolute inset-0 border border-amber-400/30 rounded-[24px]"></div>
-                          ) : index === 2 ? (
-                            <>
-                              {/* Subtle glassmorphism for Document Verification */}
-                              <div className="absolute inset-0 bg-white/[0.02] backdrop-blur-[60px] rounded-[24px]"></div>
-                              <div className="absolute inset-0 bg-gradient-to-br from-white/[0.04] via-white/[0.01] to-transparent rounded-[24px]"></div>
-                              <div className="absolute inset-0 border border-sky-300/20 rounded-[24px]"></div>
-                            </>
                           ) : (
                             <>
-                              {/* Glassmorphism overlay for other cards */}
-                              <div className="absolute inset-0 bg-white/[0.08] backdrop-blur-[100px] rounded-[24px]"></div>
-                              <div className="absolute inset-0 bg-gradient-to-br from-white/[0.12] via-white/[0.04] to-transparent rounded-[24px]"></div>
-                              <div className="absolute inset-0 bg-gradient-to-t from-white/[0.08] to-transparent rounded-[24px]"></div>
-                              <div className="absolute inset-0 border border-white/[0.2] rounded-[24px] shadow-[inset_0_1px_2px_rgba(255,255,255,0.15),0_8px_32px_rgba(0,0,0,0.15)]"></div>
+                              {/* Premium glassmorphism for all other cards */}
+                              <div className="absolute inset-0 bg-white/[0.02] backdrop-blur-[60px] rounded-[24px]"></div>
+                              <div className="absolute inset-0 bg-gradient-to-br from-white/[0.04] via-white/[0.01] to-transparent rounded-[24px]"></div>
+                              <div className="absolute inset-0 border border-sky-200/15 rounded-[24px]"></div>
                             </>
                           )}
                           
@@ -243,23 +235,15 @@ const ServicesSection = () => {
                           style={{ background: gradients[index] }}
                         ></div>
                         
-                        {/* Clean border for Due Diligence, subtle glassmorphism for Document Verification */}
+                        {/* Clean border for Due Diligence, subtle glassmorphism for others */}
                         {index === 1 ? (
                           <div className="absolute inset-0 border border-amber-400/30 rounded-[28px]"></div>
-                        ) : index === 2 ? (
-                          <>
-                            {/* Subtle glassmorphism for Document Verification */}
-                            <div className="absolute inset-0 bg-white/[0.02] backdrop-blur-[60px] rounded-[28px]"></div>
-                            <div className="absolute inset-0 bg-gradient-to-br from-white/[0.04] via-white/[0.01] to-transparent rounded-[28px]"></div>
-                            <div className="absolute inset-0 border border-sky-300/20 rounded-[28px]"></div>
-                          </>
                         ) : (
                           <>
-                            {/* Glassmorphism overlay for other cards */}
-                            <div className="absolute inset-0 bg-white/[0.08] backdrop-blur-[100px] rounded-[28px]"></div>
-                            <div className="absolute inset-0 bg-gradient-to-br from-white/[0.12] via-white/[0.04] to-transparent rounded-[28px]"></div>
-                            <div className="absolute inset-0 bg-gradient-to-t from-white/[0.08] to-transparent rounded-[28px]"></div>
-                            <div className="absolute inset-0 border border-white/[0.2] rounded-[28px] shadow-[inset_0_1px_2px_rgba(255,255,255,0.15),0_8px_32px_rgba(0,0,0,0.15)]"></div>
+                            {/* Premium glassmorphism for all other cards */}
+                            <div className="absolute inset-0 bg-white/[0.02] backdrop-blur-[60px] rounded-[28px]"></div>
+                            <div className="absolute inset-0 bg-gradient-to-br from-white/[0.04] via-white/[0.01] to-transparent rounded-[28px]"></div>
+                            <div className="absolute inset-0 border border-sky-200/15 rounded-[28px]"></div>
                           </>
                         )}
                         
