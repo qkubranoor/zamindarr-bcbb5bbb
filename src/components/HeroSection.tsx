@@ -10,17 +10,11 @@ const HeroSection = () => {
   const [isTyping, setIsTyping] = useState(true);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
-  // Close popover on scroll with threshold
+  // Close popover on scroll
   useEffect(() => {
     if (!isPopoverOpen) return;
     
-    let scrollStartY = window.scrollY;
-    
-    const handleScroll = () => {
-      if (Math.abs(window.scrollY - scrollStartY) > 20) {
-        setIsPopoverOpen(false);
-      }
-    };
+    const handleScroll = () => setIsPopoverOpen(false);
     
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
