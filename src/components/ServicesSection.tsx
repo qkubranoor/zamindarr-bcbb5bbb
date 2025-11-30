@@ -156,10 +156,10 @@ const ServicesSection = () => {
                             
                             {/* Header with icon */}
                             <div className="flex justify-start items-start mb-3.5">
-                              <div className="relative w-7 h-7 backdrop-blur-[40px] rounded-[10px] flex items-center justify-center border border-white/[0.30] shadow-[0_8px_32px_rgba(0,0,0,0.2),0_0_15px_rgba(56,189,248,0.4),0_0_30px_rgba(56,189,248,0.2)]">
+                              <div className="relative w-7 h-7 backdrop-blur-[40px] rounded-[10px] flex items-center justify-center border border-white/[0.30] shadow-[0_8px_32px_rgba(0,0,0,0.2),0_0_8px_rgba(56,189,248,0.25),0_0_16px_rgba(56,189,248,0.15)]">
                                 <div className="absolute inset-0 bg-white/[0.22] rounded-[10px]"></div>
                                 <div className="absolute inset-0 bg-gradient-to-br from-white/[0.25] to-transparent rounded-[10px]"></div>
-                                <IconComponent className="relative z-10 w-3 h-3 text-white drop-shadow-[0_0_6px_rgba(56,189,248,0.8)]" strokeWidth={2.5} />
+                                <IconComponent className="relative z-10 w-3 h-3 text-white drop-shadow-[0_0_3px_rgba(56,189,248,0.5)]" strokeWidth={2.5} />
                               </div>
                             </div>
 
@@ -258,10 +258,10 @@ const ServicesSection = () => {
                           
                           {/* Header with icon */}
                           <div className="flex justify-start items-start mb-4">
-                            <div className="relative w-8 h-8 backdrop-blur-[40px] rounded-[12px] flex items-center justify-center border border-white/[0.30] shadow-[0_8px_32px_rgba(0,0,0,0.2),0_0_15px_rgba(56,189,248,0.4),0_0_30px_rgba(56,189,248,0.2)]">
+                            <div className="relative w-8 h-8 backdrop-blur-[40px] rounded-[12px] flex items-center justify-center border border-white/[0.30] shadow-[0_8px_32px_rgba(0,0,0,0.2),0_0_8px_rgba(56,189,248,0.25),0_0_16px_rgba(56,189,248,0.15)]">
                               <div className="absolute inset-0 bg-white/[0.22] rounded-[12px]"></div>
                               <div className="absolute inset-0 bg-gradient-to-br from-white/[0.25] to-transparent rounded-[12px]"></div>
-                              <IconComponent className="relative z-10 w-3.5 h-3.5 text-white drop-shadow-[0_0_6px_rgba(56,189,248,0.8)]" strokeWidth={2.5} />
+                              <IconComponent className="relative z-10 w-3.5 h-3.5 text-white drop-shadow-[0_0_3px_rgba(56,189,248,0.5)]" strokeWidth={2.5} />
                             </div>
                           </div>
 
