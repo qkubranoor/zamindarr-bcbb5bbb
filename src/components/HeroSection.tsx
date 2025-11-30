@@ -96,7 +96,7 @@ const HeroSection = () => {
         <div className="animate-fade-in">
           {/* Main Heading */}
           <h1 className="font-bold tracking-tight text-2xl sm:text-4xl lg:text-4xl text-foreground mb-2 sm:mb-6 leading-tight mt-8 sm:mt-0">
-            Discover <span className="text-[#1e40af] inline-flex items-center gap-1">Guidance Value
+            <span className="whitespace-nowrap">Discover <span className="text-[#1e40af] inline-flex items-center gap-1">Guidance Value
               <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
                 <PopoverTrigger asChild>
                   <button type="button" className="inline-flex align-middle">
@@ -107,7 +107,7 @@ const HeroSection = () => {
                   <p className="text-slate-400 leading-relaxed text-[11px]">Minimum property rate set by the government for stamp duty and registration charges. Varies by location, property type, and road width.</p>
                 </PopoverContent>
               </Popover>
-            </span> <span className="whitespace-nowrap">of your Property</span>
+            </span></span> <span className="whitespace-nowrap">of your Property</span>
           </h1>
           
           {/* Subheading */}
