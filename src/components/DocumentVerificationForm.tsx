@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback, useEffect } from "react";
+import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { X, FileText, User, Mail, Phone, MapPin, Building, Calendar, CheckCircle, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -40,7 +40,19 @@ const DocumentVerificationForm = ({ onClose, serviceName, servicePrice }: Docume
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showPayment, setShowPayment] = useState(false);
   const [infoPopoverOpen, setInfoPopoverOpen] = useState(false);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
+
+  // Close popover on scroll inside modal
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!infoPopoverOpen || !container) return;
+    
+    const closePopover = () => setInfoPopoverOpen(false);
+    container.addEventListener('scroll', closePopover, { passive: true });
+    
+    return () => container.removeEventListener('scroll', closePopover);
+  }, [infoPopoverOpen]);
 
   // Calculate dynamic price based on page count, stamp paper, and delivery
   const priceBreakdown = useMemo(() => {
@@ -201,6 +213,7 @@ const DocumentVerificationForm = ({ onClose, serviceName, servicePrice }: Docume
   return (
     <div className="fixed inset-0 z-[9999] flex items-start sm:items-center justify-center p-0 sm:p-4 bg-black/50 backdrop-blur-sm overflow-y-auto" onClick={onClose}>
       <div 
+        ref={scrollContainerRef}
         className="bg-gradient-to-br from-slate-900/95 via-slate-800/90 to-slate-900/95 backdrop-blur-xl md:backdrop-blur-2xl border border-slate-700/50 rounded-3xl p-4 sm:p-6 max-w-sm sm:max-w-md lg:max-w-[448px] w-full mx-4 my-4 sm:my-0 sm:max-h-[90vh] overflow-y-auto animate-scale-in shadow-[0_25px_50px_-12px_rgba(0,0,0,0.6)] shadow-primary/10 relative modal-content-smooth gpu-layer"
         onClick={(e) => e.stopPropagation()}
       >
