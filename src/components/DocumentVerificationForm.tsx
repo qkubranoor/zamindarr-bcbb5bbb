@@ -42,20 +42,23 @@ const DocumentVerificationForm = ({ onClose, serviceName, servicePrice }: Docume
   const [infoPopoverOpen, setInfoPopoverOpen] = useState(false);
   const { toast } = useToast();
   
-  // Close info popover on scroll
+  // Close info popover on scroll with threshold
   useEffect(() => {
     if (!infoPopoverOpen) return;
     
+    let scrollStartY = window.scrollY;
+    
     const handleScroll = () => {
-      setInfoPopoverOpen(false);
+      // Only close after scrolling more than 20px to avoid micro-scroll glitches
+      if (Math.abs(window.scrollY - scrollStartY) > 20) {
+        setInfoPopoverOpen(false);
+      }
     };
     
     window.addEventListener('scroll', handleScroll, { passive: true });
-    document.addEventListener('scroll', handleScroll, { passive: true, capture: true });
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      document.removeEventListener('scroll', handleScroll, { capture: true });
     };
   }, [infoPopoverOpen]);
 
