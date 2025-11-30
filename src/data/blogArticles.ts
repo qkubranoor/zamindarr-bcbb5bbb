@@ -50,19 +50,6 @@ export const blogArticles: BlogArticle[] = [
     publishedAt: "2024-01-05",
   },
   {
-    id: "4",
-    title: "Apartment Law Overhaul",
-    excerpt:
-      "Karnataka's New Act and Bye-Laws Set Fresh Standards for Apartment Living",
-    content:
-      "In 2025, Karnataka is finalizing a new Apartment Ownership Act along with comprehensive BBMP building bye-law amendments. The new law mandates registration of owner associations with RERA, clarifies maintenance dues, strengthens dispute resolution, and requires digital readiness in every new building. Setback and parking rules have been revised for taller structures, and courts now demand that balcony areas be included in FAR calculations. Owners gain more rights and transparency, but compliance is stricter than ever before.",
-    author: "Vikram Singh",
-    readTime: "60sec read",
-    image: "/lovable-uploads/apartment-law-buildings.jpeg",
-    category: "Legal Framework",
-    publishedAt: "2024-01-01",
-  },
-  {
     id: "5",
     title: "Due Diligence Checklist: Avoiding Property Investment Pitfalls",
     excerpt:
