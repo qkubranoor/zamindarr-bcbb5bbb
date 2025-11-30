@@ -123,7 +123,7 @@ const Header = () => {
                 <div className="flex gap-4 px-4 overflow-x-auto scrollbar-hide pb-2">
                   {/* Account Card */}
                   <a href="#account" className="group relative flex-shrink-0 w-[140px]">
-                    <div className="bg-gradient-to-br from-slate-50 to-white border border-slate-200 rounded-2xl p-5 transition-all duration-300 hover:shadow-xl hover:border-slate-300 hover:scale-105 hover:from-white hover:to-slate-50">
+                    <div className="bg-gradient-to-br from-slate-50 to-white border border-slate-200 rounded-2xl p-5 transition-all duration-300 hover:shadow-lg hover:border-slate-300 hover:from-white hover:to-slate-50">
                       <div className="flex flex-col items-center text-center gap-3">
                         <div className="relative">
                           <div className="absolute inset-0 bg-slate-900 rounded-2xl blur-md opacity-20 group-hover:opacity-30 transition-opacity"></div>
@@ -143,7 +143,7 @@ const Header = () => {
 
                   {/* Orders Card */}
                   <a href="#orders" className="group relative flex-shrink-0 w-[140px]">
-                    <div className="bg-gradient-to-br from-blue-50 to-white border border-blue-200 rounded-2xl p-5 transition-all duration-300 hover:shadow-xl hover:border-blue-300 hover:scale-105 hover:from-white hover:to-blue-50">
+                    <div className="bg-gradient-to-br from-blue-50 to-white border border-blue-200 rounded-2xl p-5 transition-all duration-300 hover:shadow-lg hover:border-blue-300 hover:from-white hover:to-blue-50">
                       <div className="flex flex-col items-center text-center gap-3">
                         <div className="relative">
                           <div className="absolute inset-0 bg-blue-600 rounded-2xl blur-md opacity-20 group-hover:opacity-30 transition-opacity"></div>
@@ -163,7 +163,7 @@ const Header = () => {
 
                   {/* Locker Card */}
                   <a href="#locker" className="group relative flex-shrink-0 w-[140px]">
-                    <div className="bg-gradient-to-br from-emerald-50 to-white border border-emerald-200 rounded-2xl p-5 transition-all duration-300 hover:shadow-xl hover:border-emerald-300 hover:scale-105 hover:from-white hover:to-emerald-50">
+                    <div className="bg-gradient-to-br from-emerald-50 to-white border border-emerald-200 rounded-2xl p-5 transition-all duration-300 hover:shadow-lg hover:border-emerald-300 hover:from-white hover:to-emerald-50">
                       <div className="flex flex-col items-center text-center gap-3">
                         <div className="relative">
                           <div className="absolute inset-0 bg-emerald-600 rounded-2xl blur-md opacity-20 group-hover:opacity-30 transition-opacity"></div>
@@ -183,7 +183,7 @@ const Header = () => {
 
                   {/* Support Card */}
                   <a href="#support" className="group relative flex-shrink-0 w-[140px]">
-                    <div className="bg-gradient-to-br from-purple-50 to-white border border-purple-200 rounded-2xl p-5 transition-all duration-300 hover:shadow-xl hover:border-purple-300 hover:scale-105 hover:from-white hover:to-purple-50">
+                    <div className="bg-gradient-to-br from-purple-50 to-white border border-purple-200 rounded-2xl p-5 transition-all duration-300 hover:shadow-lg hover:border-purple-300 hover:from-white hover:to-purple-50">
                       <div className="flex flex-col items-center text-center gap-3">
                         <div className="relative">
                           <div className="absolute inset-0 bg-purple-600 rounded-2xl blur-md opacity-20 group-hover:opacity-30 transition-opacity"></div>
