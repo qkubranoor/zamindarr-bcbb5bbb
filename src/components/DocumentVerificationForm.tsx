@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback, useEffect } from "react";
+import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { X, FileText, User, Mail, Phone, MapPin, Building, Calendar, CheckCircle, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -39,7 +39,25 @@ const DocumentVerificationForm = ({ onClose, serviceName, servicePrice }: Docume
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showPayment, setShowPayment] = useState(false);
+  const [infoPopoverOpen, setInfoPopoverOpen] = useState(false);
   const { toast } = useToast();
+  
+  // Close info popover on scroll
+  useEffect(() => {
+    if (!infoPopoverOpen) return;
+    
+    const handleScroll = () => {
+      setInfoPopoverOpen(false);
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    document.addEventListener('scroll', handleScroll, { passive: true, capture: true });
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('scroll', handleScroll, { capture: true });
+    };
+  }, [infoPopoverOpen]);
 
   // Calculate dynamic price based on page count, stamp paper, and delivery
   const priceBreakdown = useMemo(() => {
@@ -487,21 +505,14 @@ const DocumentVerificationForm = ({ onClose, serviceName, servicePrice }: Docume
               <div className="space-y-1">
                 <label className="text-xs font-medium text-slate-300 pl-1 flex items-center gap-1">
                   Statutory Document Type
-                  <Popover modal={true} onOpenChange={(open) => {
-                    if (open) {
-                      const handleScroll = () => {
-                        document.body.click(); // Close popover on scroll
-                      };
-                      window.addEventListener('scroll', handleScroll, { once: true, passive: true });
-                    }
-                  }}>
+                  <Popover open={infoPopoverOpen} onOpenChange={setInfoPopoverOpen}>
                     <PopoverTrigger asChild>
                       <button type="button" className="inline-flex" onClick={(e) => e.stopPropagation()}>
                         <Info className="w-3.5 h-3.5 text-slate-400 hover:text-slate-300 cursor-pointer" />
                       </button>
                     </PopoverTrigger>
                     <PopoverContent 
-                      className="w-[calc(100vw-3rem)] max-w-[280px] bg-gradient-to-br from-slate-800 via-slate-800/95 to-slate-900 border border-slate-600/50 text-slate-200 text-xs p-4 z-[99999] shadow-xl shadow-black/30 rounded-xl" 
+                      className="w-[260px] bg-gradient-to-br from-slate-800 via-slate-800/95 to-slate-900 border border-slate-600/50 text-slate-200 text-xs p-4 z-[99999] shadow-xl shadow-black/30 rounded-xl" 
                       side="top" 
                       align="center" 
                       sideOffset={8}
