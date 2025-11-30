@@ -1,164 +1,141 @@
-import { useEffect, useCallback, useState, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import BlogArticleCard from "./BlogArticleCard";
 import MobileVideoCard from "./MobileVideoCard";
-import Autoplay from "embla-carousel-autoplay";
-import { blogArticles } from "@/data/blogArticles";
+import { blogArticles, BlogArticle } from "@/data/blogArticles";
 import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  type CarouselApi,
-} from "@/components/ui/carousel";
-
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Clock, User, X } from "lucide-react";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const BlogSection = () => {
-  const navigate = useNavigate();
-  const [api, setApi] = useState<CarouselApi>();
-  const [current, setCurrent] = useState(0);
-  const autoplayRef = useState(() => 
-    Autoplay({
-      delay: 2000,
-      stopOnInteraction: false,
-    })
-  )[0];
+  const [selectedArticle, setSelectedArticle] = useState<BlogArticle | null>(null);
 
-  const handleArticleClick = (article: any) => {
-    navigate(`/blog/${article.id}`);
+  const handleArticleClick = (article: BlogArticle) => {
+    setSelectedArticle(article);
   };
 
-  const allCards = [
-    { type: 'video' as const, key: 'video' },
-    ...blogArticles.map((article, idx) => ({ type: 'article' as const, article, key: `article-${idx}` }))
-  ];
-
-  useEffect(() => {
-    if (!api) return;
-
-    setCurrent(api.selectedScrollSnap());
-
-    api.on("select", () => {
-      setCurrent(api.selectedScrollSnap());
-    });
-
-    // Handle interaction - pause and resume after 3 seconds
-    let resumeTimeout: NodeJS.Timeout;
-    
-    const handlePointerDown = () => {
-      autoplayRef.stop();
-      clearTimeout(resumeTimeout);
-      resumeTimeout = setTimeout(() => {
-        autoplayRef.play();
-      }, 3000);
-    };
-
-    const container = api.containerNode();
-    container.addEventListener('pointerdown', handlePointerDown);
-
-    return () => {
-      container.removeEventListener('pointerdown', handlePointerDown);
-      clearTimeout(resumeTimeout);
-    };
-  }, [api, autoplayRef]);
-
-  const cardTransforms = useMemo(() => {
-    return allCards.map((_, index) => {
-      const distance = Math.abs(index - current);
-      const direction = index - current;
-      
-      // Center card
-      if (distance === 0) {
-        return {
-          scale: 1.1,
-          rotateY: 0,
-          opacity: 1,
-          zIndex: 30,
-        };
-      }
-      
-      // Adjacent cards
-      if (distance === 1) {
-        return {
-          scale: 0.95,
-          rotateY: direction > 0 ? -15 : 15,
-          opacity: 0.8,
-          zIndex: 20,
-        };
-      }
-      
-      // Far cards
-      return {
-        scale: 0.85,
-        rotateY: direction > 0 ? -25 : 25,
-        opacity: 0.5,
-        zIndex: 10,
-      };
-    });
-  }, [current, allCards]);
+  const closeDialog = () => {
+    setSelectedArticle(null);
+  };
 
   return (
-    <section className="py-12 md:py-20 relative overflow-hidden">
-      {/* Depth Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent pointer-events-none" />
+    <section className="py-8 md:py-16 relative overflow-hidden">
+      {/* Subtle Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/30 to-background pointer-events-none" />
       
       {/* Section Header */}
-      <div className="text-center mb-6 md:mb-8 px-4 relative z-10">
-        <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
+      <div className="text-center mb-6 md:mb-10 px-4 relative z-10">
+        <h2 className="text-xl md:text-3xl font-bold text-foreground mb-2">
           Real Estate Insights
         </h2>
-        <p className="text-sm md:text-base text-muted-foreground max-w-2xl mx-auto">
-          Stay informed with the latest trends, legal updates, and expert advice in Bangalore's property market
+        <p className="text-xs md:text-base text-muted-foreground max-w-xl mx-auto">
+          Stay informed with the latest trends and expert advice
         </p>
       </div>
 
-      <div className="relative" style={{ perspective: '2000px' }}>
-        <Carousel
-          setApi={setApi}
-          opts={{
-            align: "center",
-            loop: true,
-            skipSnaps: false,
-            dragFree: false,
-          }}
-          plugins={[autoplayRef]}
-          className="w-full max-w-7xl mx-auto"
-        >
-          <CarouselContent className="-ml-3 md:-ml-4">
-            {allCards.map((card, index) => (
-              <CarouselItem 
-                key={card.key} 
-                className="pl-3 md:pl-4 basis-[55%] sm:basis-[40%] md:basis-[30%] lg:basis-[24%] xl:basis-[20%]"
-              >
-                <div
-                  className="transition-all duration-300 ease-out"
-                  style={{
-                    transform: `
-                      scale(${cardTransforms[index].scale})
-                      rotateY(${cardTransforms[index].rotateY}deg)
-                      translateZ(${cardTransforms[index].scale === 1.1 ? '50px' : '0px'})
-                    `,
-                    opacity: cardTransforms[index].opacity,
-                    zIndex: cardTransforms[index].zIndex,
-                    transformStyle: 'preserve-3d',
-                    willChange: 'transform, opacity',
-                  }}
-                >
-                  {card.type === 'video' ? (
-                    <MobileVideoCard />
-                  ) : (
-                    <BlogArticleCard 
-                      article={card.article} 
-                      onArticleClick={handleArticleClick}
-                      isCenter={cardTransforms[index].scale === 1.1}
-                    />
-                  )}
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-        </Carousel>
+      {/* Mobile View - Compact Grid */}
+      <div className="md:hidden px-4 relative z-10">
+        <div className="grid grid-cols-2 gap-3">
+          {/* Video Card - Smaller */}
+          <div className="aspect-[3/4]">
+            <MobileVideoCard />
+          </div>
+          {/* Article Cards */}
+          {blogArticles.slice(0, 3).map((article) => (
+            <div key={article.id} className="aspect-[3/4]">
+              <BlogArticleCard 
+                article={article} 
+                onArticleClick={handleArticleClick}
+                isCenter={false}
+              />
+            </div>
+          ))}
+        </div>
+        {/* View More Link */}
+        <div className="text-center mt-4">
+          <button 
+            onClick={() => setSelectedArticle(blogArticles[0])}
+            className="text-xs text-primary font-medium hover:underline"
+          >
+            View all insights →
+          </button>
+        </div>
       </div>
+
+      {/* Desktop View - Horizontal Scroll */}
+      <div className="hidden md:block px-4 relative z-10">
+        <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide max-w-6xl mx-auto justify-center">
+          <div className="w-56 flex-shrink-0 aspect-[3/4]">
+            <MobileVideoCard />
+          </div>
+          {blogArticles.map((article) => (
+            <div key={article.id} className="w-56 flex-shrink-0 aspect-[3/4]">
+              <BlogArticleCard 
+                article={article} 
+                onArticleClick={handleArticleClick}
+                isCenter={false}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Article Pop-up Dialog */}
+      <Dialog open={!!selectedArticle} onOpenChange={(open) => !open && closeDialog()}>
+        <DialogContent className="max-w-lg mx-4 p-0 overflow-hidden bg-card border-border/50 max-h-[85vh]">
+          {selectedArticle && (
+            <>
+              {/* Article Image Header */}
+              <div className="relative h-40 md:h-48 w-full">
+                <img 
+                  src={selectedArticle.image} 
+                  alt={selectedArticle.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                <div className="absolute bottom-3 left-4 right-4">
+                  <span className="inline-block px-2 py-0.5 bg-primary text-primary-foreground text-[10px] font-semibold rounded-full mb-2">
+                    {selectedArticle.category}
+                  </span>
+                  <DialogHeader>
+                    <DialogTitle className="text-white text-base md:text-lg font-bold leading-tight">
+                      {selectedArticle.title}
+                    </DialogTitle>
+                  </DialogHeader>
+                </div>
+              </div>
+
+              {/* Article Content */}
+              <ScrollArea className="max-h-[40vh]">
+                <div className="p-4 md:p-5">
+                  {/* Meta Info */}
+                  <div className="flex items-center gap-3 text-muted-foreground text-xs mb-4 pb-3 border-b border-border/50">
+                    <div className="flex items-center gap-1.5">
+                      <User className="w-3.5 h-3.5" />
+                      <span>{selectedArticle.author}</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Clock className="w-3.5 h-3.5" />
+                      <span>{selectedArticle.readTime}</span>
+                    </div>
+                  </div>
+
+                  {/* Article Text */}
+                  <div className="prose prose-sm dark:prose-invert max-w-none">
+                    <p className="text-foreground/90 text-sm leading-relaxed">
+                      {selectedArticle.content || selectedArticle.excerpt}
+                    </p>
+                  </div>
+                </div>
+              </ScrollArea>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };
