@@ -156,10 +156,10 @@ const ServicesSection = () => {
                             
                             {/* Header with icon */}
                             <div className="flex justify-start items-start mb-3.5">
-                              <div className="relative w-7 h-7 backdrop-blur-[40px] rounded-[10px] flex items-center justify-center border border-white/[0.30] shadow-[0_8px_32px_rgba(0,0,0,0.2)]">
+                              <div className="relative w-7 h-7 backdrop-blur-[40px] rounded-[10px] flex items-center justify-center border border-white/[0.30] shadow-[0_8px_32px_rgba(0,0,0,0.2),0_0_15px_rgba(56,189,248,0.4),0_0_30px_rgba(56,189,248,0.2)]">
                                 <div className="absolute inset-0 bg-white/[0.22] rounded-[10px]"></div>
                                 <div className="absolute inset-0 bg-gradient-to-br from-white/[0.25] to-transparent rounded-[10px]"></div>
-                                <IconComponent className="relative z-10 w-3 h-3 text-white drop-shadow-lg" strokeWidth={2.5} />
+                                <IconComponent className="relative z-10 w-3 h-3 text-white drop-shadow-[0_0_6px_rgba(56,189,248,0.8)]" strokeWidth={2.5} />
                               </div>
                             </div>
 
@@ -177,8 +177,8 @@ const ServicesSection = () => {
                             <div className="space-y-2 mb-auto">
                               {service.features.map((feature, idx) => (
                                 <div key={idx} className="flex items-start text-[11.5px] font-light">
-                                  <div className="relative w-4 h-4 rounded-full flex items-center justify-center mr-2 flex-shrink-0 mt-0.5 bg-green-500/20 backdrop-blur-[30px] border border-green-400/40 shadow-[0_0_8px_rgba(74,222,128,0.5),0_0_16px_rgba(74,222,128,0.3)]">
-                                    <Check className="relative z-10 w-2.5 h-2.5 drop-shadow-[0_0_4px_rgba(74,222,128,0.8)] text-green-300" strokeWidth={3.5} />
+                                  <div className="relative w-4 h-4 rounded-full flex items-center justify-center mr-2 flex-shrink-0 mt-0.5 bg-green-500/20 backdrop-blur-[30px] border border-green-400/40">
+                                    <Check className="relative z-10 w-2.5 h-2.5 drop-shadow-sm text-green-300" strokeWidth={3.5} />
                                   </div>
                                   <span className="leading-relaxed">{feature}</span>
                                 </div>
@@ -258,10 +258,10 @@ const ServicesSection = () => {
                           
                           {/* Header with icon */}
                           <div className="flex justify-start items-start mb-4">
-                            <div className="relative w-8 h-8 backdrop-blur-[40px] rounded-[12px] flex items-center justify-center border border-white/[0.30] shadow-[0_8px_32px_rgba(0,0,0,0.2)]">
+                            <div className="relative w-8 h-8 backdrop-blur-[40px] rounded-[12px] flex items-center justify-center border border-white/[0.30] shadow-[0_8px_32px_rgba(0,0,0,0.2),0_0_15px_rgba(56,189,248,0.4),0_0_30px_rgba(56,189,248,0.2)]">
                               <div className="absolute inset-0 bg-white/[0.22] rounded-[12px]"></div>
                               <div className="absolute inset-0 bg-gradient-to-br from-white/[0.25] to-transparent rounded-[12px]"></div>
-                              <IconComponent className="relative z-10 w-3.5 h-3.5 text-white drop-shadow-lg" strokeWidth={2.5} />
+                              <IconComponent className="relative z-10 w-3.5 h-3.5 text-white drop-shadow-[0_0_6px_rgba(56,189,248,0.8)]" strokeWidth={2.5} />
                             </div>
                           </div>
 
@@ -313,8 +313,8 @@ const ServicesSection = () => {
                           <div className="space-y-2.5 mb-auto">
                             {service.features.map((feature, idx) => (
                               <div key={idx} className="flex items-start text-[13px] font-light">
-                                <div className="relative w-5 h-5 rounded-full flex items-center justify-center mr-2.5 flex-shrink-0 mt-0.5 bg-green-500/20 backdrop-blur-[30px] border border-green-400/40 shadow-[0_0_10px_rgba(74,222,128,0.5),0_0_20px_rgba(74,222,128,0.3)]">
-                                  <Check className="relative z-10 w-3 h-3 drop-shadow-[0_0_4px_rgba(74,222,128,0.8)] text-green-300" strokeWidth={3.5} />
+                                <div className="relative w-5 h-5 rounded-full flex items-center justify-center mr-2.5 flex-shrink-0 mt-0.5 bg-green-500/20 backdrop-blur-[30px] border border-green-400/40">
+                                  <Check className="relative z-10 w-3 h-3 drop-shadow-sm text-green-300" strokeWidth={3.5} />
                                 </div>
                                 <span className="leading-relaxed">{feature}</span>
                               </div>
