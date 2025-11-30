@@ -487,13 +487,19 @@ const DocumentVerificationForm = ({ onClose, serviceName, servicePrice }: Docume
               <div className="space-y-1">
                 <label className="text-xs font-medium text-slate-300 pl-1 flex items-center gap-1">
                   Statutory Document Type
-                  <Popover>
+                  <Popover modal={true}>
                     <PopoverTrigger asChild>
-                      <button type="button" className="inline-flex">
+                      <button type="button" className="inline-flex" onClick={(e) => e.stopPropagation()}>
                         <Info className="w-3.5 h-3.5 text-slate-400 hover:text-slate-300 cursor-pointer" />
                       </button>
                     </PopoverTrigger>
-                    <PopoverContent className="w-[calc(100vw-3rem)] max-w-xs bg-gradient-to-br from-slate-800 via-slate-800/95 to-slate-900 border border-slate-600/50 text-slate-200 text-xs p-4 z-[99999] shadow-xl shadow-black/30 rounded-xl" side="bottom" align="center" sideOffset={8}>
+                    <PopoverContent 
+                      className="w-[calc(100vw-3rem)] max-w-xs bg-gradient-to-br from-slate-800 via-slate-800/95 to-slate-900 border border-slate-600/50 text-slate-200 text-xs p-4 z-[99999] shadow-xl shadow-black/30 rounded-xl" 
+                      side="top" 
+                      align="center" 
+                      sideOffset={8}
+                      onOpenAutoFocus={(e) => e.preventDefault()}
+                    >
                       <div className="flex items-center gap-2 mb-3 pb-2 border-b border-red-500/30">
                         <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></div>
                         <p className="font-semibold text-white tracking-wide text-[11px] uppercase">Important Information</p>
