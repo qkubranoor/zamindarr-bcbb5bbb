@@ -8,6 +8,19 @@ const HeroSection = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [placeholderText, setPlaceholderText] = useState("");
   const [isTyping, setIsTyping] = useState(true);
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+
+  // Close popover on scroll (mobile)
+  useEffect(() => {
+    if (!isPopoverOpen) return;
+    
+    const handleScroll = () => {
+      setIsPopoverOpen(false);
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isPopoverOpen]);
   
   const fullText = "12th cross 2nd block Jayanagar";
   const defaultText = "Enter location";
@@ -86,13 +99,13 @@ const HeroSection = () => {
           {/* Main Heading */}
           <h1 className="font-bold tracking-tight text-balance text-2xl sm:text-4xl lg:text-4xl text-foreground mb-2 sm:mb-6 leading-tight mt-8 sm:mt-0">
             Discover <span className="text-[#1e40af] inline-flex items-center gap-1">Guidance Value
-              <Popover>
+              <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
                 <PopoverTrigger asChild>
                   <button type="button" className="inline-flex align-middle">
                     <Info className="w-4 h-4 sm:w-5 sm:h-5 text-[#1e40af]/70 hover:text-[#1e40af] cursor-pointer" />
                   </button>
                 </PopoverTrigger>
-                <PopoverContent className="w-[calc(100vw-2rem)] max-w-xs bg-gradient-to-br from-slate-800 via-slate-800/95 to-slate-900 border border-slate-600/50 text-xs p-3 z-[99999] shadow-xl shadow-black/30 rounded-xl" side="bottom" align="center" sideOffset={12}>
+                <PopoverContent className="w-[calc(100vw-3rem)] max-w-[280px] bg-gradient-to-br from-slate-800 via-slate-800/95 to-slate-900 border border-slate-600/50 text-xs p-3 z-[99999] shadow-xl shadow-black/30 rounded-xl" side="bottom" align="center" sideOffset={12}>
                   <p className="text-slate-400 leading-relaxed text-[11px]">Minimum property rate set by the government for stamp duty and registration charges. Varies by location, property type, and road width.</p>
                 </PopoverContent>
               </Popover>

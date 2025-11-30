@@ -487,14 +487,21 @@ const DocumentVerificationForm = ({ onClose, serviceName, servicePrice }: Docume
               <div className="space-y-1">
                 <label className="text-xs font-medium text-slate-300 pl-1 flex items-center gap-1">
                   Statutory Document Type
-                  <Popover modal={true}>
+                  <Popover modal={true} onOpenChange={(open) => {
+                    if (open) {
+                      const handleScroll = () => {
+                        document.body.click(); // Close popover on scroll
+                      };
+                      window.addEventListener('scroll', handleScroll, { once: true, passive: true });
+                    }
+                  }}>
                     <PopoverTrigger asChild>
                       <button type="button" className="inline-flex" onClick={(e) => e.stopPropagation()}>
                         <Info className="w-3.5 h-3.5 text-slate-400 hover:text-slate-300 cursor-pointer" />
                       </button>
                     </PopoverTrigger>
                     <PopoverContent 
-                      className="w-[calc(100vw-3rem)] max-w-xs bg-gradient-to-br from-slate-800 via-slate-800/95 to-slate-900 border border-slate-600/50 text-slate-200 text-xs p-4 z-[99999] shadow-xl shadow-black/30 rounded-xl" 
+                      className="w-[calc(100vw-3rem)] max-w-[280px] bg-gradient-to-br from-slate-800 via-slate-800/95 to-slate-900 border border-slate-600/50 text-slate-200 text-xs p-4 z-[99999] shadow-xl shadow-black/30 rounded-xl" 
                       side="top" 
                       align="center" 
                       sideOffset={8}
