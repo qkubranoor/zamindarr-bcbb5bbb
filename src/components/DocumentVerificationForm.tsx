@@ -1,11 +1,12 @@
 import { useState, useMemo, useCallback, useEffect } from "react";
-import { X, FileText, User, Mail, Phone, MapPin, Building, Calendar, CheckCircle } from "lucide-react";
+import { X, FileText, User, Mail, Phone, MapPin, Building, Calendar, CheckCircle, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { PaymentButton } from "@/components/PaymentButton";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 interface DocumentVerificationFormProps {
   onClose: () => void;
@@ -484,8 +485,20 @@ const DocumentVerificationForm = ({ onClose, serviceName, servicePrice }: Docume
             {/* Statutory Document Type - Only for Document Drafting */}
             {serviceName === "Document Drafting" && (
               <div className="space-y-1">
-                <label className="text-xs font-medium text-slate-300 pl-1">
+                <label className="text-xs font-medium text-slate-300 pl-1 flex items-center gap-1">
                   Statutory Document Type
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Info className="w-3.5 h-3.5 text-slate-400 hover:text-slate-300 cursor-help" />
+                      </TooltipTrigger>
+                      <TooltipContent className="max-w-xs bg-slate-800 border-slate-700 text-slate-200 text-xs p-3">
+                        <p>This stamp paper is only used to print your agreement.</p>
+                        <p className="mt-2">The actual stamp duty, which varies by document type (Sale, Lease, POA, Gift, Partition, Mortgage, etc.), must be paid electronically through Kaveri Online Services or at the Sub-Registrar Office.</p>
+                        <p className="mt-2">Once paid, an e-Stamp certificate is issued which is what legally validates your document.</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
                 </label>
                 <Select value={formData.statutoryType} onValueChange={(value) => handleInputChange('statutoryType', value)}>
                   <SelectTrigger className="h-10 bg-slate-800/50 border-slate-600/50 text-white text-xs focus:border-primary/60 focus:bg-slate-800/70 rounded-lg [&>span]:text-white tap-friendly">
@@ -531,14 +544,6 @@ const DocumentVerificationForm = ({ onClose, serviceName, servicePrice }: Docume
                    </div>
                  )}
                  
-                 {/* Stamp Duty Note */}
-                 {formData.statutoryType === "karnataka-estamp" && (
-                   <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-3 mt-2">
-                     <p className="text-xs text-blue-300">
-                       <strong>Note:</strong> Stamp duty value is proportional to the value of the agreement.
-                     </p>
-                   </div>
-                 )}
                </div>
              )}
 
