@@ -92,13 +92,8 @@ const HeroSection = () => {
                     <Info className="w-4 h-4 sm:w-5 sm:h-5 text-[#1e40af]/70 hover:text-[#1e40af] cursor-pointer" />
                   </button>
                 </PopoverTrigger>
-                <PopoverContent className="w-[calc(100vw-2rem)] max-w-sm bg-gradient-to-br from-slate-800 via-slate-800/95 to-slate-900 border border-slate-600/50 text-slate-200 text-xs p-4 z-[99999] shadow-xl shadow-black/30 rounded-xl" side="bottom" align="center" sideOffset={8}>
-                  <div className="flex items-center gap-2 mb-3 pb-2 border-b border-blue-500/30">
-                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></div>
-                    <p className="font-semibold text-white tracking-wide text-[11px] uppercase">What is Guidance Value?</p>
-                  </div>
-                  <p className="text-slate-300 leading-relaxed">Guidance Value is the minimum property rate set by the government for calculating stamp duty and registration charges.</p>
-                  <p className="mt-2 text-slate-300 leading-relaxed">It varies by <span className="text-blue-400 font-medium">location, property type, and road width</span>. Even if you buy below this rate, taxes are calculated on the guidance value.</p>
+                <PopoverContent className="w-[calc(100vw-2rem)] max-w-xs bg-gradient-to-br from-slate-800 via-slate-800/95 to-slate-900 border border-slate-600/50 text-xs p-3 z-[99999] shadow-xl shadow-black/30 rounded-xl" side="bottom" align="center" sideOffset={12}>
+                  <p className="text-slate-400 leading-relaxed text-[11px]">Minimum property rate set by the government for stamp duty and registration charges. Varies by location, property type, and road width.</p>
                 </PopoverContent>
               </Popover>
             </span> of Your Property
