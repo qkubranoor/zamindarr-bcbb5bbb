@@ -177,8 +177,8 @@ const ServicesSection = () => {
                             <div className="space-y-2 mb-auto">
                               {service.features.map((feature, idx) => (
                                 <div key={idx} className="flex items-start text-[11.5px] font-light">
-                                  <div className="relative w-4 h-4 rounded-full flex items-center justify-center mr-2 flex-shrink-0 mt-0.5 bg-green-500/20 backdrop-blur-[30px] border border-green-400/40">
-                                    <Check className="relative z-10 w-2.5 h-2.5 drop-shadow-sm text-green-300" strokeWidth={3.5} />
+                                  <div className="relative w-4 h-4 rounded-full flex items-center justify-center mr-2 flex-shrink-0 mt-0.5 bg-green-500/20 backdrop-blur-[30px] border border-green-400/40 shadow-[0_0_8px_rgba(74,222,128,0.5),0_0_16px_rgba(74,222,128,0.3)]">
+                                    <Check className="relative z-10 w-2.5 h-2.5 drop-shadow-[0_0_4px_rgba(74,222,128,0.8)] text-green-300" strokeWidth={3.5} />
                                   </div>
                                   <span className="leading-relaxed">{feature}</span>
                                 </div>
@@ -313,8 +313,8 @@ const ServicesSection = () => {
                           <div className="space-y-2.5 mb-auto">
                             {service.features.map((feature, idx) => (
                               <div key={idx} className="flex items-start text-[13px] font-light">
-                                <div className="relative w-5 h-5 rounded-full flex items-center justify-center mr-2.5 flex-shrink-0 mt-0.5 bg-green-500/20 backdrop-blur-[30px] border border-green-400/40">
-                                  <Check className="relative z-10 w-3 h-3 drop-shadow-sm text-green-300" strokeWidth={3.5} />
+                                <div className="relative w-5 h-5 rounded-full flex items-center justify-center mr-2.5 flex-shrink-0 mt-0.5 bg-green-500/20 backdrop-blur-[30px] border border-green-400/40 shadow-[0_0_10px_rgba(74,222,128,0.5),0_0_20px_rgba(74,222,128,0.3)]">
+                                  <Check className="relative z-10 w-3 h-3 drop-shadow-[0_0_4px_rgba(74,222,128,0.8)] text-green-300" strokeWidth={3.5} />
                                 </div>
                                 <span className="leading-relaxed">{feature}</span>
                               </div>
