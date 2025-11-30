@@ -117,10 +117,12 @@ const BlogSection = () => {
                   </div>
 
                   {/* Article Text */}
-                  <div className="prose prose-sm dark:prose-invert max-w-none">
-                    <p className="text-foreground/90 text-sm leading-relaxed">
-                      {selectedArticle.content || selectedArticle.excerpt}
-                    </p>
+                  <div className="prose prose-sm dark:prose-invert max-w-none space-y-4">
+                    {(selectedArticle.content || selectedArticle.excerpt).split('\n\n').map((paragraph, idx) => (
+                      <p key={idx} className="text-foreground/90 text-sm leading-relaxed">
+                        {paragraph}
+                      </p>
+                    ))}
                   </div>
                 </div>
               </ScrollArea>
