@@ -27,6 +27,7 @@ const DocumentVerificationForm = ({ onClose, serviceName, servicePrice }: Docume
     pincode: "",
     documentType: "",
     statutoryType: "",
+    stampPaperDenomination: "",
     agreementValue: "",
     deliveryMethod: "",
     pageCount: "",
@@ -39,13 +40,33 @@ const DocumentVerificationForm = ({ onClose, serviceName, servicePrice }: Docume
   const [showPayment, setShowPayment] = useState(false);
   const { toast } = useToast();
 
-  // Calculate dynamic price based on page count
-  const calculatedPrice = useMemo(() => {
+  // Calculate dynamic price based on page count, stamp paper, and delivery
+  const priceBreakdown = useMemo(() => {
     if (serviceName === "Document Drafting" && formData.pageCount) {
-      return formData.pageCount === "up-to-10" ? "₹2,200" : "₹5,600";
+      const basePrice = formData.pageCount === "up-to-10" ? 2200 : 5600;
+      const stampPaperPrice = formData.statutoryType === "karnataka-estamp" && formData.stampPaperDenomination 
+        ? parseInt(formData.stampPaperDenomination) 
+        : 0;
+      const deliveryPrice = formData.deliveryMethod === "physical" ? 100 : 0;
+      const total = basePrice + stampPaperPrice + deliveryPrice;
+      
+      return {
+        basePrice,
+        stampPaperPrice,
+        deliveryPrice,
+        total,
+        marketPrice: 12000
+      };
+    }
+    return null;
+  }, [serviceName, formData.pageCount, formData.statutoryType, formData.stampPaperDenomination, formData.deliveryMethod]);
+
+  const calculatedPrice = useMemo(() => {
+    if (priceBreakdown) {
+      return `₹${priceBreakdown.total.toLocaleString('en-IN')}`;
     }
     return servicePrice;
-  }, [serviceName, formData.pageCount, servicePrice]);
+  }, [priceBreakdown, servicePrice]);
 
   // Prevent body scroll when modal is open
   useEffect(() => {
@@ -99,7 +120,14 @@ const DocumentVerificationForm = ({ onClose, serviceName, servicePrice }: Docume
   }, [serviceName]);
 
   const handleInputChange = useCallback((field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData(prev => {
+      const newData = { ...prev, [field]: value };
+      // Reset stamp paper denomination if statutory type changes away from karnataka-estamp
+      if (field === 'statutoryType' && value !== 'karnataka-estamp') {
+        newData.stampPaperDenomination = '';
+      }
+      return newData;
+    });
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -474,6 +502,35 @@ const DocumentVerificationForm = ({ onClose, serviceName, servicePrice }: Docume
                  </Select>
                  <input type="hidden" name="statutoryType" value={formData.statutoryType} />
                  
+                 {/* Stamp Paper Denomination - Only when Karnataka E-Stamp is selected */}
+                 {formData.statutoryType === "karnataka-estamp" && (
+                   <div className="mt-3">
+                     <label className="text-xs font-medium text-slate-300 pl-1">
+                       Stamp Paper Denomination *
+                     </label>
+                     <Select value={formData.stampPaperDenomination} onValueChange={(value) => handleInputChange('stampPaperDenomination', value)}>
+                       <SelectTrigger className="h-10 mt-1 bg-slate-800/50 border-slate-600/50 text-white text-xs focus:border-primary/60 focus:bg-slate-800/70 rounded-lg [&>span]:text-white tap-friendly">
+                         <SelectValue placeholder="Select stamp paper value" />
+                       </SelectTrigger>
+                       <SelectContent className="bg-slate-800 border-slate-700 z-[99999] gpu-layer">
+                         <SelectItem value="100" className="text-white/90 text-xs hover:bg-slate-700 hover:text-white focus:bg-slate-700 focus:text-white cursor-pointer">
+                           ₹100
+                         </SelectItem>
+                         <SelectItem value="200" className="text-white/90 text-xs hover:bg-slate-700 hover:text-white focus:bg-slate-700 focus:text-white cursor-pointer">
+                           ₹200
+                         </SelectItem>
+                         <SelectItem value="500" className="text-white/90 text-xs hover:bg-slate-700 hover:text-white focus:bg-slate-700 focus:text-white cursor-pointer">
+                           ₹500
+                         </SelectItem>
+                         <SelectItem value="1000" className="text-white/90 text-xs hover:bg-slate-700 hover:text-white focus:bg-slate-700 focus:text-white cursor-pointer">
+                           ₹1,000
+                         </SelectItem>
+                       </SelectContent>
+                     </Select>
+                     <input type="hidden" name="stampPaperDenomination" value={formData.stampPaperDenomination} />
+                   </div>
+                 )}
+                 
                  {/* Stamp Duty Note */}
                  {formData.statutoryType === "karnataka-estamp" && (
                    <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-3 mt-2">
@@ -589,11 +646,62 @@ const DocumentVerificationForm = ({ onClose, serviceName, servicePrice }: Docume
               {/* Pricing and Payment Section - Shows after submission */}
               {isSubmitted && (
                 <div className="animate-fade-in space-y-3 p-4 bg-gradient-to-br from-primary/10 via-accent/10 to-primary/10 border border-primary/30 rounded-xl backdrop-blur-sm">
-                  <div className="text-center space-y-2">
-                    <h3 className="text-sm font-semibold text-white">Service Pricing</h3>
-                    <div className="bg-slate-800/50 border border-slate-700/50 rounded-lg p-3">
-                      <p className="text-xs text-slate-300 mb-1">Service: {serviceName}</p>
-                      <p className="text-2xl font-bold text-white">{calculatedPrice}</p>
+                  <div className="space-y-3">
+                    <h3 className="text-sm font-semibold text-white text-center">Your Bill</h3>
+                    
+                    {/* Detailed Bill Breakdown */}
+                    <div className="bg-slate-800/50 border border-slate-700/50 rounded-lg p-3 space-y-2">
+                      {/* Service Name */}
+                      <p className="text-xs text-slate-400 border-b border-slate-700/50 pb-2 mb-2">{serviceName}</p>
+                      
+                      {/* Bill Items */}
+                      {priceBreakdown ? (
+                        <>
+                          <div className="flex justify-between text-xs">
+                            <span className="text-slate-300">Document Drafting ({formData.pageCount === "up-to-10" ? "Up to 10 pages" : "More than 10 pages"})</span>
+                            <span className="text-white">₹{priceBreakdown.basePrice.toLocaleString('en-IN')}</span>
+                          </div>
+                          
+                          {priceBreakdown.stampPaperPrice > 0 && (
+                            <div className="flex justify-between text-xs">
+                              <span className="text-slate-300">Stamp Paper (₹{formData.stampPaperDenomination})</span>
+                              <span className="text-white">₹{priceBreakdown.stampPaperPrice.toLocaleString('en-IN')}</span>
+                            </div>
+                          )}
+                          
+                          {priceBreakdown.deliveryPrice > 0 && (
+                            <div className="flex justify-between text-xs">
+                              <span className="text-slate-300">Postal/Courier Delivery</span>
+                              <span className="text-white">₹{priceBreakdown.deliveryPrice.toLocaleString('en-IN')}</span>
+                            </div>
+                          )}
+                          
+                          {/* Divider */}
+                          <div className="border-t border-slate-600/50 my-2"></div>
+                          
+                          {/* Total */}
+                          <div className="flex justify-between text-sm font-semibold">
+                            <span className="text-white">Total</span>
+                            <span className="text-primary">₹{priceBreakdown.total.toLocaleString('en-IN')}</span>
+                          </div>
+                          
+                          {/* Savings Comparison */}
+                          <div className="bg-green-500/10 border border-green-500/30 rounded-lg p-2 mt-3">
+                            <div className="flex justify-between text-xs">
+                              <span className="text-green-300">Market Price</span>
+                              <span className="text-green-300 line-through">₹{priceBreakdown.marketPrice.toLocaleString('en-IN')}</span>
+                            </div>
+                            <div className="flex justify-between text-xs mt-1">
+                              <span className="text-green-400 font-medium">You Save</span>
+                              <span className="text-green-400 font-medium">₹{(priceBreakdown.marketPrice - priceBreakdown.total).toLocaleString('en-IN')}</span>
+                            </div>
+                          </div>
+                        </>
+                      ) : (
+                        <div className="text-center">
+                          <p className="text-2xl font-bold text-white">{calculatedPrice}</p>
+                        </div>
+                      )}
                     </div>
                   </div>
                   
