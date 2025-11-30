@@ -86,7 +86,7 @@ const BlogSection = () => {
 
       {/* Article Pop-up Dialog */}
       <Dialog open={!!selectedArticle} onOpenChange={(open) => !open && closeDialog()}>
-        <DialogContent className="max-w-lg mx-4 p-0 overflow-hidden bg-card border-border/50 max-h-[85vh]">
+        <DialogContent className="w-[calc(100vw-2rem)] sm:max-w-lg p-0 overflow-hidden bg-card border-border/50 max-h-[85vh]">
           {selectedArticle && (
             <>
               {/* Article Image Header */}
