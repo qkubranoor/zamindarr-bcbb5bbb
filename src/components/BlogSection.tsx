@@ -1,6 +1,5 @@
 import { useState } from "react";
 import BlogArticleCard from "./BlogArticleCard";
-import MobileVideoCard from "./MobileVideoCard";
 import { blogArticles, BlogArticle } from "@/data/blogArticles";
 import {
   Dialog,
@@ -40,12 +39,8 @@ const BlogSection = () => {
       {/* Mobile View - Compact Grid */}
       <div className="md:hidden px-4 relative z-10">
         <div className="grid grid-cols-2 gap-3">
-          {/* Video Card - Smaller */}
-          <div className="aspect-[3/4]">
-            <MobileVideoCard />
-          </div>
           {/* Article Cards */}
-          {blogArticles.slice(0, 3).map((article) => (
+          {blogArticles.slice(0, 4).map((article) => (
             <div key={article.id} className="aspect-[3/4]">
               <BlogArticleCard 
                 article={article} 
@@ -69,9 +64,6 @@ const BlogSection = () => {
       {/* Desktop View - Horizontal Scroll */}
       <div className="hidden md:block px-4 relative z-10">
         <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide max-w-6xl mx-auto justify-center">
-          <div className="w-56 flex-shrink-0 aspect-[3/4]">
-            <MobileVideoCard />
-          </div>
           {blogArticles.map((article) => (
             <div key={article.id} className="w-56 flex-shrink-0 aspect-[3/4]">
               <BlogArticleCard 
