@@ -494,9 +494,10 @@ const DocumentVerificationForm = ({ onClose, serviceName, servicePrice }: Docume
                       </button>
                     </PopoverTrigger>
                     <PopoverContent className="max-w-xs bg-slate-800 border-slate-700 text-slate-200 text-xs p-3 z-[99999]" side="top" align="start">
-                      <p>This stamp paper is only used to print your agreement.</p>
-                      <p className="mt-2">The actual stamp duty, which varies by document type (Sale, Lease, POA, Gift, Partition, Mortgage, etc.), must be paid electronically through Kaveri Online Services or at the Sub-Registrar Office.</p>
-                      <p className="mt-2">Once paid, an e-Stamp certificate is issued which is what legally validates your document.</p>
+                      <p className="font-medium mb-2">Important Information</p>
+                      <p>The selected stamp paper denomination serves exclusively as the printing medium for your agreement document.</p>
+                      <p className="mt-2">Applicable stamp duty charges, determined by transaction type (Sale Deed, Lease Agreement, Power of Attorney, Gift Deed, Partition Deed, Mortgage Deed, etc.), are payable separately via Kaveri Online Services or at the Sub-Registrar Office.</p>
+                      <p className="mt-2">Upon successful payment, an e-Stamp Certificate will be issued, which serves as the legally binding validation of your document.</p>
                     </PopoverContent>
                   </Popover>
                 </label>
