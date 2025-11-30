@@ -288,7 +288,7 @@ const ServicesSection = () => {
                                 <HoverCardTrigger asChild>
                                   <span className="cursor-help">{service.title}</span>
                                 </HoverCardTrigger>
-                                <HoverCardContent className="w-96 p-6 min-h-[400px] bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 border-sky-300/50 shadow-[0_0_60px_rgba(125,211,252,0.4),0_0_30px_rgba(186,230,253,0.3)] ring-1 ring-sky-200/40" side="top">
+                                <HoverCardContent className="w-96 p-6 min-h-[400px] bg-gradient-to-br from-slate-950 via-blue-950 to-indigo-950 border-blue-500/30 shadow-[0_0_60px_rgba(30,58,138,0.5),0_0_30px_rgba(59,130,246,0.3)] ring-1 ring-blue-400/30" side="top">
                                   <div className="space-y-4">
                                     <div>
                                       <h4 className="text-lg font-semibold text-blue-100 mb-2">Comprehensive Due Diligence Report</h4>
