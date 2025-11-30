@@ -84,7 +84,7 @@ const HeroSection = () => {
         <div className="animate-fade-in">
           {/* Main Heading */}
           <h1 className="font-bold tracking-tight text-balance text-2xl sm:text-4xl lg:text-4xl text-foreground mb-2 sm:mb-6 leading-tight mt-8 sm:mt-0">
-            Discover Guidance Value of Your Property
+            Discover <span className="text-[#1a3358]">Guidance Value</span> of Your Property
           </h1>
           
           {/* Subheading */}
@@ -156,7 +156,7 @@ const HeroSection = () => {
         <div className="hidden lg:block absolute bottom-[-5rem] left-1/2 transform -translate-x-1/2 text-center z-20">
           <div className="text-foreground font-medium">
             <div className="mb-1 text-sm">For</div>
-            <div className="h-12 overflow-hidden text-2xl text-blue-600">
+            <div className="h-12 overflow-hidden text-2xl text-[#0f1f3d]">
               <div className="animate-slideUpDesktop">
                 <div className="h-12 flex items-center justify-center">Brokers</div>
                 <div className="h-12 flex items-center justify-center">Homeowners</div>
@@ -175,7 +175,7 @@ const HeroSection = () => {
     <div className="lg:hidden mt-10 text-center z-20">
       <div className="text-foreground font-medium">
         <div className="mb-1 text-xs">For</div>
-        <div className="h-8 overflow-hidden text-xl text-blue-600">
+        <div className="h-8 overflow-hidden text-xl text-[#0f1f3d]">
           <div className="animate-slideUpMobile">
             <div className="h-8 flex items-center justify-center">Brokers</div>
             <div className="h-8 flex items-center justify-center">Homeowners</div>
