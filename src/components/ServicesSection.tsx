@@ -17,11 +17,11 @@ const ServicesSection = () => {
   const [canScrollRight, setCanScrollRight] = useState(true);
   const [isManualScrolling, setIsManualScrolling] = useState(false);
 
-  // Premium gradients - sophisticated dark slate palette
+  // Ultra-premium gradients - luxurious deep navy & sapphire
   const gradients = [
-    'linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #334155 100%)', // Elegant slate
-    'linear-gradient(135deg, #0c1220 0%, #1a2332 40%, #2d3748 100%)', // Deep charcoal
-    'linear-gradient(135deg, #111827 0%, #1f2937 40%, #374151 100%)'  // Rich graphite
+    'linear-gradient(145deg, #0a1628 0%, #162544 50%, #1e3a5f 100%)', // Midnight navy
+    'linear-gradient(145deg, #071224 0%, #0f1f3d 50%, #1a3358 100%)', // Deep sapphire
+    'linear-gradient(145deg, #0c1929 0%, #142847 50%, #1c3a62 100%)'  // Royal midnight
   ];
 
   // Ensure scroll starts at Document Drafting (first item)
@@ -124,7 +124,7 @@ const ServicesSection = () => {
                       return (
                         <div 
                           key={`manual-${index}`}
-                          className={`${getCardStyles()} flex-shrink-0 w-[270px] h-[320px] max-w-[85vw] rounded-[24px] group shadow-2xl ${index === 1 ? 'ring-1 ring-slate-300/50 shadow-[0_0_40px_rgba(100,116,139,0.3)]' : ''}`}
+                          className={`${getCardStyles()} flex-shrink-0 w-[270px] h-[320px] max-w-[85vw] rounded-[24px] group shadow-2xl ${index === 1 ? 'ring-1 ring-amber-400/40 shadow-[0_0_50px_rgba(251,191,36,0.15)]' : ''}`}
                           style={{ scrollSnapAlign: 'center' }}
                         >
                           {/* Vibrant gradient background */}
@@ -135,13 +135,13 @@ const ServicesSection = () => {
                           
                           {/* Clean border for Due Diligence, subtle glassmorphism for Document Verification */}
                           {index === 1 ? (
-                            <div className="absolute inset-0 border border-slate-400/40 rounded-[24px]"></div>
+                            <div className="absolute inset-0 border border-amber-400/30 rounded-[24px]"></div>
                           ) : index === 2 ? (
                             <>
                               {/* Subtle glassmorphism for Document Verification */}
-                              <div className="absolute inset-0 bg-white/[0.03] backdrop-blur-[60px] rounded-[24px]"></div>
-                              <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-white/[0.01] to-transparent rounded-[24px]"></div>
-                              <div className="absolute inset-0 border border-slate-400/30 rounded-[24px]"></div>
+                              <div className="absolute inset-0 bg-white/[0.02] backdrop-blur-[60px] rounded-[24px]"></div>
+                              <div className="absolute inset-0 bg-gradient-to-br from-white/[0.04] via-white/[0.01] to-transparent rounded-[24px]"></div>
+                              <div className="absolute inset-0 border border-sky-300/20 rounded-[24px]"></div>
                             </>
                           ) : (
                             <>
@@ -235,7 +235,7 @@ const ServicesSection = () => {
                     return (
                       <div 
                         key={`desktop-${index}`}
-                        className={`${getCardStyles()} w-[320px] h-[380px] rounded-[28px] group shadow-2xl hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.4)] transition-all duration-700 ${index === 1 ? 'ring-1 ring-slate-300/50 shadow-[0_0_40px_rgba(100,116,139,0.3)]' : ''}`}
+                        className={`${getCardStyles()} w-[320px] h-[380px] rounded-[28px] group shadow-2xl hover:shadow-[0_25px_60px_-12px_rgba(10,30,60,0.6)] transition-all duration-700 ${index === 1 ? 'ring-1 ring-amber-400/40 shadow-[0_0_50px_rgba(251,191,36,0.15)]' : ''}`}
                       >
                         {/* Vibrant gradient background */}
                         <div 
@@ -245,13 +245,13 @@ const ServicesSection = () => {
                         
                         {/* Clean border for Due Diligence, subtle glassmorphism for Document Verification */}
                         {index === 1 ? (
-                          <div className="absolute inset-0 border border-slate-400/40 rounded-[28px]"></div>
+                          <div className="absolute inset-0 border border-amber-400/30 rounded-[28px]"></div>
                         ) : index === 2 ? (
                           <>
                             {/* Subtle glassmorphism for Document Verification */}
-                            <div className="absolute inset-0 bg-white/[0.03] backdrop-blur-[60px] rounded-[28px]"></div>
-                            <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-white/[0.01] to-transparent rounded-[28px]"></div>
-                            <div className="absolute inset-0 border border-slate-400/30 rounded-[28px]"></div>
+                            <div className="absolute inset-0 bg-white/[0.02] backdrop-blur-[60px] rounded-[28px]"></div>
+                            <div className="absolute inset-0 bg-gradient-to-br from-white/[0.04] via-white/[0.01] to-transparent rounded-[28px]"></div>
+                            <div className="absolute inset-0 border border-sky-300/20 rounded-[28px]"></div>
                           </>
                         ) : (
                           <>
@@ -288,17 +288,17 @@ const ServicesSection = () => {
                                 <HoverCardTrigger asChild>
                                   <span className="cursor-help">{service.title}</span>
                                 </HoverCardTrigger>
-                                <HoverCardContent className="w-96 p-6 min-h-[400px] bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border-slate-500/30 shadow-[0_0_60px_rgba(100,116,139,0.3)] ring-1 ring-slate-400/20" side="top">
+                                <HoverCardContent className="w-96 p-6 min-h-[400px] bg-gradient-to-br from-[#071224] via-[#0f1f3d] to-[#1a3358] border-amber-400/20 shadow-[0_0_80px_rgba(251,191,36,0.1)] ring-1 ring-amber-300/10" side="top">
                                   <div className="space-y-4">
                                     <div>
-                                      <h4 className="text-lg font-semibold text-slate-100 mb-2">Comprehensive Due Diligence Report</h4>
-                                      <p className="text-sm text-slate-300/90">
+                                      <h4 className="text-lg font-semibold text-amber-100 mb-2">Comprehensive Due Diligence Report</h4>
+                                      <p className="text-sm text-sky-100/80">
                                         Complete property verification with 15+ years of ownership history, legal clearance verification, and comprehensive documentation analysis.
                                       </p>
                                     </div>
                                     <div className="space-y-2">
-                                      <h5 className="font-medium text-slate-100">What's Included:</h5>
-                                      <ul className="text-xs text-slate-300/80 space-y-1">
+                                      <h5 className="font-medium text-amber-100">What's Included:</h5>
+                                      <ul className="text-xs text-sky-100/70 space-y-1">
                                         <li>• Title deed verification and chain analysis</li>
                                         <li>• Encumbrance certificate for 15+ years</li>
                                         <li>• KHATA verification and property tax records</li>
@@ -307,8 +307,8 @@ const ServicesSection = () => {
                                         <li>• Compiled comprehensive report with all documents</li>
                                       </ul>
                                     </div>
-                                    <div className="pt-2 border-t border-slate-700/50">
-                                      <p className="text-xs text-emerald-400 font-medium">
+                                    <div className="pt-2 border-t border-amber-400/20">
+                                      <p className="text-xs text-amber-400 font-medium">
                                         Save ₹6,000 with our special pricing
                                       </p>
                                     </div>
