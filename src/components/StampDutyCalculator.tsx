@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Stamp } from "lucide-react";
 
 const StampDutyCalculator = () => {
   const [propertyValue, setPropertyValue] = useState("");
@@ -67,92 +66,81 @@ const StampDutyCalculator = () => {
   };
 
   return (
-    <div className="w-full max-w-sm mx-auto">
-      {/* Main card - Ultra premium dark theme */}
-      <div className="relative bg-gradient-to-b from-[#1a1a1f] via-[#141417] to-[#0d0d0f] rounded-2xl border border-[#2a2a30] p-6 shadow-2xl">
-        
-        {/* Subtle gold accent line at top */}
-        <div className="absolute top-0 left-8 right-8 h-[1px] bg-gradient-to-r from-transparent via-[#c9a962] to-transparent"></div>
+    <div className="w-full max-w-md mx-auto">
+      <div className="bg-white rounded-lg p-8">
         
         {/* Header */}
-        <div className="flex items-center gap-4 mb-6 pb-5 border-b border-[#2a2a30]">
-          <div className="p-3 rounded-xl bg-gradient-to-br from-[#c9a962]/20 to-[#8b7355]/10 border border-[#c9a962]/30">
-            <Stamp className="w-5 h-5 text-[#c9a962]" />
-          </div>
-          <div>
-            <h3 className="font-medium text-[15px] text-white tracking-wide">Stamp Duty Calculator</h3>
-            <p className="text-[11px] text-[#6b6b75] mt-1 tracking-wide">Karnataka Government Rates</p>
-          </div>
+        <div className="mb-8">
+          <h3 className="text-xl font-normal text-neutral-900 tracking-tight">Stamp Duty Calculator</h3>
+          <p className="text-sm text-neutral-400 mt-1">Karnataka Government Rates</p>
         </div>
         
         {/* Form fields */}
-        <div className="space-y-5">
-          <div className="grid grid-cols-2 gap-4">
+        <div className="space-y-6">
+          <div className="grid grid-cols-2 gap-6">
             <div className="space-y-2">
-              <Label htmlFor="property-value" className="text-[10px] text-[#8b8b95] font-medium uppercase tracking-[0.15em]">Property Value</Label>
+              <Label htmlFor="property-value" className="text-xs text-neutral-500 font-normal">Property Value</Label>
               <div className="relative">
-                <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-sm text-[#6b6b75] font-light">₹</span>
+                <span className="absolute left-0 top-1/2 -translate-y-1/2 text-sm text-neutral-400">₹</span>
                 <Input
                   id="property-value"
                   type="text"
                   placeholder="50,00,000"
                   value={propertyValue}
                   onChange={handlePropertyValueChange}
-                  className={`h-11 pl-8 text-sm bg-[#0d0d0f] text-white placeholder:text-[#4a4a55] rounded-xl border transition-all duration-300 focus:ring-1 focus:ring-[#c9a962]/30 ${
+                  className={`h-12 pl-5 text-base bg-transparent text-neutral-900 placeholder:text-neutral-300 rounded-none border-0 border-b transition-colors focus-visible:ring-0 focus-visible:ring-offset-0 ${
                     inputError 
-                      ? "border-red-500/50 focus:border-red-500/50" 
-                      : "border-[#2a2a30] focus:border-[#c9a962]/50 hover:border-[#3a3a40]"
+                      ? "border-red-400" 
+                      : "border-neutral-200 focus:border-neutral-900"
                   }`}
                 />
               </div>
               {inputError && (
-                <p className="text-red-400/80 text-[10px]">{inputError}</p>
+                <p className="text-red-400 text-xs">{inputError}</p>
               )}
             </div>
             
             <div className="space-y-2">
-              <Label className="text-[10px] text-[#8b8b95] font-medium uppercase tracking-[0.15em]">Property Type</Label>
+              <Label className="text-xs text-neutral-500 font-normal">Property Type</Label>
               <Select value={propertyType} onValueChange={setPropertyType}>
-                <SelectTrigger className="h-11 text-sm bg-[#0d0d0f] border-[#2a2a30] text-white hover:border-[#3a3a40] rounded-xl transition-all duration-300 focus:ring-1 focus:ring-[#c9a962]/30 focus:border-[#c9a962]/50">
-                  <SelectValue placeholder="Select" className="text-[#4a4a55]" />
+                <SelectTrigger className="h-12 text-base bg-transparent border-0 border-b border-neutral-200 text-neutral-900 rounded-none focus:ring-0 focus:border-neutral-900 transition-colors">
+                  <SelectValue placeholder="Select" className="text-neutral-300" />
                 </SelectTrigger>
-                <SelectContent className="bg-[#1a1a1f] border-[#2a2a30] rounded-xl shadow-2xl">
-                  <SelectItem value="residential" className="text-[#e0e0e5] hover:bg-[#2a2a30] focus:bg-[#2a2a30] rounded-lg">Residential</SelectItem>
-                  <SelectItem value="commercial" className="text-[#e0e0e5] hover:bg-[#2a2a30] focus:bg-[#2a2a30] rounded-lg">Commercial</SelectItem>
-                  <SelectItem value="agricultural" className="text-[#e0e0e5] hover:bg-[#2a2a30] focus:bg-[#2a2a30] rounded-lg">Agricultural</SelectItem>
+                <SelectContent className="bg-white border border-neutral-100 rounded-lg shadow-lg">
+                  <SelectItem value="residential" className="text-neutral-700 focus:bg-neutral-50">Residential</SelectItem>
+                  <SelectItem value="commercial" className="text-neutral-700 focus:bg-neutral-50">Commercial</SelectItem>
+                  <SelectItem value="agricultural" className="text-neutral-700 focus:bg-neutral-50">Agricultural</SelectItem>
                 </SelectContent>
               </Select>
             </div>
           </div>
 
           <div className="space-y-2">
-            <Label className="text-[10px] text-[#8b8b95] font-medium uppercase tracking-[0.15em]">Buyer Category</Label>
+            <Label className="text-xs text-neutral-500 font-normal">Buyer Category</Label>
             <Select value={buyerType} onValueChange={setBuyerType}>
-              <SelectTrigger className="h-11 text-sm bg-[#0d0d0f] border-[#2a2a30] text-white hover:border-[#3a3a40] rounded-xl transition-all duration-300 focus:ring-1 focus:ring-[#c9a962]/30 focus:border-[#c9a962]/50">
-                <SelectValue placeholder="Select buyer category" className="text-[#4a4a55]" />
+              <SelectTrigger className="h-12 text-base bg-transparent border-0 border-b border-neutral-200 text-neutral-900 rounded-none focus:ring-0 focus:border-neutral-900 transition-colors">
+                <SelectValue placeholder="Select buyer category" className="text-neutral-300" />
               </SelectTrigger>
-              <SelectContent className="bg-[#1a1a1f] border-[#2a2a30] rounded-xl shadow-2xl">
-                <SelectItem value="male" className="text-[#e0e0e5] hover:bg-[#2a2a30] focus:bg-[#2a2a30] rounded-lg">Male — 5%</SelectItem>
-                <SelectItem value="female" className="text-[#e0e0e5] hover:bg-[#2a2a30] focus:bg-[#2a2a30] rounded-lg">Female — 2%</SelectItem>
-                <SelectItem value="joint" className="text-[#e0e0e5] hover:bg-[#2a2a30] focus:bg-[#2a2a30] rounded-lg">Joint — 3%</SelectItem>
+              <SelectContent className="bg-white border border-neutral-100 rounded-lg shadow-lg">
+                <SelectItem value="male" className="text-neutral-700 focus:bg-neutral-50">Male — 5%</SelectItem>
+                <SelectItem value="female" className="text-neutral-700 focus:bg-neutral-50">Female — 2%</SelectItem>
+                <SelectItem value="joint" className="text-neutral-700 focus:bg-neutral-50">Joint — 3%</SelectItem>
               </SelectContent>
             </Select>
           </div>
 
           {/* Buttons */}
-          <div className="flex gap-3 pt-3">
+          <div className="flex gap-4 pt-4">
             <Button 
               onClick={calculateStampDuty} 
-              size="sm" 
-              className="flex-1 h-11 text-sm font-medium bg-gradient-to-r from-[#c9a962] to-[#a8884d] hover:from-[#d4b46d] hover:to-[#b39458] text-[#0d0d0f] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+              className="flex-1 h-12 text-sm font-normal bg-neutral-900 hover:bg-neutral-800 text-white rounded-lg transition-colors"
             >
               Calculate
             </Button>
             <Button 
-              variant="outline" 
-              size="sm" 
+              variant="ghost" 
               onClick={reset} 
-              className="h-11 px-5 text-sm font-medium border-[#2a2a30] bg-transparent text-[#8b8b95] hover:bg-[#1a1a1f] hover:text-white hover:border-[#3a3a40] rounded-xl transition-all duration-300"
+              className="h-12 px-6 text-sm font-normal text-neutral-500 hover:text-neutral-900 hover:bg-transparent transition-colors"
             >
               Reset
             </Button>
@@ -161,34 +149,27 @@ const StampDutyCalculator = () => {
 
         {/* Result */}
         {showResult && result !== null && (
-          <div className="mt-6 pt-5 border-t border-[#2a2a30] animate-fade-in">
-            <div className="bg-gradient-to-br from-[#1a1a1f] to-[#0d0d0f] rounded-xl p-5 border border-[#c9a962]/20">
-              <div className="flex items-center justify-between">
-                <div>
-                  <span className="text-[10px] text-[#6b6b75] uppercase tracking-[0.15em] font-medium">Estimated Stamp Duty</span>
-                  {result === 0 && (
-                    <p className="text-[11px] text-[#c9a962]/80 mt-2">
-                      No duty applicable for properties below ₹20,000
-                    </p>
-                  )}
-                </div>
-                <div className="text-right">
-                  <span className="text-3xl font-light text-white tracking-tight">
-                    ₹{result.toLocaleString('en-IN')}
-                  </span>
-                </div>
+          <div className="mt-10 pt-8 border-t border-neutral-100 animate-fade-in">
+            <div className="flex items-end justify-between">
+              <div>
+                <p className="text-xs text-neutral-400 mb-1">Estimated Stamp Duty</p>
+                {result === 0 && (
+                  <p className="text-xs text-neutral-400 mt-2">
+                    No duty for properties below ₹20,000
+                  </p>
+                )}
               </div>
+              <span className="text-4xl font-light text-neutral-900 tracking-tight">
+                ₹{result.toLocaleString('en-IN')}
+              </span>
             </div>
           </div>
         )}
 
-        {/* Footer notes */}
-        <div className="mt-5 pt-4 border-t border-[#1a1a1f]">
-          <p className="text-[10px] text-[#4a4a55] tracking-wide">
-            Minimum property value: ₹20,000 · Minimum duty: ₹100
-          </p>
-          <p className="text-[9px] text-[#3a3a40] mt-1 tracking-wide">
-            Rates are approximate and subject to government revision
+        {/* Footer */}
+        <div className="mt-8 pt-6 border-t border-neutral-50">
+          <p className="text-xs text-neutral-300">
+            Minimum property value ₹20,000 · Minimum duty ₹100 · Rates subject to change
           </p>
         </div>
       </div>
