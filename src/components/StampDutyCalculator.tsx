@@ -106,10 +106,10 @@ const StampDutyCalculator = () => {
                 <SelectTrigger className="h-12 text-base bg-transparent border-0 border-b border-neutral-200 text-neutral-900 rounded-none focus:ring-0 focus:border-neutral-900 transition-colors">
                   <SelectValue placeholder="Select" className="text-neutral-300" />
                 </SelectTrigger>
-                <SelectContent className="bg-white border border-neutral-100 rounded-lg shadow-lg">
-                  <SelectItem value="residential" className="text-neutral-700 focus:bg-neutral-50">Residential</SelectItem>
-                  <SelectItem value="commercial" className="text-neutral-700 focus:bg-neutral-50">Commercial</SelectItem>
-                  <SelectItem value="agricultural" className="text-neutral-700 focus:bg-neutral-50">Agricultural</SelectItem>
+                <SelectContent className="bg-white border border-neutral-200 rounded-lg shadow-xl z-50">
+                  <SelectItem value="residential" className="text-neutral-800 hover:bg-neutral-100 focus:bg-neutral-100 focus:text-neutral-900">Residential</SelectItem>
+                  <SelectItem value="commercial" className="text-neutral-800 hover:bg-neutral-100 focus:bg-neutral-100 focus:text-neutral-900">Commercial</SelectItem>
+                  <SelectItem value="agricultural" className="text-neutral-800 hover:bg-neutral-100 focus:bg-neutral-100 focus:text-neutral-900">Agricultural</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -121,10 +121,10 @@ const StampDutyCalculator = () => {
               <SelectTrigger className="h-12 text-base bg-transparent border-0 border-b border-neutral-200 text-neutral-900 rounded-none focus:ring-0 focus:border-neutral-900 transition-colors">
                 <SelectValue placeholder="Select buyer category" className="text-neutral-300" />
               </SelectTrigger>
-              <SelectContent className="bg-white border border-neutral-100 rounded-lg shadow-lg">
-                <SelectItem value="male" className="text-neutral-700 focus:bg-neutral-50">Male — 5%</SelectItem>
-                <SelectItem value="female" className="text-neutral-700 focus:bg-neutral-50">Female — 2%</SelectItem>
-                <SelectItem value="joint" className="text-neutral-700 focus:bg-neutral-50">Joint — 3%</SelectItem>
+              <SelectContent className="bg-white border border-neutral-200 rounded-lg shadow-xl z-50">
+                <SelectItem value="male" className="text-neutral-800 hover:bg-neutral-100 focus:bg-neutral-100 focus:text-neutral-900">Male — 5%</SelectItem>
+                <SelectItem value="female" className="text-neutral-800 hover:bg-neutral-100 focus:bg-neutral-100 focus:text-neutral-900">Female — 2%</SelectItem>
+                <SelectItem value="joint" className="text-neutral-800 hover:bg-neutral-100 focus:bg-neutral-100 focus:text-neutral-900">Joint — 3%</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -159,7 +159,7 @@ const StampDutyCalculator = () => {
                   </p>
                 )}
               </div>
-              <span className="text-4xl font-light text-neutral-900 tracking-tight">
+              <span className="text-2xl font-normal text-neutral-900">
                 ₹{result.toLocaleString('en-IN')}
               </span>
             </div>
