@@ -140,24 +140,24 @@ const FreeToolsSection = () => {
         </div>
       </section>
 
-      {/* Calculator Modal */}
+      {/* Calculator Modal - Compact Card Style */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="max-w-[95vw] sm:max-w-lg mx-auto bg-black border border-gray-800 shadow-2xl shadow-black/30 p-4 max-h-[85vh] overflow-y-auto">
-          <DialogHeader className="flex flex-row items-center justify-between border-b border-gray-800/60 pb-4">
-            <DialogTitle className="text-base sm:text-lg font-bold text-white">
+        <DialogContent className="w-[92vw] max-w-sm mx-auto bg-white rounded-2xl border-0 shadow-2xl p-0 overflow-hidden">
+          <DialogHeader className="flex flex-row items-center justify-between px-5 py-4 border-b border-neutral-100">
+            <DialogTitle className="text-base font-medium text-neutral-900">
               {selectedToolData?.title}
             </DialogTitle>
             <Button
               variant="ghost"
               size="icon"
               onClick={closeTool}
-              className="h-8 w-8 text-gray-300 hover:text-white hover:bg-gray-800 rounded-lg"
+              className="h-8 w-8 text-neutral-400 hover:text-neutral-900 hover:bg-neutral-100 rounded-full -mr-2"
             >
               <X className="h-4 w-4" />
             </Button>
           </DialogHeader>
           
-          <div className="mt-4 scale-95 sm:scale-100 origin-top">
+          <div className="px-1 py-2">
             {SelectedComponent && <SelectedComponent />}
           </div>
         </DialogContent>

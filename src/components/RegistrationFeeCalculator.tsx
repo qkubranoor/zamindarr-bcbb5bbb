@@ -80,119 +80,115 @@ const RegistrationFeeCalculator = () => {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto">
-      <div className="bg-white rounded-lg p-8">
-        
-        {/* Header */}
-        <div className="mb-8">
-          <h3 className="text-xl font-normal text-neutral-900 tracking-tight">Registration Fee Calculator</h3>
-          <p className="text-sm text-neutral-400 mt-1">Karnataka Government Rates</p>
-        </div>
-        
-        {/* Form fields */}
-        <div className="space-y-6">
-          <div className="grid grid-cols-2 gap-6">
-            <div className="space-y-2">
-              <Label htmlFor="reg-property-value" className="text-xs text-neutral-500 font-normal">Property Value</Label>
-              <div className="relative">
-                <span className="absolute left-0 top-1/2 -translate-y-1/2 text-sm text-neutral-400">₹</span>
-                <Input
-                  id="reg-property-value"
-                  type="text"
-                  placeholder="50,00,000"
-                  value={propertyValue}
-                  onChange={handlePropertyValueChange}
-                  className={`h-12 pl-5 text-base bg-transparent text-neutral-900 placeholder:text-neutral-300 rounded-none border-0 border-b transition-colors focus-visible:ring-0 focus-visible:ring-offset-0 ${
-                    inputError 
-                      ? "border-red-400" 
-                      : "border-neutral-200 focus:border-neutral-900"
-                  }`}
-                />
-              </div>
-              {inputError && (
-                <p className="text-red-400 text-xs">{inputError}</p>
-              )}
+    <div className="w-full max-w-sm mx-auto px-4 py-3">
+      {/* Header */}
+      <div className="mb-5">
+        <p className="text-xs text-neutral-400">Karnataka Government Rates</p>
+      </div>
+      
+      {/* Form fields */}
+      <div className="space-y-4">
+        <div className="grid grid-cols-2 gap-4">
+          <div className="space-y-1.5">
+            <Label htmlFor="reg-property-value" className="text-[11px] text-neutral-500 font-normal">Property Value</Label>
+            <div className="relative">
+              <span className="absolute left-0 top-1/2 -translate-y-1/2 text-sm text-neutral-400">₹</span>
+              <Input
+                id="reg-property-value"
+                type="text"
+                placeholder="50,00,000"
+                value={propertyValue}
+                onChange={handlePropertyValueChange}
+                className={`h-10 pl-5 text-sm bg-transparent text-neutral-900 placeholder:text-neutral-300 rounded-none border-0 border-b transition-colors focus-visible:ring-0 focus-visible:ring-offset-0 ${
+                  inputError 
+                    ? "border-red-400" 
+                    : "border-neutral-200 focus:border-neutral-900"
+                }`}
+              />
             </div>
-            
-            <div className="space-y-2">
-              <Label className="text-xs text-neutral-500 font-normal">Property Type</Label>
-              <Select value={propertyType} onValueChange={setPropertyType}>
-                <SelectTrigger className="h-12 text-base bg-transparent border-0 border-b border-neutral-200 text-neutral-900 rounded-none focus:ring-0 focus:border-neutral-900 transition-colors">
-                  <SelectValue placeholder="Select" className="text-neutral-300" />
-                </SelectTrigger>
-                <SelectContent className="bg-white border border-neutral-200 rounded-lg shadow-xl z-50">
-                  <SelectItem value="residential" className="text-neutral-800 hover:bg-neutral-100 focus:bg-neutral-100 focus:text-neutral-900">Residential</SelectItem>
-                  <SelectItem value="commercial" className="text-neutral-800 hover:bg-neutral-100 focus:bg-neutral-100 focus:text-neutral-900">Commercial</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
+            {inputError && (
+              <p className="text-red-400 text-[10px]">{inputError}</p>
+            )}
           </div>
-
-          <div className="space-y-2">
-            <Label className="text-xs text-neutral-500 font-normal">Document Type</Label>
-            <Select value={documentType} onValueChange={setDocumentType}>
-              <SelectTrigger className="h-12 text-base bg-transparent border-0 border-b border-neutral-200 text-neutral-900 rounded-none focus:ring-0 focus:border-neutral-900 transition-colors">
-                <SelectValue placeholder="Select document type" className="text-neutral-300" />
+          
+          <div className="space-y-1.5">
+            <Label className="text-[11px] text-neutral-500 font-normal">Property Type</Label>
+            <Select value={propertyType} onValueChange={setPropertyType}>
+              <SelectTrigger className="h-10 text-sm bg-transparent border-0 border-b border-neutral-200 text-neutral-900 rounded-none focus:ring-0 focus:border-neutral-900 transition-colors">
+                <SelectValue placeholder="Select" className="text-neutral-300" />
               </SelectTrigger>
               <SelectContent className="bg-white border border-neutral-200 rounded-lg shadow-xl z-50">
-                <SelectItem value="sale_deed" className="text-neutral-800 hover:bg-neutral-100 focus:bg-neutral-100 focus:text-neutral-900">Sale Deed — 1%</SelectItem>
-                <SelectItem value="lease_deed" className="text-neutral-800 hover:bg-neutral-100 focus:bg-neutral-100 focus:text-neutral-900">Lease Deed — 0.5-1%</SelectItem>
-                <SelectItem value="gift_deed" className="text-neutral-800 hover:bg-neutral-100 focus:bg-neutral-100 focus:text-neutral-900">Gift Deed — 0.5%</SelectItem>
-                <SelectItem value="mortgage_deed" className="text-neutral-800 hover:bg-neutral-100 focus:bg-neutral-100 focus:text-neutral-900">Mortgage — 0.5%</SelectItem>
+                <SelectItem value="residential" className="text-neutral-800 hover:bg-neutral-100 focus:bg-neutral-100 focus:text-neutral-900">Residential</SelectItem>
+                <SelectItem value="commercial" className="text-neutral-800 hover:bg-neutral-100 focus:bg-neutral-100 focus:text-neutral-900">Commercial</SelectItem>
               </SelectContent>
             </Select>
           </div>
-
-          {/* Buttons */}
-          <div className="flex gap-4 pt-4">
-            <Button 
-              onClick={calculateRegistrationFee} 
-              className="flex-1 h-12 text-sm font-normal bg-neutral-900 hover:bg-neutral-800 text-white rounded-lg transition-colors"
-            >
-              Calculate
-            </Button>
-            <Button 
-              variant="ghost" 
-              onClick={reset} 
-              className="h-12 px-6 text-sm font-normal text-neutral-500 hover:text-neutral-900 hover:bg-transparent transition-colors"
-            >
-              Reset
-            </Button>
-          </div>
         </div>
 
-        {/* Result */}
-        {showResult && result !== null && (
-          <div className="mt-10 pt-8 border-t border-neutral-100 animate-fade-in">
-            {result.total === 0 ? (
-              <p className="text-sm text-neutral-400 text-center">
-                No registration fee for properties below ₹5,000
-              </p>
-            ) : (
-              <div className="space-y-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-neutral-400">Registration Fee</span>
-                  <span className="text-lg text-neutral-700">₹{result.registrationFee.toLocaleString('en-IN')}</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-neutral-400">Processing Fee</span>
-                  <span className="text-lg text-neutral-700">₹{result.processingFee.toLocaleString('en-IN')}</span>
-                </div>
-                <div className="pt-4 border-t border-neutral-100 flex justify-between items-end">
-                  <span className="text-sm text-neutral-500">Total</span>
-                  <span className="text-2xl font-normal text-neutral-900">₹{result.total.toLocaleString('en-IN')}</span>
-                </div>
+        <div className="space-y-1.5">
+          <Label className="text-[11px] text-neutral-500 font-normal">Document Type</Label>
+          <Select value={documentType} onValueChange={setDocumentType}>
+            <SelectTrigger className="h-10 text-sm bg-transparent border-0 border-b border-neutral-200 text-neutral-900 rounded-none focus:ring-0 focus:border-neutral-900 transition-colors">
+              <SelectValue placeholder="Select document type" className="text-neutral-300" />
+            </SelectTrigger>
+            <SelectContent className="bg-white border border-neutral-200 rounded-lg shadow-xl z-50">
+              <SelectItem value="sale_deed" className="text-neutral-800 hover:bg-neutral-100 focus:bg-neutral-100 focus:text-neutral-900">Sale Deed — 1%</SelectItem>
+              <SelectItem value="lease_deed" className="text-neutral-800 hover:bg-neutral-100 focus:bg-neutral-100 focus:text-neutral-900">Lease Deed — 0.5-1%</SelectItem>
+              <SelectItem value="gift_deed" className="text-neutral-800 hover:bg-neutral-100 focus:bg-neutral-100 focus:text-neutral-900">Gift Deed — 0.5%</SelectItem>
+              <SelectItem value="mortgage_deed" className="text-neutral-800 hover:bg-neutral-100 focus:bg-neutral-100 focus:text-neutral-900">Mortgage — 0.5%</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+
+        {/* Buttons */}
+        <div className="flex gap-3 pt-2">
+          <Button 
+            onClick={calculateRegistrationFee} 
+            className="flex-1 h-10 text-sm font-normal bg-neutral-900 hover:bg-neutral-800 text-white rounded-lg transition-colors"
+          >
+            Calculate
+          </Button>
+          <Button 
+            variant="ghost" 
+            onClick={reset} 
+            className="h-10 px-4 text-sm font-normal text-neutral-500 hover:text-neutral-900 hover:bg-transparent transition-colors"
+          >
+            Reset
+          </Button>
+        </div>
+      </div>
+
+      {/* Result */}
+      {showResult && result !== null && (
+        <div className="mt-5 pt-4 border-t border-neutral-100 animate-fade-in">
+          {result.total === 0 ? (
+            <p className="text-sm text-neutral-400 text-center">
+              No registration fee for properties below ₹5,000
+            </p>
+          ) : (
+            <div className="space-y-2">
+              <div className="flex justify-between items-center">
+                <span className="text-xs text-neutral-400">Registration Fee</span>
+                <span className="text-sm text-neutral-700">₹{result.registrationFee.toLocaleString('en-IN')}</span>
               </div>
-            )}
-          </div>
-        )}
-
-        {/* Footer */}
-        <div className="mt-8 pt-6 border-t border-neutral-50">
-          <p className="text-xs text-neutral-300">
-            Cap: Residential ₹25,000 · Commercial ₹50,000 · Rates subject to change
-          </p>
+              <div className="flex justify-between items-center">
+                <span className="text-xs text-neutral-400">Processing Fee</span>
+                <span className="text-sm text-neutral-700">₹{result.processingFee.toLocaleString('en-IN')}</span>
+              </div>
+              <div className="pt-2 border-t border-neutral-100 flex justify-between items-end">
+                <span className="text-xs text-neutral-500">Total</span>
+                <span className="text-xl font-medium text-neutral-900">₹{result.total.toLocaleString('en-IN')}</span>
+              </div>
+            </div>
+          )}
         </div>
+      )}
+
+      {/* Footer */}
+      <div className="mt-4 pt-3 border-t border-neutral-50">
+        <p className="text-[10px] text-neutral-300 leading-relaxed">
+          Cap: Residential ₹25K · Commercial ₹50K · Rates subject to change
+        </p>
       </div>
     </div>
   );
