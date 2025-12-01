@@ -120,9 +120,9 @@ const RegistrationFeeCalculator = () => {
                 <SelectTrigger className="h-12 text-base bg-transparent border-0 border-b border-neutral-200 text-neutral-900 rounded-none focus:ring-0 focus:border-neutral-900 transition-colors">
                   <SelectValue placeholder="Select" className="text-neutral-300" />
                 </SelectTrigger>
-                <SelectContent className="bg-white border border-neutral-100 rounded-lg shadow-lg">
-                  <SelectItem value="residential" className="text-neutral-700 focus:bg-neutral-50">Residential</SelectItem>
-                  <SelectItem value="commercial" className="text-neutral-700 focus:bg-neutral-50">Commercial</SelectItem>
+                <SelectContent className="bg-white border border-neutral-200 rounded-lg shadow-xl z-50">
+                  <SelectItem value="residential" className="text-neutral-800 hover:bg-neutral-100 focus:bg-neutral-100 focus:text-neutral-900">Residential</SelectItem>
+                  <SelectItem value="commercial" className="text-neutral-800 hover:bg-neutral-100 focus:bg-neutral-100 focus:text-neutral-900">Commercial</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -134,11 +134,11 @@ const RegistrationFeeCalculator = () => {
               <SelectTrigger className="h-12 text-base bg-transparent border-0 border-b border-neutral-200 text-neutral-900 rounded-none focus:ring-0 focus:border-neutral-900 transition-colors">
                 <SelectValue placeholder="Select document type" className="text-neutral-300" />
               </SelectTrigger>
-              <SelectContent className="bg-white border border-neutral-100 rounded-lg shadow-lg">
-                <SelectItem value="sale_deed" className="text-neutral-700 focus:bg-neutral-50">Sale Deed — 1%</SelectItem>
-                <SelectItem value="lease_deed" className="text-neutral-700 focus:bg-neutral-50">Lease Deed — 0.5-1%</SelectItem>
-                <SelectItem value="gift_deed" className="text-neutral-700 focus:bg-neutral-50">Gift Deed — 0.5%</SelectItem>
-                <SelectItem value="mortgage_deed" className="text-neutral-700 focus:bg-neutral-50">Mortgage — 0.5%</SelectItem>
+              <SelectContent className="bg-white border border-neutral-200 rounded-lg shadow-xl z-50">
+                <SelectItem value="sale_deed" className="text-neutral-800 hover:bg-neutral-100 focus:bg-neutral-100 focus:text-neutral-900">Sale Deed — 1%</SelectItem>
+                <SelectItem value="lease_deed" className="text-neutral-800 hover:bg-neutral-100 focus:bg-neutral-100 focus:text-neutral-900">Lease Deed — 0.5-1%</SelectItem>
+                <SelectItem value="gift_deed" className="text-neutral-800 hover:bg-neutral-100 focus:bg-neutral-100 focus:text-neutral-900">Gift Deed — 0.5%</SelectItem>
+                <SelectItem value="mortgage_deed" className="text-neutral-800 hover:bg-neutral-100 focus:bg-neutral-100 focus:text-neutral-900">Mortgage — 0.5%</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -180,7 +180,7 @@ const RegistrationFeeCalculator = () => {
                 </div>
                 <div className="pt-4 border-t border-neutral-100 flex justify-between items-end">
                   <span className="text-sm text-neutral-500">Total</span>
-                  <span className="text-4xl font-light text-neutral-900 tracking-tight">₹{result.total.toLocaleString('en-IN')}</span>
+                  <span className="text-2xl font-normal text-neutral-900">₹{result.total.toLocaleString('en-IN')}</span>
                 </div>
               </div>
             )}
