@@ -2,9 +2,8 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { FileText, Info } from "lucide-react";
+import { FileText } from "lucide-react";
 
 const RegistrationFeeCalculator = () => {
   const [propertyValue, setPropertyValue] = useState("");
@@ -19,12 +18,10 @@ const RegistrationFeeCalculator = () => {
   const [inputError, setInputError] = useState("");
 
   const calculateRegistrationFee = () => {
-    // Remove commas and parse the number
     const cleanValue = propertyValue.replace(/,/g, '');
     const value = parseFloat(cleanValue);
     if (!value || !propertyType || !documentType) return;
 
-    // Minimum value check
     if (value < 5000) {
       setResult({ registrationFee: 0, processingFee: 0, total: 0 });
       setShowResult(true);
@@ -34,23 +31,22 @@ const RegistrationFeeCalculator = () => {
     let registrationRate = 0;
     let processingFee = 0;
 
-    // Karnataka Government Registration Fee Rates (2024)
     if (documentType === "sale_deed") {
-      registrationRate = 0.01; // 1%
+      registrationRate = 0.01;
       processingFee = 100;
     } else if (documentType === "lease_deed") {
-      registrationRate = propertyType === "residential" ? 0.005 : 0.01; // 0.5% or 1%
+      registrationRate = propertyType === "residential" ? 0.005 : 0.01;
       processingFee = 50;
     } else if (documentType === "gift_deed") {
-      registrationRate = 0.005; // 0.5%
+      registrationRate = 0.005;
       processingFee = 100;
     } else if (documentType === "mortgage_deed") {
-      registrationRate = 0.005; // 0.5%
+      registrationRate = 0.005;
       processingFee = 100;
     }
 
-    const registrationFee = Math.max(value * registrationRate, 100); // Minimum ₹100
-    const maxFee = propertyType === "residential" ? 25000 : 50000; // Maximum cap
+    const registrationFee = Math.max(value * registrationRate, 100);
+    const maxFee = propertyType === "residential" ? 25000 : 50000;
     
     const finalRegistrationFee = Math.min(registrationFee, maxFee);
     const total = finalRegistrationFee + processingFee;
@@ -65,14 +61,13 @@ const RegistrationFeeCalculator = () => {
 
   const handlePropertyValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    // Allow only numbers and commas
     const validPattern = /^[0-9,]*$/;
     
     if (validPattern.test(value) || value === "") {
       setPropertyValue(value);
       setInputError("");
     } else {
-      setInputError("Please enter only numbers and commas");
+      setInputError("Numbers only");
     }
   };
 
@@ -87,110 +82,138 @@ const RegistrationFeeCalculator = () => {
 
   return (
     <div className="w-full max-w-sm mx-auto">
-      <div className="relative animate-fade-in">
-        <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-900 rounded-xl blur-sm opacity-40 animate-pulse"></div>
-        <div className="relative bg-white rounded-xl border border-gray-200 p-4 space-y-3 shadow-2xl shadow-blue-200/30 hover:shadow-blue-300/40 hover:border-blue-200 transition-all duration-300">
-        <div className="flex items-center gap-2 mb-2">
-          <div className="p-1 rounded-lg bg-blue-50 border border-blue-100 hover:bg-blue-100 transition-colors duration-200">
-            <FileText className="w-4 h-4 text-blue-600" />
-          </div>
-          <h3 className="font-semibold text-sm text-gray-900">Registration Fee Calculator</h3>
-        </div>
+      <div className="relative group">
+        {/* Elegant outer glow */}
+        <div className="absolute -inset-1 bg-gradient-to-br from-emerald-200/40 via-emerald-100/20 to-teal-200/30 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
         
-        <div className="grid grid-cols-2 gap-2">
-          <div className="space-y-1">
-            <Label htmlFor="reg-property-value" className="text-xs text-gray-900 font-medium">Property Value (₹)</Label>
-            <Input
-              id="reg-property-value"
-              type="text"
-              placeholder="50,00,000"
-              value={propertyValue}
-              onChange={handlePropertyValueChange}
-              className={`h-8 text-xs bg-gray-50 text-gray-900 placeholder:text-gray-400 focus:ring-gray-300 transition-all duration-200 ${
-                inputError 
-                  ? "border-red-500 focus:border-red-500" 
-                  : "border-gray-300 focus:border-gray-400 hover:border-gray-400"
-              }`}
-            />
-            {inputError && (
-              <p className="text-red-500 text-xs mt-1 animate-pulse">{inputError}</p>
-            )}
+        {/* Main card */}
+        <div className="relative bg-gradient-to-br from-stone-50 via-white to-emerald-50/20 rounded-2xl border border-stone-200/80 p-5 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.1)] backdrop-blur-sm">
+          
+          {/* Header */}
+          <div className="flex items-center gap-3 mb-5 pb-4 border-b border-stone-200/60">
+            <div className="p-2.5 rounded-xl bg-gradient-to-br from-emerald-50 to-emerald-100/80 border border-emerald-200/50 shadow-sm">
+              <FileText className="w-4 h-4 text-emerald-700" />
+            </div>
+            <div>
+              <h3 className="font-semibold text-sm text-stone-800 tracking-tight">Registration Fee Calculator</h3>
+              <p className="text-[10px] text-stone-500 mt-0.5">Karnataka Government Rates</p>
+            </div>
           </div>
           
-          <div className="space-y-1">
-            <Label className="text-xs text-gray-900 font-medium">Property Type</Label>
-            <Select value={propertyType} onValueChange={setPropertyType}>
-              <SelectTrigger className="h-8 text-xs bg-gray-50 border-gray-300 text-gray-900 hover:border-gray-400 transition-colors">
-                <SelectValue placeholder="Select" />
-              </SelectTrigger>
-              <SelectContent className="bg-white border-gray-200">
-                <SelectItem value="residential" className="text-gray-900 hover:bg-gray-100">Residential</SelectItem>
-                <SelectItem value="commercial" className="text-gray-900 hover:bg-gray-100">Commercial</SelectItem>
-              </SelectContent>
-            </Select>
+          {/* Form fields */}
+          <div className="space-y-4">
+            <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-1.5">
+                <Label htmlFor="reg-property-value" className="text-[11px] text-stone-600 font-medium uppercase tracking-wider">Property Value</Label>
+                <div className="relative">
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-stone-400 font-medium">₹</span>
+                  <Input
+                    id="reg-property-value"
+                    type="text"
+                    placeholder="50,00,000"
+                    value={propertyValue}
+                    onChange={handlePropertyValueChange}
+                    className={`h-9 pl-7 text-xs bg-white/80 text-stone-800 placeholder:text-stone-300 rounded-lg border transition-all duration-300 focus:ring-2 focus:ring-emerald-200/50 ${
+                      inputError 
+                        ? "border-red-300 focus:border-red-400" 
+                        : "border-stone-200 focus:border-emerald-300 hover:border-stone-300"
+                    }`}
+                  />
+                </div>
+                {inputError && (
+                  <p className="text-red-400 text-[10px]">{inputError}</p>
+                )}
+              </div>
+              
+              <div className="space-y-1.5">
+                <Label className="text-[11px] text-stone-600 font-medium uppercase tracking-wider">Property Type</Label>
+                <Select value={propertyType} onValueChange={setPropertyType}>
+                  <SelectTrigger className="h-9 text-xs bg-white/80 border-stone-200 text-stone-800 hover:border-stone-300 rounded-lg transition-all duration-300 focus:ring-2 focus:ring-emerald-200/50">
+                    <SelectValue placeholder="Select" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-white/95 backdrop-blur-sm border-stone-200 rounded-lg shadow-xl">
+                    <SelectItem value="residential" className="text-stone-700 hover:bg-emerald-50 focus:bg-emerald-50 rounded">Residential</SelectItem>
+                    <SelectItem value="commercial" className="text-stone-700 hover:bg-emerald-50 focus:bg-emerald-50 rounded">Commercial</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+
+            <div className="space-y-1.5">
+              <Label className="text-[11px] text-stone-600 font-medium uppercase tracking-wider">Document Type</Label>
+              <Select value={documentType} onValueChange={setDocumentType}>
+                <SelectTrigger className="h-9 text-xs bg-white/80 border-stone-200 text-stone-800 hover:border-stone-300 rounded-lg transition-all duration-300 focus:ring-2 focus:ring-emerald-200/50">
+                  <SelectValue placeholder="Select document type" />
+                </SelectTrigger>
+                <SelectContent className="bg-white/95 backdrop-blur-sm border-stone-200 rounded-lg shadow-xl">
+                  <SelectItem value="sale_deed" className="text-stone-700 hover:bg-emerald-50 focus:bg-emerald-50 rounded">Sale Deed — 1%</SelectItem>
+                  <SelectItem value="lease_deed" className="text-stone-700 hover:bg-emerald-50 focus:bg-emerald-50 rounded">Lease Deed — 0.5-1%</SelectItem>
+                  <SelectItem value="gift_deed" className="text-stone-700 hover:bg-emerald-50 focus:bg-emerald-50 rounded">Gift Deed — 0.5%</SelectItem>
+                  <SelectItem value="mortgage_deed" className="text-stone-700 hover:bg-emerald-50 focus:bg-emerald-50 rounded">Mortgage — 0.5%</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Buttons */}
+            <div className="flex gap-2 pt-2">
+              <Button 
+                onClick={calculateRegistrationFee} 
+                size="sm" 
+                className="flex-1 h-9 text-xs font-medium bg-gradient-to-r from-stone-800 to-stone-900 hover:from-stone-700 hover:to-stone-800 text-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
+              >
+                Calculate
+              </Button>
+              <Button 
+                variant="outline" 
+                size="sm" 
+                onClick={reset} 
+                className="h-9 px-4 text-xs font-medium border-stone-200 text-stone-600 hover:bg-stone-50 hover:border-stone-300 rounded-lg transition-all duration-300"
+              >
+                Reset
+              </Button>
+            </div>
           </div>
-        </div>
 
-        <div className="space-y-1">
-          <Label className="text-xs text-gray-900 font-medium">Document Type</Label>
-          <Select value={documentType} onValueChange={setDocumentType}>
-            <SelectTrigger className="h-8 text-xs bg-gray-50 border-gray-300 text-gray-900 hover:border-gray-400 transition-colors">
-              <SelectValue placeholder="Select document" />
-            </SelectTrigger>
-            <SelectContent className="bg-white border-gray-200">
-              <SelectItem value="sale_deed" className="text-gray-900 hover:bg-gray-100">Sale Deed (1%)</SelectItem>
-              <SelectItem value="lease_deed" className="text-gray-900 hover:bg-gray-100">Lease Deed (0.5-1%)</SelectItem>
-              <SelectItem value="gift_deed" className="text-gray-900 hover:bg-gray-100">Gift Deed (0.5%)</SelectItem>
-              <SelectItem value="mortgage_deed" className="text-gray-900 hover:bg-gray-100">Mortgage (0.5%)</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-
-        <div className="flex gap-2">
-          <Button onClick={calculateRegistrationFee} size="sm" className="flex-1 h-8 text-xs bg-blue-600 hover:bg-blue-700 text-white border-0 shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300 hover:shadow-blue-600/30">
-            Calculate
-          </Button>
-          <Button variant="outline" size="sm" onClick={reset} className="h-8 text-xs border-gray-300 text-gray-900 hover:bg-gray-100 hover:border-gray-400 transition-all duration-200">
-            Reset
-          </Button>
-        </div>
-
-        {showResult && result !== null && (
-          <div className="relative animate-fade-in">
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-900 rounded-lg blur-sm opacity-40 animate-pulse"></div>
-            <div className="relative bg-gradient-to-br from-blue-50 to-white rounded-lg p-3 border border-blue-200 shadow-lg animate-scale-in">
+          {/* Result */}
+          {showResult && result !== null && (
+            <div className="mt-5 pt-4 border-t border-stone-200/60 animate-fade-in">
               {result.total === 0 ? (
-                <div className="text-center animate-fade-in">
-                  <span className="text-xs text-blue-600">
+                <div className="bg-gradient-to-br from-emerald-50/80 via-white to-stone-50 rounded-xl p-4 border border-emerald-200/40 text-center">
+                  <span className="text-xs text-emerald-600">
                     No registration fee for properties below ₹5,000
                   </span>
                 </div>
               ) : (
-                <div className="space-y-1">
-                  <div className="flex justify-between text-xs animate-fade-in">
-                    <span className="text-blue-900">Registration Fee:</span>
-                    <span className="text-blue-900">₹{result.registrationFee.toLocaleString('en-IN')}</span>
+                <div className="bg-gradient-to-br from-emerald-50/80 via-white to-stone-50 rounded-xl p-4 border border-emerald-200/40 space-y-3">
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-center">
+                      <span className="text-[11px] text-stone-500 uppercase tracking-wider">Registration Fee</span>
+                      <span className="text-sm font-medium text-stone-700">₹{result.registrationFee.toLocaleString('en-IN')}</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-[11px] text-stone-500 uppercase tracking-wider">Processing Fee</span>
+                      <span className="text-sm font-medium text-stone-700">₹{result.processingFee.toLocaleString('en-IN')}</span>
+                    </div>
                   </div>
-                  <div className="flex justify-between text-xs animate-fade-in" style={{ animationDelay: '50ms' }}>
-                    <span className="text-blue-900">Processing Fee:</span>
-                    <span className="text-blue-900">₹{result.processingFee.toLocaleString('en-IN')}</span>
-                  </div>
-                  <div className="flex justify-between items-center pt-1 border-t border-blue-200 animate-fade-in" style={{ animationDelay: '100ms' }}>
-                    <span className="text-xs font-medium text-blue-900">Total:</span>
-                    <span className="text-lg font-bold bg-gradient-to-r from-blue-600 to-blue-900 bg-clip-text text-transparent">₹{result.total.toLocaleString('en-IN')}</span>
+                  <div className="pt-3 border-t border-emerald-200/40 flex justify-between items-center">
+                    <span className="text-[11px] text-stone-600 uppercase tracking-wider font-medium">Total Amount</span>
+                    <span className="text-2xl font-semibold text-stone-800 tracking-tight">₹{result.total.toLocaleString('en-IN')}</span>
                   </div>
                 </div>
               )}
             </div>
-          </div>
-        )}
+          )}
 
-        <div className="text-xs text-gray-600">
-          <div className="mb-1"><strong className="text-gray-900">Minimums:</strong> Property ≥₹5,000, fee ≥₹100</div>
-          <div><strong className="text-gray-900">Caps:</strong> Residential ₹25K, Commercial ₹50K</div>
-          <div><strong className="text-gray-900">Note:</strong> Approximate Karnataka rates</div>
+          {/* Footer notes */}
+          <div className="mt-4 pt-3 border-t border-stone-100">
+            <div className="flex items-start gap-2 text-[10px] text-stone-400">
+              <div className="space-y-0.5">
+                <p>Min. property: ₹5,000 · Cap: Residential ₹25K, Commercial ₹50K</p>
+                <p className="text-stone-300">Rates are approximate and subject to change</p>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
       </div>
     </div>
   );
