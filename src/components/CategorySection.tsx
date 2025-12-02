@@ -3,9 +3,14 @@ import CategoryCard from "./CategoryCard";
 const CategorySection = () => {
   const categories = [
     {
-      title: "Projects 2026",
-      icon: "🏗️",
-      link: "/projects-2026",
+      title: "Apartments",
+      icon: "🏘️",
+      link: "/apartments",
+    },
+    {
+      title: "Working Space",
+      icon: "💼",
+      link: "/working-space",
     },
     {
       title: "HNI Listings",
@@ -13,14 +18,9 @@ const CategorySection = () => {
       link: "/hni-listings",
     },
     {
-      title: "Distressed Assets",
-      icon: "🏢",
-      link: "/distressed-assets",
-    },
-    {
-      title: "Apartments",
-      icon: "🏘️",
-      link: "/apartments",
+      title: "Projects 2026",
+      icon: "🏗️",
+      link: "/projects-2026",
     },
   ];
 
