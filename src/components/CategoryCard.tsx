@@ -12,7 +12,7 @@ const CategoryCard = ({ title, icon, link }: CategoryCardProps) => {
       <div className="w-16 h-16 bg-neutral-100 rounded-xl flex items-center justify-center group-hover:bg-neutral-200 transition-colors">
         <span className="text-2xl">{icon}</span>
       </div>
-      <p className="text-[10px] text-center text-neutral-700 font-medium px-0.5 leading-tight">
+      <p className="text-[10px] text-center text-neutral-700 font-semibold px-0.5 leading-tight tracking-wide font-serif">
         {title}
       </p>
     </Link>
