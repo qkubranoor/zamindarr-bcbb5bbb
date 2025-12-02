@@ -187,6 +187,10 @@ const HeroSection = () => {
                 <div className="h-12 flex items-center justify-center">Developers</div>
                 <div className="h-12 flex items-center justify-center">Lawyers</div>
                 <div className="h-12 flex items-center justify-center">Banks</div>
+                <div className="h-12 flex items-center justify-center">Homebuyers</div>
+                <div className="h-12 flex items-center justify-center">Working Professionals</div>
+                <div className="h-12 flex items-center justify-center">Founders</div>
+                <div className="h-12 flex items-center justify-center">Students</div>
               </div>
             </div>
           </div>
@@ -206,6 +210,10 @@ const HeroSection = () => {
             <div className="h-8 flex items-center justify-center">Developers</div>
             <div className="h-8 flex items-center justify-center">Lawyers</div>
             <div className="h-8 flex items-center justify-center">Banks</div>
+            <div className="h-8 flex items-center justify-center">Homebuyers</div>
+            <div className="h-8 flex items-center justify-center">Working Professionals</div>
+            <div className="h-8 flex items-center justify-center">Founders</div>
+            <div className="h-8 flex items-center justify-center">Students</div>
           </div>
         </div>
       </div>
