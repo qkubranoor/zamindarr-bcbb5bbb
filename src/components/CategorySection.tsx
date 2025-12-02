@@ -27,7 +27,7 @@ const CategorySection = () => {
   return (
     <section className="py-6 px-4">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-4 gap-1.5 justify-items-center max-w-2xl mx-auto">
+        <div className="grid grid-cols-4 gap-1.5 justify-items-center max-w-md mx-auto">
           {categories.map((category) => (
             <CategoryCard
               key={category.title}
