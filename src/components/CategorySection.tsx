@@ -1,4 +1,7 @@
 import CategoryCard from "./CategoryCard";
+import workingSpaceImg from "@/assets/working-space.png";
+import hniListingsImg from "@/assets/hni-listings.png";
+import projects2026Img from "@/assets/projects-2026.png";
 
 const CategorySection = () => {
   const categories = [
@@ -9,17 +12,17 @@ const CategorySection = () => {
     },
     {
       title: "Working Space",
-      icon: "💼",
+      image: workingSpaceImg,
       link: "/working-space",
     },
     {
       title: "HNI Listings",
-      icon: "💎",
+      image: hniListingsImg,
       link: "/hni-listings",
     },
     {
       title: "Projects 2026",
-      icon: "🏗️",
+      image: projects2026Img,
       link: "/projects-2026",
     },
   ];
@@ -33,6 +36,7 @@ const CategorySection = () => {
               key={category.title}
               title={category.title}
               icon={category.icon}
+              image={category.image}
               link={category.link}
             />
           ))}
