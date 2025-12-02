@@ -157,21 +157,29 @@ export default {
 				},
 				'slideUpDesktop': {
 					'0%': { transform: 'translateY(0)' },
-					'16.66%': { transform: 'translateY(-48px)' },
-					'33.33%': { transform: 'translateY(-96px)' },
-					'50%': { transform: 'translateY(-144px)' },
-					'66.66%': { transform: 'translateY(-192px)' },
-					'83.33%': { transform: 'translateY(-240px)' },
-					'100%': { transform: 'translateY(-288px)' }
+					'10%': { transform: 'translateY(-48px)' },
+					'20%': { transform: 'translateY(-96px)' },
+					'30%': { transform: 'translateY(-144px)' },
+					'40%': { transform: 'translateY(-192px)' },
+					'50%': { transform: 'translateY(-240px)' },
+					'60%': { transform: 'translateY(-288px)' },
+					'70%': { transform: 'translateY(-336px)' },
+					'80%': { transform: 'translateY(-384px)' },
+					'90%': { transform: 'translateY(-432px)' },
+					'100%': { transform: 'translateY(-480px)' }
 				},
 				'slideUpMobile': {
 					'0%': { transform: 'translateY(0)' },
-					'16.66%': { transform: 'translateY(-32px)' },
-					'33.33%': { transform: 'translateY(-64px)' },
-					'50%': { transform: 'translateY(-96px)' },
-					'66.66%': { transform: 'translateY(-128px)' },
-					'83.33%': { transform: 'translateY(-160px)' },
-					'100%': { transform: 'translateY(-192px)' }
+					'10%': { transform: 'translateY(-32px)' },
+					'20%': { transform: 'translateY(-64px)' },
+					'30%': { transform: 'translateY(-96px)' },
+					'40%': { transform: 'translateY(-128px)' },
+					'50%': { transform: 'translateY(-160px)' },
+					'60%': { transform: 'translateY(-192px)' },
+					'70%': { transform: 'translateY(-224px)' },
+					'80%': { transform: 'translateY(-256px)' },
+					'90%': { transform: 'translateY(-288px)' },
+					'100%': { transform: 'translateY(-320px)' }
 				}
 			},
 			animation: {
@@ -191,8 +199,8 @@ export default {
 				'pulse-border': 'pulse-border 2s ease-in-out infinite',
 				'highlight-glow': 'highlight-glow 3s ease-in-out infinite',
 				'slideUp': 'slideUp 12s ease-in-out infinite',
-				'slideUpDesktop': 'slideUpDesktop 12s ease-in-out infinite',
-				'slideUpMobile': 'slideUpMobile 12s ease-in-out infinite'
+				'slideUpDesktop': 'slideUpDesktop 20s ease-in-out infinite',
+				'slideUpMobile': 'slideUpMobile 20s ease-in-out infinite'
 			},
 			screens: {
 				'xs': '475px',
