@@ -268,36 +268,45 @@ const ServicesSection = () => {
                           {/* Title */}
                           <h3 className="text-xl font-semibold mb-2 leading-tight tracking-tight">
                             {service.title === 'Due Diligence Report' ? (
-                              <HoverCard>
+                              <HoverCard openDelay={200} closeDelay={100}>
                                 <HoverCardTrigger asChild>
-                                  <span className="cursor-help">{service.title}</span>
+                                  <span className="cursor-help border-b border-dashed border-amber-400/50 hover:border-amber-400 transition-colors">{service.title}</span>
                                 </HoverCardTrigger>
-                                <HoverCardContent className="w-80 p-0 bg-white border-0 shadow-[0_8px_40px_rgba(0,0,0,0.12)] rounded-2xl overflow-hidden" side="top" sideOffset={12}>
-                                  <div className="p-5 space-y-4">
-                                    <div>
-                                      <h4 className="text-base font-medium text-neutral-900 tracking-tight">Due Diligence Report</h4>
-                                      <p className="text-xs text-neutral-500 mt-1.5 leading-relaxed font-light">
-                                        Complete property verification with 15+ years of ownership history and legal clearance.
-                                      </p>
+                                <HoverCardContent 
+                                  variant="premium"
+                                  side="top" 
+                                  sideOffset={16}
+                                  className="w-80"
+                                >
+                                  {/* Elegant gold accent line */}
+                                  <div className="h-1 bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-400" />
+                                  
+                                  <div className="p-6">
+                                    {/* Header */}
+                                    <div className="mb-5">
+                                      <p className="text-[10px] uppercase tracking-[0.2em] text-amber-600 font-medium mb-1.5">Premium Service</p>
+                                      <h4 className="text-lg font-semibold text-neutral-900 tracking-tight">Due Diligence Report</h4>
                                     </div>
                                     
-                                    <div className="space-y-2">
-                                      <p className="text-[10px] uppercase tracking-wider text-neutral-400 font-medium">What's Included</p>
-                                      <div className="space-y-1.5">
-                                        <p className="text-xs text-neutral-600 font-light">Title deed verification</p>
-                                        <p className="text-xs text-neutral-600 font-light">Encumbrance certificate (15+ years)</p>
-                                        <p className="text-xs text-neutral-600 font-light">KHATA & property tax records</p>
-                                        <p className="text-xs text-neutral-600 font-light">Building plan approvals</p>
-                                        <p className="text-xs text-neutral-600 font-light">Legal opinion & risk assessment</p>
-                                      </div>
+                                    {/* Divider */}
+                                    <div className="h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent mb-5" />
+                                    
+                                    {/* Features */}
+                                    <div className="space-y-3 mb-5">
+                                      {['Title deed verification', 'Encumbrance certificate (15+ years)', 'KHATA & property tax records', 'Building plan approvals', 'Legal opinion & risk assessment'].map((item, i) => (
+                                        <div key={i} className="flex items-center gap-3">
+                                          <div className="w-1 h-1 rounded-full bg-amber-500" />
+                                          <span className="text-[13px] text-neutral-600 font-light">{item}</span>
+                                        </div>
+                                      ))}
                                     </div>
-                                  </div>
-                                  
-                                  <div className="px-5 py-3 bg-neutral-50 border-t border-neutral-100">
-                                    <p className="text-xs text-neutral-500 font-light">
-                                      <span className="text-neutral-900 font-medium">₹35,000</span>
-                                      <span className="ml-2 line-through text-neutral-400">₹42,000</span>
-                                    </p>
+                                    
+                                    {/* Pricing */}
+                                    <div className="flex items-baseline gap-3 pt-4 border-t border-neutral-100">
+                                      <span className="text-2xl font-semibold text-neutral-900">₹35,000</span>
+                                      <span className="text-sm text-neutral-400 line-through">₹42,000</span>
+                                      <span className="ml-auto text-xs font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">Save ₹7,000</span>
+                                    </div>
                                   </div>
                                 </HoverCardContent>
                               </HoverCard>
