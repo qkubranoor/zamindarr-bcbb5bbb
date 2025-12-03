@@ -272,30 +272,32 @@ const ServicesSection = () => {
                                 <HoverCardTrigger asChild>
                                   <span className="cursor-help">{service.title}</span>
                                 </HoverCardTrigger>
-                                <HoverCardContent className="w-96 p-6 min-h-[400px] bg-gradient-to-br from-[#071224] via-[#0f1f3d] to-[#1a3358] border-amber-400/20 shadow-[0_0_80px_rgba(251,191,36,0.1)] ring-1 ring-amber-300/10" side="top">
-                                  <div className="space-y-4">
+                                <HoverCardContent className="w-80 p-0 bg-white border-0 shadow-[0_8px_40px_rgba(0,0,0,0.12)] rounded-2xl overflow-hidden" side="top" sideOffset={12}>
+                                  <div className="p-5 space-y-4">
                                     <div>
-                                      <h4 className="text-lg font-semibold text-amber-100 mb-2">Comprehensive Due Diligence Report</h4>
-                                      <p className="text-sm text-sky-100/80">
-                                        Complete property verification with 15+ years of ownership history, legal clearance verification, and comprehensive documentation analysis.
+                                      <h4 className="text-base font-medium text-neutral-900 tracking-tight">Due Diligence Report</h4>
+                                      <p className="text-xs text-neutral-500 mt-1.5 leading-relaxed font-light">
+                                        Complete property verification with 15+ years of ownership history and legal clearance.
                                       </p>
                                     </div>
+                                    
                                     <div className="space-y-2">
-                                      <h5 className="font-medium text-amber-100">What's Included:</h5>
-                                      <ul className="text-xs text-sky-100/70 space-y-1">
-                                        <li>• Title deed verification and chain analysis</li>
-                                        <li>• Encumbrance certificate for 15+ years</li>
-                                        <li>• KHATA verification and property tax records</li>
-                                        <li>• Building plan approvals and occupancy certificates</li>
-                                        <li>• Legal opinion and risk assessment</li>
-                                        <li>• Compiled comprehensive report with all documents</li>
-                                      </ul>
+                                      <p className="text-[10px] uppercase tracking-wider text-neutral-400 font-medium">What's Included</p>
+                                      <div className="space-y-1.5">
+                                        <p className="text-xs text-neutral-600 font-light">Title deed verification</p>
+                                        <p className="text-xs text-neutral-600 font-light">Encumbrance certificate (15+ years)</p>
+                                        <p className="text-xs text-neutral-600 font-light">KHATA & property tax records</p>
+                                        <p className="text-xs text-neutral-600 font-light">Building plan approvals</p>
+                                        <p className="text-xs text-neutral-600 font-light">Legal opinion & risk assessment</p>
+                                      </div>
                                     </div>
-                                    <div className="pt-2 border-t border-amber-400/20">
-                                      <p className="text-xs text-amber-400 font-medium">
-                                        Save ₹6,000 with our special pricing
-                                      </p>
-                                    </div>
+                                  </div>
+                                  
+                                  <div className="px-5 py-3 bg-neutral-50 border-t border-neutral-100">
+                                    <p className="text-xs text-neutral-500 font-light">
+                                      <span className="text-neutral-900 font-medium">₹35,000</span>
+                                      <span className="ml-2 line-through text-neutral-400">₹42,000</span>
+                                    </p>
                                   </div>
                                 </HoverCardContent>
                               </HoverCard>
