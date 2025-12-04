@@ -146,7 +146,7 @@ const HNIListings = () => {
                       ))}
                     </div>
                     <a 
-                      href={`https://wa.me/919845012345?text=Hi, I'm interested in ${encodeURIComponent(enclave.segment)} property in ${encodeURIComponent(enclave.name)} (${encodeURIComponent(enclave.priceRange)}). Please arrange a private consultation.`}
+                      href={`https://wa.me/919632840858?text=Hi, I'm interested in ${encodeURIComponent(enclave.segment)} property in ${encodeURIComponent(enclave.name)} (${encodeURIComponent(enclave.priceRange)}). Please arrange a private consultation.`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-1.5 px-3 py-1.5 bg-amber-50 hover:bg-amber-100 text-amber-700 text-[11px] font-medium rounded-full transition-colors border border-amber-200/50"
