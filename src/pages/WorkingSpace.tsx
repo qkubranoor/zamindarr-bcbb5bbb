@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { ArrowLeft, MapPin, Building, Users, Wifi, Sparkles } from "lucide-react";
+import { ArrowLeft, MapPin, Building, Users, Wifi, Sparkles, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const WorkingSpace = () => {
@@ -132,12 +132,23 @@ const WorkingSpace = () => {
                     </span>
                   </div>
                   <p className="text-slate-600 text-sm leading-relaxed mb-3">{hub.description}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {hub.locations.map((loc) => (
-                      <span key={loc} className="text-[10px] text-slate-500 bg-slate-50 px-2.5 py-1 rounded-full">
-                        {loc}
-                      </span>
-                    ))}
+                  <div className="flex items-center justify-between mt-4">
+                    <div className="flex flex-wrap gap-2">
+                      {hub.locations.map((loc) => (
+                        <span key={loc} className="text-[10px] text-slate-500 bg-slate-50 px-2.5 py-1 rounded-full">
+                          {loc}
+                        </span>
+                      ))}
+                    </div>
+                    <a 
+                      href={`https://wa.me/919845012345?text=Hi, I'm interested in working space at ${encodeURIComponent(hub.zone)} (${encodeURIComponent(hub.priceRange)}). Please share more details.`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 px-3 py-1.5 bg-sky-50 hover:bg-sky-100 text-sky-700 text-[11px] font-medium rounded-full transition-colors border border-sky-200/50"
+                    >
+                      <Phone className="w-3 h-3" />
+                      Enquire
+                    </a>
                   </div>
                 </div>
               ))}
