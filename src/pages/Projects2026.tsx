@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { ArrowLeft, Calendar, MapPin, TrendingUp, Clock, Sparkles } from "lucide-react";
+import { ArrowLeft, Calendar, MapPin, TrendingUp, Clock, Sparkles, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Projects2026 = () => {
@@ -147,6 +147,17 @@ const Projects2026 = () => {
                     <span className="text-[10px] text-emerald-700 bg-emerald-50 px-2 py-1 rounded-full border border-emerald-100">
                       {project.usp}
                     </span>
+                  </div>
+                  <div className="flex justify-end mt-3">
+                    <a 
+                      href={`https://wa.me/919845012345?text=Hi, I'm interested in pre-launch projects at ${encodeURIComponent(project.corridor)} (${encodeURIComponent(project.launchWindow)}). Please share early access details.`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 text-[11px] font-medium rounded-full transition-colors border border-emerald-200/50"
+                    >
+                      <Phone className="w-3 h-3" />
+                      Enquire
+                    </a>
                   </div>
                 </div>
               ))}
