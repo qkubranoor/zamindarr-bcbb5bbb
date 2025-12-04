@@ -150,7 +150,7 @@ const Projects2026 = () => {
                   </div>
                   <div className="flex justify-end mt-3">
                     <a 
-                      href={`https://wa.me/919845012345?text=Hi, I'm interested in pre-launch projects at ${encodeURIComponent(project.corridor)} (${encodeURIComponent(project.launchWindow)}). Please share early access details.`}
+                      href={`https://wa.me/919632840858?text=Hi, I'm interested in pre-launch projects at ${encodeURIComponent(project.corridor)} (${encodeURIComponent(project.launchWindow)}). Please share early access details.`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 text-[11px] font-medium rounded-full transition-colors border border-emerald-200/50"
