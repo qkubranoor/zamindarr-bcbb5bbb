@@ -22,19 +22,19 @@ const HoverCardContent = React.forwardRef<
       // Premium entrance animation
       "data-[state=open]:animate-in data-[state=closed]:animate-out",
       "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
-      "data-[state=closed]:zoom-out-98 data-[state=open]:zoom-in-98",
-      "data-[side=bottom]:slide-in-from-top-3 data-[side=left]:slide-in-from-right-3",
-      "data-[side=right]:slide-in-from-left-3 data-[side=top]:slide-in-from-bottom-3",
+      "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
+      "data-[side=bottom]:slide-in-from-top-4 data-[side=left]:slide-in-from-right-4",
+      "data-[side=right]:slide-in-from-left-4 data-[side=top]:slide-in-from-bottom-4",
       // Default variant
       variant === "default" && "w-64 rounded-md border bg-popover p-4 text-popover-foreground shadow-md",
-      // Premium variant - elegant, refined, luxurious
+      // Premium variant - refined luxury aesthetic
       variant === "premium" && [
-        "w-72",
-        "bg-white",
-        "rounded-2xl",
-        "border-0",
-        "shadow-[0_20px_60px_-15px_rgba(0,0,0,0.15),0_0_0_1px_rgba(0,0,0,0.03)]",
-        "backdrop-blur-xl",
+        "w-80",
+        "bg-gradient-to-b from-white via-white to-slate-50/80",
+        "rounded-3xl",
+        "border border-slate-200/60",
+        "shadow-[0_32px_64px_-16px_rgba(15,23,42,0.18),0_16px_32px_-8px_rgba(15,23,42,0.1),0_0_0_1px_rgba(15,23,42,0.04)]",
+        "backdrop-blur-2xl",
         "overflow-hidden",
       ],
       className

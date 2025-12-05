@@ -276,36 +276,56 @@ const ServicesSection = () => {
                                   variant="premium"
                                   side="top" 
                                   sideOffset={16}
-                                  className="w-80"
+                                  className="w-[340px]"
                                 >
-                                  {/* Elegant gold accent line */}
-                                  <div className="h-1 bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-400" />
+                                  {/* Premium header with gradient */}
+                                  <div className="relative">
+                                    <div className="h-1.5 bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500" />
+                                    <div className="absolute inset-0 h-1.5 bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 blur-sm opacity-60" />
+                                  </div>
                                   
                                   <div className="p-6">
-                                    {/* Header */}
-                                    <div className="mb-5">
-                                      <p className="text-[10px] uppercase tracking-[0.2em] text-amber-600 font-medium mb-1.5">Premium Service</p>
-                                      <h4 className="text-lg font-semibold text-neutral-900 tracking-tight">Due Diligence Report</h4>
+                                    {/* Badge & Title */}
+                                    <div className="flex items-start justify-between mb-4">
+                                      <div>
+                                        <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-gradient-to-r from-amber-50 to-yellow-50 rounded-full border border-amber-200/50 mb-2.5">
+                                          <Star className="w-3 h-3 text-amber-500 fill-amber-400" />
+                                          <span className="text-[10px] uppercase tracking-[0.12em] text-amber-700 font-semibold">Premium</span>
+                                        </div>
+                                        <h4 className="text-lg font-bold text-slate-900 tracking-tight leading-tight">Due Diligence Report</h4>
+                                      </div>
                                     </div>
                                     
-                                    {/* Divider */}
-                                    <div className="h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent mb-5" />
+                                    <p className="text-[13px] text-slate-500 leading-relaxed mb-5">
+                                      Comprehensive property verification to protect your investment.
+                                    </p>
                                     
-                                    {/* Features */}
-                                    <div className="space-y-3 mb-5">
+                                    {/* Features with elegant styling */}
+                                    <div className="space-y-2.5 mb-6">
                                       {['Title deed verification', 'Encumbrance certificate (15+ years)', 'KHATA & property tax records', 'Building plan approvals', 'Legal opinion & risk assessment'].map((item, i) => (
-                                        <div key={i} className="flex items-center gap-3">
-                                          <div className="w-1 h-1 rounded-full bg-amber-500" />
-                                          <span className="text-[13px] text-neutral-600 font-light">{item}</span>
+                                        <div key={i} className="flex items-center gap-3 group">
+                                          <div className="w-5 h-5 rounded-full bg-gradient-to-br from-emerald-100 to-emerald-50 flex items-center justify-center border border-emerald-200/60">
+                                            <Check className="w-3 h-3 text-emerald-600" strokeWidth={3} />
+                                          </div>
+                                          <span className="text-[13px] text-slate-600">{item}</span>
                                         </div>
                                       ))}
                                     </div>
                                     
-                                    {/* Pricing */}
-                                    <div className="flex items-baseline gap-3 pt-4 border-t border-neutral-100">
-                                      <span className="text-2xl font-semibold text-neutral-900">₹35,000</span>
-                                      <span className="text-sm text-neutral-400 line-through">₹42,000</span>
-                                      <span className="ml-auto text-xs font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">Save ₹7,000</span>
+                                    {/* Pricing section */}
+                                    <div className="relative pt-5 border-t border-slate-100">
+                                      <div className="flex items-end justify-between">
+                                        <div>
+                                          <p className="text-[10px] uppercase tracking-wider text-slate-400 mb-1">Starting from</p>
+                                          <div className="flex items-baseline gap-2">
+                                            <span className="text-3xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">₹35,000</span>
+                                            <span className="text-sm text-slate-400 line-through">₹42,000</span>
+                                          </div>
+                                        </div>
+                                        <div className="px-3 py-1.5 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-full shadow-lg shadow-emerald-500/25">
+                                          <span className="text-[11px] font-bold text-white tracking-wide">Save ₹7,000</span>
+                                        </div>
+                                      </div>
                                     </div>
                                   </div>
                                 </HoverCardContent>
