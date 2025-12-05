@@ -91,15 +91,10 @@ const HeroSection = () => {
       
       
       {/* Content */}
-      <div className="relative z-10 container-responsive pt-0 pb-4 sm:py-8 lg:py-12 text-center -mt-4 sm:mt-0">
+      <div className="relative z-10 container-responsive py-4 sm:py-8 lg:py-12 text-center">
         <div className="animate-fade-in">
-          {/* Tagline */}
-          <p className="font-serif italic text-[11px] sm:text-xs lg:text-sm text-slate-500 tracking-wider mb-1 sm:mb-4">
-            — One platform for all your Real Estate needs —
-          </p>
-          
           {/* Main Heading */}
-          <h1 className="font-bold tracking-tight text-2xl sm:text-4xl lg:text-4xl text-foreground mb-2 sm:mb-6 leading-tight mt-1 sm:mt-0">
+          <h1 className="font-bold tracking-tight text-2xl sm:text-4xl lg:text-4xl text-foreground mb-2 sm:mb-6 leading-tight mt-8 sm:mt-0">
             <span className="whitespace-nowrap">Discover <span className="text-[#1e40af] inline-flex items-center gap-1">Guidance Value
               <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
                 <PopoverTrigger asChild>
