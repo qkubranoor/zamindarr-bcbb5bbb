@@ -73,7 +73,6 @@ const HeroSection = () => {
   };
 
   return (
-    <>
     <section id="hero" className="relative min-h-[70vh] sm:min-h-[60vh] lg:min-h-screen flex items-center justify-center overflow-hidden bg-white">
       {/* Background Map */}
       <div 
@@ -175,50 +174,8 @@ const HeroSection = () => {
           </div>
         </div>
         
-        {/* Desktop: Animated Target Audience Text - absolute positioned */}
-        <div className="hidden lg:block absolute bottom-[-5rem] left-1/2 transform -translate-x-1/2 text-center z-20">
-          <div className="text-foreground font-medium">
-            <div className="mb-1 text-sm">For</div>
-            <div className="h-12 overflow-hidden text-2xl text-[#1e40af]">
-              <div className="animate-slideUpDesktop">
-                <div className="h-12 flex items-center justify-center">Brokers</div>
-                <div className="h-12 flex items-center justify-center">Homeowners</div>
-                <div className="h-12 flex items-center justify-center">Real estate investors</div>
-                <div className="h-12 flex items-center justify-center">Developers</div>
-                <div className="h-12 flex items-center justify-center">Lawyers</div>
-                <div className="h-12 flex items-center justify-center">Banks</div>
-                <div className="h-12 flex items-center justify-center">Homebuyers</div>
-                <div className="h-12 flex items-center justify-center">Working Professionals</div>
-                <div className="h-12 flex items-center justify-center">Founders</div>
-                <div className="h-12 flex items-center justify-center">Students</div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
-      
-    {/* Mobile: Animated Target Audience Text below hero */}
-    <div className="lg:hidden mt-10 text-center z-20">
-      <div className="text-foreground font-medium">
-        <div className="mb-1 text-xs">For</div>
-        <div className="h-8 overflow-hidden text-xl text-[#1e40af]">
-          <div className="animate-slideUpMobile">
-            <div className="h-8 flex items-center justify-center">Brokers</div>
-            <div className="h-8 flex items-center justify-center">Homeowners</div>
-            <div className="h-8 flex items-center justify-center">Real estate investors</div>
-            <div className="h-8 flex items-center justify-center">Developers</div>
-            <div className="h-8 flex items-center justify-center">Lawyers</div>
-            <div className="h-8 flex items-center justify-center">Banks</div>
-            <div className="h-8 flex items-center justify-center">Homebuyers</div>
-            <div className="h-8 flex items-center justify-center">Working Professionals</div>
-            <div className="h-8 flex items-center justify-center">Founders</div>
-            <div className="h-8 flex items-center justify-center">Students</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    </>
   );
 };
 
