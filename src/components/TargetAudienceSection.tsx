@@ -1,6 +1,6 @@
 const TargetAudienceSection = () => {
   return (
-    <section className="py-8 lg:py-10 text-center bg-background">
+    <section className="py-3 lg:py-4 text-center bg-background">
       {/* Desktop */}
       <div className="hidden lg:block">
         <div className="text-foreground font-medium">
