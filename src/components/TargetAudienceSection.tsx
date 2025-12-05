@@ -1,45 +1,52 @@
 const TargetAudienceSection = () => {
+  const professions = [
+    "Brokers",
+    "Homeowners", 
+    "Real estate investors",
+    "Developers",
+    "Lawyers",
+    "Banks",
+    "Homebuyers",
+    "Working Professionals",
+    "Founders",
+    "Students"
+  ];
+
   return (
-    <section className="py-1 lg:py-2 text-center bg-background">
+    <section className="pt-0 pb-2 lg:pb-4 text-center">
       {/* Desktop */}
       <div className="hidden lg:block">
-        <div className="text-foreground font-medium">
-          <div className="mb-2 text-sm text-muted-foreground">For</div>
-          <div className="h-12 overflow-hidden text-2xl text-[#1e40af]">
+        <div className="inline-flex items-center gap-3">
+          <div className="h-px w-8 bg-gradient-to-r from-transparent to-slate-300"></div>
+          <span className="text-xs tracking-[0.2em] uppercase text-slate-400 font-light">For</span>
+          <div className="h-12 overflow-hidden">
             <div className="animate-slideUpDesktop">
-              <div className="h-12 flex items-center justify-center">Brokers</div>
-              <div className="h-12 flex items-center justify-center">Homeowners</div>
-              <div className="h-12 flex items-center justify-center">Real estate investors</div>
-              <div className="h-12 flex items-center justify-center">Developers</div>
-              <div className="h-12 flex items-center justify-center">Lawyers</div>
-              <div className="h-12 flex items-center justify-center">Banks</div>
-              <div className="h-12 flex items-center justify-center">Homebuyers</div>
-              <div className="h-12 flex items-center justify-center">Working Professionals</div>
-              <div className="h-12 flex items-center justify-center">Founders</div>
-              <div className="h-12 flex items-center justify-center">Students</div>
+              {professions.map((profession) => (
+                <div key={profession} className="h-12 flex items-center justify-center text-xl font-medium bg-gradient-to-r from-[#1e3a8a] to-[#3b82f6] bg-clip-text text-transparent">
+                  {profession}
+                </div>
+              ))}
             </div>
           </div>
+          <div className="h-px w-8 bg-gradient-to-l from-transparent to-slate-300"></div>
         </div>
       </div>
 
       {/* Mobile */}
       <div className="lg:hidden">
-        <div className="text-foreground font-medium">
-          <div className="mb-1 text-xs text-muted-foreground">For</div>
-          <div className="h-8 overflow-hidden text-xl text-[#1e40af]">
+        <div className="inline-flex items-center gap-2">
+          <div className="h-px w-5 bg-gradient-to-r from-transparent to-slate-300"></div>
+          <span className="text-[10px] tracking-[0.15em] uppercase text-slate-400 font-light">For</span>
+          <div className="h-8 overflow-hidden">
             <div className="animate-slideUpMobile">
-              <div className="h-8 flex items-center justify-center">Brokers</div>
-              <div className="h-8 flex items-center justify-center">Homeowners</div>
-              <div className="h-8 flex items-center justify-center">Real estate investors</div>
-              <div className="h-8 flex items-center justify-center">Developers</div>
-              <div className="h-8 flex items-center justify-center">Lawyers</div>
-              <div className="h-8 flex items-center justify-center">Banks</div>
-              <div className="h-8 flex items-center justify-center">Homebuyers</div>
-              <div className="h-8 flex items-center justify-center">Working Professionals</div>
-              <div className="h-8 flex items-center justify-center">Founders</div>
-              <div className="h-8 flex items-center justify-center">Students</div>
+              {professions.map((profession) => (
+                <div key={profession} className="h-8 flex items-center justify-center text-base font-medium bg-gradient-to-r from-[#1e3a8a] to-[#3b82f6] bg-clip-text text-transparent">
+                  {profession}
+                </div>
+              ))}
             </div>
           </div>
+          <div className="h-px w-5 bg-gradient-to-l from-transparent to-slate-300"></div>
         </div>
       </div>
     </section>
