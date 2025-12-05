@@ -1,9 +1,6 @@
 import { useState, useRef, useEffect } from "react";
-import { Check, ChevronLeft, ChevronRight, FileText, Shield, Search, Star } from "lucide-react";
+import { Check, ChevronLeft, ChevronRight, FileText, Shield, Search, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import DocumentVerificationForm from "./DocumentVerificationForm";
 
 const ServicesSection = () => {
@@ -15,16 +12,7 @@ const ServicesSection = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
-  const [isManualScrolling, setIsManualScrolling] = useState(false);
 
-  // Ultra-premium gradients - luxurious deep navy & sapphire (consistent premium look)
-  const gradients = [
-    'linear-gradient(145deg, #071224 0%, #0f1f3d 50%, #1a3358 100%)', // Deep sapphire
-    'linear-gradient(145deg, #071224 0%, #0f1f3d 50%, #1a3358 100%)', // Deep sapphire (featured)
-    'linear-gradient(145deg, #071224 0%, #0f1f3d 50%, #1a3358 100%)'  // Deep sapphire
-  ];
-
-  // Ensure scroll starts at Document Drafting (first item)
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollLeft = 0;
@@ -38,7 +26,8 @@ const ServicesSection = () => {
       description: "Professional document preparation and review services",
       features: ["Sale agreements", "Lease deeds", "Power of attorney"],
       price: "₹2,200",
-      icon: FileText
+      icon: FileText,
+      featured: false
     },
     {
       title: "Due Diligence Report",
@@ -46,19 +35,20 @@ const ServicesSection = () => {
       features: ["Ownership Records for 15+ years", "Compiled Report- EC, KHATA, Sale Deed, etc."],
       originalPrice: "₹42,000",
       discountedPrice: "₹35,000",
-      icon: Shield
+      icon: Shield,
+      featured: true
     },
     {
       title: "Document Verification",
       description: "Comprehensive verification of property documents and title clearance",  
       features: ["Title verification", "Encumbrance check", "Legal Opinion"],
       price: "₹4,800",
-      icon: Search
+      icon: Search,
+      featured: false
     }
   ];
 
   const handleRequestService = (service: { title: string; price?: string; originalPrice?: string; discountedPrice?: string }) => {
-    console.log('Button clicked for service:', service.title);
     setSelectedService({
       name: service.title,
       price: service.discountedPrice || service.originalPrice || service.price || "Contact for pricing"
@@ -71,17 +61,13 @@ const ServicesSection = () => {
 
   const scrollLeft = () => {
     if (scrollRef.current) {
-      setIsManualScrolling(true);
-      scrollRef.current.scrollBy({ left: 320, behavior: 'smooth' });
-      setTimeout(() => setIsManualScrolling(false), 1000);
+      scrollRef.current.scrollBy({ left: 300, behavior: 'smooth' });
     }
   };
 
   const scrollRight = () => {
     if (scrollRef.current) {
-      setIsManualScrolling(true);
-      scrollRef.current.scrollBy({ left: -320, behavior: 'smooth' });
-      setTimeout(() => setIsManualScrolling(false), 1000);
+      scrollRef.current.scrollBy({ left: -300, behavior: 'smooth' });
     }
   };
 
@@ -93,320 +79,248 @@ const ServicesSection = () => {
     }
   };
 
-  const getCardStyles = () => {
-    return "relative";
-  };
-
-  const getButtonStyles = () => {
-    return "bg-white/95 backdrop-blur-md text-gray-900 font-semibold hover:bg-white transition-all duration-300 border-0 shadow-lg";
-  };
-
   return (
     <>
-      <section id="services" className="section-responsive pt-4 sm:pt-4 lg:pt-1 relative overflow-visible">
+      <section id="services" className="section-responsive pt-4 sm:pt-4 lg:pt-1 relative">
         <div className="relative z-10">
           <div className="container-responsive">
-            <div>
-              <p className="text-[10px] sm:text-xs text-black max-w-2xl mx-auto text-balance leading-tight text-center mb-0 lg:mb-1">
-                Secure your crores worth of investment with a <span className="font-bold">0.2%</span> cost for its complete document history.
-              </p>
-              
-              <div className="relative overflow-visible -mt-2 lg:-mt-3">
-                <div className="lg:hidden relative">
-                  <div 
-                    ref={scrollRef}
-                    className="flex gap-4 overflow-x-auto scrollbar-hide py-5 px-4"
-                    style={{ scrollSnapType: 'x mandatory' }}
-                    onScroll={checkScrollability}
-                  >
-                    {paidServices.map((service, index) => {
-                      const IconComponent = service.icon;
-                      return (
-                        <div 
-                          key={`manual-${index}`}
-                          className={`${getCardStyles()} flex-shrink-0 w-[270px] h-[320px] max-w-[85vw] rounded-[24px] group shadow-2xl ${index === 1 ? 'ring-1 ring-amber-400/40 shadow-[0_0_50px_rgba(251,191,36,0.15)]' : ''}`}
-                          style={{ scrollSnapAlign: 'center' }}
+            <p className="text-[10px] sm:text-xs text-muted-foreground max-w-2xl mx-auto text-balance leading-tight text-center mb-4 lg:mb-6">
+              Secure your crores worth of investment with a <span className="font-medium text-foreground">0.2%</span> cost for its complete document history.
+            </p>
+            
+            {/* Mobile View */}
+            <div className="lg:hidden relative">
+              <div 
+                ref={scrollRef}
+                className="flex gap-4 overflow-x-auto scrollbar-hide py-4 px-4"
+                style={{ scrollSnapType: 'x mandatory' }}
+                onScroll={checkScrollability}
+              >
+                {paidServices.map((service, index) => {
+                  const IconComponent = service.icon;
+                  return (
+                    <div 
+                      key={`mobile-${index}`}
+                      className={`flex-shrink-0 w-[280px] max-w-[85vw] rounded-2xl relative overflow-hidden
+                        ${service.featured 
+                          ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white' 
+                          : 'bg-card border border-border/50'
+                        }`}
+                      style={{ scrollSnapAlign: 'center' }}
+                    >
+                      {/* Featured badge */}
+                      {service.featured && (
+                        <div className="absolute top-3 right-3 flex items-center gap-1 px-2 py-0.5 bg-amber-500/90 rounded-full">
+                          <Sparkles className="w-3 h-3 text-white" />
+                          <span className="text-[10px] font-medium text-white">Premium</span>
+                        </div>
+                      )}
+                      
+                      <div className="p-5">
+                        {/* Icon */}
+                        <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4
+                          ${service.featured 
+                            ? 'bg-white/10 border border-white/20' 
+                            : 'bg-primary/5 border border-primary/10'
+                          }`}
                         >
-                          {/* Vibrant gradient background */}
-                          <div 
-                            className="absolute inset-0 rounded-[24px]" 
-                            style={{ background: gradients[index] }}
-                          ></div>
-                          
-                          {/* Clean border for Due Diligence, subtle glassmorphism for others */}
-                          {index === 1 ? (
-                            <div className="absolute inset-0 border border-amber-400/30 rounded-[24px]"></div>
-                          ) : (
-                            <>
-                              {/* Premium glassmorphism for all other cards */}
-                              <div className="absolute inset-0 bg-white/[0.02] backdrop-blur-[60px] rounded-[24px]"></div>
-                              <div className="absolute inset-0 bg-gradient-to-br from-white/[0.04] via-white/[0.01] to-transparent rounded-[24px]"></div>
-                              <div className="absolute inset-0 border border-sky-200/15 rounded-[24px]"></div>
-                            </>
-                          )}
-                          
-                          {/* Content */}
-                          <div className="relative z-10 flex flex-col h-full p-5 text-white">
-                            {/* Premium Badge - Only for Due Diligence */}
-                            {index === 1 && (
-                              <div className="absolute -top-2 -right-2 w-10 h-10 bg-gradient-to-br from-yellow-400 via-amber-500 to-yellow-600 rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(251,191,36,0.6)] border-2 border-yellow-300/50 z-20">
-                                <Star className="w-5 h-5 text-white fill-white" />
-                              </div>
-                            )}
-                            
-                            {/* Header with icon */}
-                            <div className="flex justify-start items-start mb-3.5">
-                              <div className="relative w-7 h-7 backdrop-blur-[40px] rounded-[10px] flex items-center justify-center border border-white/[0.30] shadow-[0_8px_32px_rgba(0,0,0,0.2),0_0_8px_rgba(56,189,248,0.25),0_0_16px_rgba(56,189,248,0.15)]">
-                                <div className="absolute inset-0 bg-white/[0.22] rounded-[10px]"></div>
-                                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.25] to-transparent rounded-[10px]"></div>
-                                <IconComponent className="relative z-10 w-3 h-3 text-white drop-shadow-[0_0_3px_rgba(56,189,248,0.5)]" strokeWidth={2.5} />
-                              </div>
-                            </div>
+                          <IconComponent className={`w-5 h-5 ${service.featured ? 'text-white' : 'text-primary'}`} strokeWidth={1.5} />
+                        </div>
 
-                            {/* Title */}
-                            <h3 className="text-lg font-semibold mb-1.5 leading-tight tracking-tight">
-                              {service.title}
-                            </h3>
+                        {/* Title */}
+                        <h3 className={`text-lg font-semibold mb-2 tracking-tight ${service.featured ? 'text-white' : 'text-foreground'}`}>
+                          {service.title}
+                        </h3>
 
-                            {/* Description */}
-                            <p className="text-[12px] opacity-85 mb-3.5 leading-relaxed font-light">
-                              {service.description}
-                            </p>
-                            
-                            {/* Features */}
-                            <div className="space-y-2 mb-auto">
-                              {service.features.map((feature, idx) => (
-                                <div key={idx} className="flex items-start text-[11.5px] font-light">
-                                  <div className="relative w-4 h-4 rounded-full flex items-center justify-center mr-2 flex-shrink-0 mt-0.5 bg-green-500/20 backdrop-blur-[30px] border border-green-400/40 shadow-[0_0_4px_rgba(74,222,128,0.2)]">
-                                    <Check className="relative z-10 w-2.5 h-2.5 drop-shadow-[0_0_2px_rgba(74,222,128,0.4)] text-green-300" strokeWidth={3.5} />
-                                  </div>
-                                  <span className="leading-relaxed">{feature}</span>
-                                </div>
-                              ))}
-                            </div>
-
-                            {/* CTA */}
-                            <div className="mt-auto">
-                              <Button 
-                                className={`w-full text-[13px] font-semibold h-10 rounded-[14px] ${getButtonStyles()} tracking-wide`}
-                                onClick={() => handleRequestService(service)}
+                        {/* Description */}
+                        <p className={`text-[13px] mb-4 leading-relaxed ${service.featured ? 'text-white/70' : 'text-muted-foreground'}`}>
+                          {service.description}
+                        </p>
+                        
+                        {/* Features */}
+                        <div className="space-y-2.5 mb-5">
+                          {service.features.map((feature, idx) => (
+                            <div key={idx} className="flex items-start gap-2.5">
+                              <div className={`w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5
+                                ${service.featured ? 'bg-emerald-500/20' : 'bg-emerald-50'}`}
                               >
-                                Get Quote
-                              </Button>
-                            </div>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                  
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    className={`absolute left-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-background/90 backdrop-blur-sm border-border/40 shadow-lg ${canScrollLeft ? 'opacity-100' : 'opacity-50 cursor-not-allowed'}`}
-                    onClick={scrollLeft}
-                    disabled={!canScrollLeft}
-                  >
-                    <ChevronLeft className="w-5 h-5" />
-                  </Button>
-                  
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    className={`absolute right-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-background/90 backdrop-blur-sm border-border/40 shadow-lg ${canScrollRight ? 'opacity-100' : 'opacity-50 cursor-not-allowed'}`}
-                    onClick={scrollRight}
-                    disabled={!canScrollRight}
-                  >
-                    <ChevronRight className="w-5 h-5" />
-                  </Button>
-                </div>
-
-                <div className="hidden lg:flex justify-center gap-8">
-                  {paidServices.map((service, index) => {
-                    const IconComponent = service.icon;
-                    return (
-                      <div 
-                        key={`desktop-${index}`}
-                        className={`${getCardStyles()} w-[320px] h-[380px] rounded-[28px] group shadow-2xl hover:shadow-[0_25px_60px_-12px_rgba(10,30,60,0.6)] transition-all duration-700 ${index === 1 ? 'ring-1 ring-amber-400/40 shadow-[0_0_50px_rgba(251,191,36,0.15)]' : ''}`}
-                      >
-                        {/* Vibrant gradient background */}
-                        <div 
-                          className="absolute inset-0 rounded-[28px]" 
-                          style={{ background: gradients[index] }}
-                        ></div>
-                        
-                        {/* Clean border for Due Diligence, subtle glassmorphism for others */}
-                        {index === 1 ? (
-                          <div className="absolute inset-0 border border-amber-400/30 rounded-[28px]"></div>
-                        ) : (
-                          <>
-                            {/* Premium glassmorphism for all other cards */}
-                            <div className="absolute inset-0 bg-white/[0.02] backdrop-blur-[60px] rounded-[28px]"></div>
-                            <div className="absolute inset-0 bg-gradient-to-br from-white/[0.04] via-white/[0.01] to-transparent rounded-[28px]"></div>
-                            <div className="absolute inset-0 border border-sky-200/15 rounded-[28px]"></div>
-                          </>
-                        )}
-                        
-                        {/* Content */}
-                        <div className="relative z-10 flex flex-col h-full p-6 text-white">
-                          {/* Premium Badge - Only for Due Diligence */}
-                          {index === 1 && (
-                            <div className="absolute -top-3 -right-3 w-12 h-12 bg-gradient-to-br from-yellow-400 via-amber-500 to-yellow-600 rounded-full flex items-center justify-center shadow-[0_0_25px_rgba(251,191,36,0.7)] border-2 border-yellow-300/50 z-20">
-                              <Star className="w-6 h-6 text-white fill-white" />
-                            </div>
-                          )}
-                          
-                          {/* Header with icon */}
-                          <div className="flex justify-start items-start mb-4">
-                            <div className="relative w-8 h-8 backdrop-blur-[40px] rounded-[12px] flex items-center justify-center border border-white/[0.30] shadow-[0_8px_32px_rgba(0,0,0,0.2),0_0_8px_rgba(56,189,248,0.25),0_0_16px_rgba(56,189,248,0.15)]">
-                              <div className="absolute inset-0 bg-white/[0.22] rounded-[12px]"></div>
-                              <div className="absolute inset-0 bg-gradient-to-br from-white/[0.25] to-transparent rounded-[12px]"></div>
-                              <IconComponent className="relative z-10 w-3.5 h-3.5 text-white drop-shadow-[0_0_3px_rgba(56,189,248,0.5)]" strokeWidth={2.5} />
-                            </div>
-                          </div>
-
-                          {/* Title */}
-                          <h3 className="text-xl font-semibold mb-2 leading-tight tracking-tight">
-                            {service.title === 'Due Diligence Report' ? (
-                              <HoverCard openDelay={200} closeDelay={100}>
-                                <HoverCardTrigger asChild>
-                                  <span className="cursor-help border-b border-dashed border-amber-400/50 hover:border-amber-400 transition-colors">{service.title}</span>
-                                </HoverCardTrigger>
-                                <HoverCardContent 
-                                  variant="premium"
-                                  side="top" 
-                                  sideOffset={16}
-                                  className="w-[340px]"
-                                >
-                                  {/* Premium header with gradient */}
-                                  <div className="relative">
-                                    <div className="h-1.5 bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500" />
-                                    <div className="absolute inset-0 h-1.5 bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 blur-sm opacity-60" />
-                                  </div>
-                                  
-                                  <div className="p-6">
-                                    {/* Badge & Title */}
-                                    <div className="flex items-start justify-between mb-4">
-                                      <div>
-                                        <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-gradient-to-r from-amber-50 to-yellow-50 rounded-full border border-amber-200/50 mb-2.5">
-                                          <Star className="w-3 h-3 text-amber-500 fill-amber-400" />
-                                          <span className="text-[10px] uppercase tracking-[0.12em] text-amber-700 font-semibold">Premium</span>
-                                        </div>
-                                        <h4 className="text-lg font-bold text-slate-900 tracking-tight leading-tight">Due Diligence Report</h4>
-                                      </div>
-                                    </div>
-                                    
-                                    <p className="text-[13px] text-slate-500 leading-relaxed mb-5">
-                                      Comprehensive property verification to protect your investment.
-                                    </p>
-                                    
-                                    {/* Features with elegant styling */}
-                                    <div className="space-y-2.5 mb-6">
-                                      {['Title deed verification', 'Encumbrance certificate (15+ years)', 'KHATA & property tax records', 'Building plan approvals', 'Legal opinion & risk assessment'].map((item, i) => (
-                                        <div key={i} className="flex items-center gap-3 group">
-                                          <div className="w-5 h-5 rounded-full bg-gradient-to-br from-emerald-100 to-emerald-50 flex items-center justify-center border border-emerald-200/60">
-                                            <Check className="w-3 h-3 text-emerald-600" strokeWidth={3} />
-                                          </div>
-                                          <span className="text-[13px] text-slate-600">{item}</span>
-                                        </div>
-                                      ))}
-                                    </div>
-                                    
-                                    {/* Pricing section */}
-                                    <div className="relative pt-5 border-t border-slate-100">
-                                      <div className="flex items-end justify-between">
-                                        <div>
-                                          <p className="text-[10px] uppercase tracking-wider text-slate-400 mb-1">Starting from</p>
-                                          <div className="flex items-baseline gap-2">
-                                            <span className="text-3xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">₹35,000</span>
-                                            <span className="text-sm text-slate-400 line-through">₹42,000</span>
-                                          </div>
-                                        </div>
-                                        <div className="px-3 py-1.5 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-full shadow-lg shadow-emerald-500/25">
-                                          <span className="text-[11px] font-bold text-white tracking-wide">Save ₹7,000</span>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </HoverCardContent>
-                              </HoverCard>
-                            ) : (
-                              service.title
-                            )}
-                          </h3>
-
-                          {/* Description */}
-                          <p className="text-[13px] opacity-85 mb-4 leading-relaxed font-light">
-                            {service.description}
-                          </p>
-                          
-                          {/* Features */}
-                          <div className="space-y-2.5 mb-auto">
-                            {service.features.map((feature, idx) => (
-                              <div key={idx} className="flex items-start text-[13px] font-light">
-                                <div className="relative w-5 h-5 rounded-full flex items-center justify-center mr-2.5 flex-shrink-0 mt-0.5 bg-green-500/20 backdrop-blur-[30px] border border-green-400/40 shadow-[0_0_5px_rgba(74,222,128,0.2)]">
-                                  <Check className="relative z-10 w-3 h-3 drop-shadow-[0_0_2px_rgba(74,222,128,0.4)] text-green-300" strokeWidth={3.5} />
-                                </div>
-                                <span className="leading-relaxed">{feature}</span>
+                                <Check className={`w-2.5 h-2.5 ${service.featured ? 'text-emerald-400' : 'text-emerald-600'}`} strokeWidth={3} />
                               </div>
-                            ))}
-                          </div>
-
-                          {/* CTA */}
-                          <div className="mt-auto">
-                            <Button 
-                              className={`w-full text-[14px] font-semibold h-11 rounded-[16px] ${getButtonStyles()} tracking-wide`}
-                              onClick={() => handleRequestService(service)}
-                            >
-                              Get Quote
-                            </Button>
-                          </div>
+                              <span className={`text-[12px] leading-relaxed ${service.featured ? 'text-white/80' : 'text-muted-foreground'}`}>
+                                {feature}
+                              </span>
+                            </div>
+                          ))}
                         </div>
+
+                        {/* Price */}
+                        <div className="mb-4">
+                          {service.discountedPrice ? (
+                            <div className="flex items-baseline gap-2">
+                              <span className={`text-2xl font-bold ${service.featured ? 'text-white' : 'text-foreground'}`}>
+                                {service.discountedPrice}
+                              </span>
+                              <span className={`text-sm line-through ${service.featured ? 'text-white/40' : 'text-muted-foreground'}`}>
+                                {service.originalPrice}
+                              </span>
+                            </div>
+                          ) : (
+                            <span className={`text-2xl font-bold ${service.featured ? 'text-white' : 'text-foreground'}`}>
+                              {service.price}
+                            </span>
+                          )}
+                        </div>
+
+                        {/* CTA */}
+                        <Button 
+                          className={`w-full h-11 rounded-xl font-medium text-sm
+                            ${service.featured 
+                              ? 'bg-white text-slate-900 hover:bg-white/90' 
+                              : 'bg-primary text-primary-foreground hover:bg-primary/90'
+                            }`}
+                          onClick={() => handleRequestService(service)}
+                        >
+                          Get Quote
+                        </Button>
                       </div>
-                    );
-                  })}
-                </div>
+                    </div>
+                  );
+                })}
               </div>
+              
+              {/* Scroll buttons */}
+              <Button
+                variant="outline"
+                size="icon"
+                className={`absolute left-2 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-background/95 backdrop-blur border-border/50 shadow-md ${canScrollLeft ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                onClick={scrollLeft}
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </Button>
+              
+              <Button
+                variant="outline"
+                size="icon"
+                className={`absolute right-2 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-background/95 backdrop-blur border-border/50 shadow-md ${canScrollRight ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                onClick={scrollRight}
+              >
+                <ChevronRight className="w-4 h-4" />
+              </Button>
+            </div>
+
+            {/* Desktop View */}
+            <div className="hidden lg:flex justify-center gap-6">
+              {paidServices.map((service, index) => {
+                const IconComponent = service.icon;
+                return (
+                  <div 
+                    key={`desktop-${index}`}
+                    className={`w-[320px] rounded-2xl relative overflow-hidden transition-all duration-300 hover:-translate-y-1
+                      ${service.featured 
+                        ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white shadow-xl shadow-slate-900/20' 
+                        : 'bg-card border border-border/50 hover:border-border hover:shadow-lg'
+                      }`}
+                  >
+                    {/* Featured badge */}
+                    {service.featured && (
+                      <div className="absolute top-4 right-4 flex items-center gap-1.5 px-2.5 py-1 bg-amber-500/90 rounded-full">
+                        <Sparkles className="w-3.5 h-3.5 text-white" />
+                        <span className="text-[11px] font-medium text-white">Premium</span>
+                      </div>
+                    )}
+                    
+                    <div className="p-6">
+                      {/* Icon */}
+                      <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-5
+                        ${service.featured 
+                          ? 'bg-white/10 border border-white/20' 
+                          : 'bg-primary/5 border border-primary/10'
+                        }`}
+                      >
+                        <IconComponent className={`w-6 h-6 ${service.featured ? 'text-white' : 'text-primary'}`} strokeWidth={1.5} />
+                      </div>
+
+                      {/* Title */}
+                      <h3 className={`text-xl font-semibold mb-2 tracking-tight ${service.featured ? 'text-white' : 'text-foreground'}`}>
+                        {service.title}
+                      </h3>
+
+                      {/* Description */}
+                      <p className={`text-sm mb-5 leading-relaxed ${service.featured ? 'text-white/70' : 'text-muted-foreground'}`}>
+                        {service.description}
+                      </p>
+                      
+                      {/* Features */}
+                      <div className="space-y-3 mb-6">
+                        {service.features.map((feature, idx) => (
+                          <div key={idx} className="flex items-start gap-3">
+                            <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5
+                              ${service.featured ? 'bg-emerald-500/20' : 'bg-emerald-50'}`}
+                            >
+                              <Check className={`w-3 h-3 ${service.featured ? 'text-emerald-400' : 'text-emerald-600'}`} strokeWidth={3} />
+                            </div>
+                            <span className={`text-[13px] leading-relaxed ${service.featured ? 'text-white/80' : 'text-muted-foreground'}`}>
+                              {feature}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Price */}
+                      <div className="mb-5">
+                        {service.discountedPrice ? (
+                          <div className="flex items-baseline gap-2">
+                            <span className={`text-3xl font-bold tracking-tight ${service.featured ? 'text-white' : 'text-foreground'}`}>
+                              {service.discountedPrice}
+                            </span>
+                            <span className={`text-sm line-through ${service.featured ? 'text-white/40' : 'text-muted-foreground'}`}>
+                              {service.originalPrice}
+                            </span>
+                          </div>
+                        ) : (
+                          <span className={`text-3xl font-bold tracking-tight ${service.featured ? 'text-white' : 'text-foreground'}`}>
+                            {service.price}
+                          </span>
+                        )}
+                      </div>
+
+                      {/* CTA */}
+                      <Button 
+                        className={`w-full h-12 rounded-xl font-medium
+                          ${service.featured 
+                            ? 'bg-white text-slate-900 hover:bg-white/90' 
+                            : 'bg-primary text-primary-foreground hover:bg-primary/90'
+                          }`}
+                        onClick={() => handleRequestService(service)}
+                      >
+                        Get Quote
+                      </Button>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
             
-            <div className="text-center mb-3 lg:mb-4 mt-4 lg:mt-6">
-              <p className="text-xs sm:text-sm text-muted-foreground max-w-2xl mx-auto leading-tight whitespace-nowrap">
-                Your trusted <span className="text-black">Due diligence</span> and <span className="text-black">Documentation</span> partner.
+            {/* Footer text */}
+            <div className="text-center mt-6 lg:mt-8">
+              <p className="text-xs sm:text-sm text-muted-foreground">
+                Your trusted <span className="text-foreground font-medium">Due diligence</span> and <span className="text-foreground font-medium">Documentation</span> partner.
               </p>
             </div>
             
-            <div className="relative grid grid-cols-3 gap-4 max-w-md mx-auto px-4 mt-1">
-              <div className="relative rounded-2xl p-2 text-center">
-                <div className="absolute inset-0 rounded-2xl">
-                </div>
-                <div className="relative z-10">
-                  <div className="w-8 h-8 mx-auto mb-2 flex items-center justify-center">
-                    <span className="material-symbols-outlined text-lg text-primary">lock</span>
-                  </div>
-                  <h3 className="font-bold text-foreground text-sm">Secure</h3>
-                </div>
+            {/* Trust indicators */}
+            <div className="flex justify-center items-center gap-8 mt-4">
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <span className="material-symbols-outlined text-base text-primary">lock</span>
+                <span className="text-xs font-medium">Secure</span>
               </div>
-              
-              <div className="relative rounded-2xl p-2 text-center">
-                <div className="absolute inset-0 rounded-2xl">
-                </div>
-                <div className="relative z-10">
-                  <div className="w-8 h-8 mx-auto mb-2 flex items-center justify-center">
-                    <span className="material-symbols-outlined text-lg text-primary">bolt</span>
-                  </div>
-                  <h3 className="font-bold text-foreground text-sm">Instant</h3>
-                </div>
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <span className="material-symbols-outlined text-base text-primary">bolt</span>
+                <span className="text-xs font-medium">Instant</span>
               </div>
-              
-              <div className="relative rounded-2xl p-2 text-center">
-                <div className="absolute inset-0 rounded-2xl">
-                </div>
-                <div className="relative z-10">
-                  <div className="w-8 h-8 mx-auto mb-2 flex items-center justify-center">
-                    <span className="material-symbols-outlined text-lg text-primary">verified</span>
-                  </div>
-                  <h3 className="font-bold text-foreground text-sm">Verified</h3>
-                </div>
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <span className="material-symbols-outlined text-base text-primary">verified</span>
+                <span className="text-xs font-medium">Verified</span>
               </div>
             </div>
           </div>
