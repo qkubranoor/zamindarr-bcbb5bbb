@@ -146,7 +146,7 @@ const ServicesSection = () => {
                           )}
                           
                           {/* Content */}
-                          <div className="relative z-10 flex flex-col h-full p-4 text-white">
+                          <div className="relative z-10 flex flex-col h-full p-4 pl-5 text-white">
                             {/* Premium Badge - Only for Due Diligence */}
                             {index === 1 && (
                               <div className="absolute -top-1.5 -right-1.5 w-8 h-8 bg-gradient-to-br from-yellow-400 via-amber-500 to-yellow-600 rounded-full flex items-center justify-center shadow-[0_0_16px_rgba(251,191,36,0.6)] border-2 border-yellow-300/50 z-20">
