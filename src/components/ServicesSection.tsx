@@ -124,61 +124,61 @@ const ServicesSection = () => {
                       return (
                         <div 
                           key={`manual-${index}`}
-                          className={`${getCardStyles()} flex-shrink-0 w-[270px] h-[320px] max-w-[85vw] rounded-[24px] group shadow-2xl ${index === 1 ? 'ring-1 ring-amber-400/40 shadow-[0_0_50px_rgba(251,191,36,0.15)]' : ''}`}
+                          className={`${getCardStyles()} flex-shrink-0 w-[230px] h-[280px] max-w-[80vw] rounded-[20px] group shadow-2xl ${index === 1 ? 'ring-1 ring-amber-400/40 shadow-[0_0_50px_rgba(251,191,36,0.15)]' : ''}`}
                           style={{ scrollSnapAlign: 'center' }}
                         >
                           {/* Vibrant gradient background */}
                           <div 
-                            className="absolute inset-0 rounded-[24px]" 
+                            className="absolute inset-0 rounded-[20px]" 
                             style={{ background: gradients[index] }}
                           ></div>
                           
                           {/* Clean border for Due Diligence, subtle glassmorphism for others */}
                           {index === 1 ? (
-                            <div className="absolute inset-0 border border-amber-400/30 rounded-[24px]"></div>
+                            <div className="absolute inset-0 border border-amber-400/30 rounded-[20px]"></div>
                           ) : (
                             <>
                               {/* Premium glassmorphism for all other cards */}
-                              <div className="absolute inset-0 bg-white/[0.02] backdrop-blur-[60px] rounded-[24px]"></div>
-                              <div className="absolute inset-0 bg-gradient-to-br from-white/[0.04] via-white/[0.01] to-transparent rounded-[24px]"></div>
-                              <div className="absolute inset-0 border border-sky-200/15 rounded-[24px]"></div>
+                              <div className="absolute inset-0 bg-white/[0.02] backdrop-blur-[60px] rounded-[20px]"></div>
+                              <div className="absolute inset-0 bg-gradient-to-br from-white/[0.04] via-white/[0.01] to-transparent rounded-[20px]"></div>
+                              <div className="absolute inset-0 border border-sky-200/15 rounded-[20px]"></div>
                             </>
                           )}
                           
                           {/* Content */}
-                          <div className="relative z-10 flex flex-col h-full p-5 text-white">
+                          <div className="relative z-10 flex flex-col h-full p-4 text-white">
                             {/* Premium Badge - Only for Due Diligence */}
                             {index === 1 && (
-                              <div className="absolute -top-2 -right-2 w-10 h-10 bg-gradient-to-br from-yellow-400 via-amber-500 to-yellow-600 rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(251,191,36,0.6)] border-2 border-yellow-300/50 z-20">
-                                <Star className="w-5 h-5 text-white fill-white" />
+                              <div className="absolute -top-1.5 -right-1.5 w-8 h-8 bg-gradient-to-br from-yellow-400 via-amber-500 to-yellow-600 rounded-full flex items-center justify-center shadow-[0_0_16px_rgba(251,191,36,0.6)] border-2 border-yellow-300/50 z-20">
+                                <Star className="w-4 h-4 text-white fill-white" />
                               </div>
                             )}
                             
                             {/* Header with icon */}
-                            <div className="flex justify-start items-start mb-3.5">
-                              <div className="relative w-7 h-7 backdrop-blur-[40px] rounded-[10px] flex items-center justify-center border border-white/[0.30] shadow-[0_8px_32px_rgba(0,0,0,0.2),0_0_8px_rgba(56,189,248,0.25),0_0_16px_rgba(56,189,248,0.15)]">
-                                <div className="absolute inset-0 bg-white/[0.22] rounded-[10px]"></div>
-                                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.25] to-transparent rounded-[10px]"></div>
-                                <IconComponent className="relative z-10 w-3 h-3 text-white drop-shadow-[0_0_3px_rgba(56,189,248,0.5)]" strokeWidth={2.5} />
+                            <div className="flex justify-start items-start mb-2.5">
+                              <div className="relative w-6 h-6 backdrop-blur-[40px] rounded-[8px] flex items-center justify-center border border-white/[0.30] shadow-[0_8px_32px_rgba(0,0,0,0.2),0_0_8px_rgba(56,189,248,0.25),0_0_16px_rgba(56,189,248,0.15)]">
+                                <div className="absolute inset-0 bg-white/[0.22] rounded-[8px]"></div>
+                                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.25] to-transparent rounded-[8px]"></div>
+                                <IconComponent className="relative z-10 w-2.5 h-2.5 text-white drop-shadow-[0_0_3px_rgba(56,189,248,0.5)]" strokeWidth={2.5} />
                               </div>
                             </div>
 
                             {/* Title */}
-                            <h3 className="text-lg font-semibold mb-1.5 leading-tight tracking-tight">
+                            <h3 className="text-base font-semibold mb-1 leading-tight tracking-tight">
                               {service.title}
                             </h3>
 
                             {/* Description */}
-                            <p className="text-[12px] opacity-85 mb-3.5 leading-relaxed font-light">
+                            <p className="text-[11px] opacity-85 mb-2.5 leading-relaxed font-light">
                               {service.description}
                             </p>
                             
                             {/* Features */}
-                            <div className="space-y-2 mb-auto">
+                            <div className="space-y-1.5 mb-auto">
                               {service.features.map((feature, idx) => (
-                                <div key={idx} className="flex items-start text-[11.5px] font-light">
-                                  <div className="relative w-4 h-4 rounded-full flex items-center justify-center mr-2 flex-shrink-0 mt-0.5 bg-green-500/20 backdrop-blur-[30px] border border-green-400/40 shadow-[0_0_4px_rgba(74,222,128,0.2)]">
-                                    <Check className="relative z-10 w-2.5 h-2.5 drop-shadow-[0_0_2px_rgba(74,222,128,0.4)] text-green-300" strokeWidth={3.5} />
+                                <div key={idx} className="flex items-start text-[10.5px] font-light">
+                                  <div className="relative w-3.5 h-3.5 rounded-full flex items-center justify-center mr-1.5 flex-shrink-0 mt-0.5 bg-green-500/20 backdrop-blur-[30px] border border-green-400/40 shadow-[0_0_4px_rgba(74,222,128,0.2)]">
+                                    <Check className="relative z-10 w-2 h-2 drop-shadow-[0_0_2px_rgba(74,222,128,0.4)] text-green-300" strokeWidth={3.5} />
                                   </div>
                                   <span className="leading-relaxed">{feature}</span>
                                 </div>
@@ -188,7 +188,7 @@ const ServicesSection = () => {
                             {/* CTA */}
                             <div className="mt-auto">
                               <Button 
-                                className={`w-full text-[13px] font-semibold h-10 rounded-[14px] ${getButtonStyles()} tracking-wide`}
+                                className={`w-full text-[12px] font-semibold h-9 rounded-[12px] ${getButtonStyles()} tracking-wide`}
                                 onClick={() => handleRequestService(service)}
                               >
                                 Get Quote
