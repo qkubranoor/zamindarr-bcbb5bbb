@@ -1,10 +1,10 @@
 const TargetAudienceSection = () => {
   return (
-    <div className="py-6 text-center">
+    <section className="py-8 lg:py-10 text-center bg-background">
       {/* Desktop */}
       <div className="hidden lg:block">
         <div className="text-foreground font-medium">
-          <div className="mb-1 text-sm">For</div>
+          <div className="mb-2 text-sm text-muted-foreground">For</div>
           <div className="h-12 overflow-hidden text-2xl text-[#1e40af]">
             <div className="animate-slideUpDesktop">
               <div className="h-12 flex items-center justify-center">Brokers</div>
@@ -25,7 +25,7 @@ const TargetAudienceSection = () => {
       {/* Mobile */}
       <div className="lg:hidden">
         <div className="text-foreground font-medium">
-          <div className="mb-1 text-xs">For</div>
+          <div className="mb-1 text-xs text-muted-foreground">For</div>
           <div className="h-8 overflow-hidden text-xl text-[#1e40af]">
             <div className="animate-slideUpMobile">
               <div className="h-8 flex items-center justify-center">Brokers</div>
@@ -42,7 +42,7 @@ const TargetAudienceSection = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
