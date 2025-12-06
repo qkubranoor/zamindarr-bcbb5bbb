@@ -36,14 +36,14 @@ const ServicesSection = () => {
     {
       title: "Document Drafting",
       description: "Professional document preparation and review services",
-      features: ["Sale agreements", "Lease deeds", "Power of attorney"],
+      features: ["Sale agreements", "Lease deeds", "Power of attorney", "Gift deeds", "Partition deeds", "MOU & contracts"],
       price: "₹2,200",
       icon: FileText
     },
     {
       title: "Due Diligence Report",
       description: "End-to-end property due diligence and management services",
-      features: ["Ownership Records for 15+ years", "Compiled Report- EC, KHATA, Sale Deed, etc."],
+      features: ["Ownership records (15+ years)", "EC, KHATA & Sale Deed", "RERA compliance check", "Encumbrance verification", "Legal risk assessment"],
       originalPrice: "₹42,000",
       discountedPrice: "₹35,000",
       icon: Shield
@@ -51,7 +51,7 @@ const ServicesSection = () => {
     {
       title: "Document Verification",
       description: "Comprehensive verification of property documents and title clearance",  
-      features: ["Title verification", "Encumbrance check", "Legal Opinion"],
+      features: ["Title verification", "Encumbrance check", "Legal opinion", "Mutation records", "Tax clearance", "Lien verification"],
       price: "₹4,800",
       icon: Search
     }
