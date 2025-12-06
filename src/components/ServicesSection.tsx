@@ -124,7 +124,7 @@ const ServicesSection = () => {
                       return (
                         <div 
                           key={`manual-${index}`}
-                          className={`${getCardStyles()} flex-shrink-0 w-[230px] h-[280px] max-w-[80vw] rounded-[20px] group shadow-2xl ${index === 1 ? 'ring-1 ring-amber-400/40 shadow-[0_0_50px_rgba(251,191,36,0.15)]' : ''}`}
+                          className={`${getCardStyles()} flex-shrink-0 w-[280px] h-[340px] max-w-[85vw] rounded-[20px] group shadow-2xl ${index === 1 ? 'ring-1 ring-amber-400/40 shadow-[0_0_50px_rgba(251,191,36,0.15)]' : ''}`}
                           style={{ scrollSnapAlign: 'center' }}
                         >
                           {/* Vibrant gradient background */}
