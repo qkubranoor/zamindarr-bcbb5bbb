@@ -1,180 +1,208 @@
-import { Crown, MapPin, TrendingUp } from "lucide-react";
+import { useState } from "react";
+import { TrendingUp, Lightbulb, MapPin, Building2, ArrowRight } from "lucide-react";
 
 const MarketInsightsSection = () => {
-  const topBuilders = [
-    { name: "Prestige Group", projects: 85, rating: 4.8, specialty: "Premium Apartments" },
-    { name: "Brigade Group", projects: 72, rating: 4.7, specialty: "Integrated Townships" },
-    { name: "Sobha Limited", projects: 58, rating: 4.9, specialty: "Luxury Homes" },
-    { name: "Godrej Properties", projects: 45, rating: 4.6, specialty: "Sustainable Living" },
-    { name: "Birla Estates", projects: 32, rating: 4.7, specialty: "Modern Design" },
-  ];
+  const [activeCity, setActiveCity] = useState("Bangalore");
+  
+  const cities = ["Mumbai", "Bangalore", "Gurgaon", "Pune"];
 
-  const priceHeatMap = [
-    { area: "Whitefield", price: "15,200", change: 12, tier: "premium" },
-    { area: "Sarjapur Road", price: "9,800", change: 18, tier: "growth" },
-    { area: "Electronic City", price: "7,500", change: 15, tier: "growth" },
-    { area: "Hebbal", price: "12,800", change: 10, tier: "premium" },
-    { area: "Devanahalli", price: "6,200", change: 22, tier: "emerging" },
-    { area: "Marathahalli", price: "11,500", change: 8, tier: "premium" },
-  ];
-
-  const keyStats = [
-    { value: "25,259", label: "Q3 2024 Registrations", sublabel: "Housing Units" },
-    { value: "₹85L", label: "Avg. Transaction", sublabel: "Per Property" },
-    { value: "79%", label: "5-Year Growth", sublabel: "Price Appreciation" },
-    { value: "4,200+", label: "RERA Projects", sublabel: "Active Listings" },
+  const insightCards = [
+    {
+      title: "Property Rates Heatmap",
+      subtitle: `in ${activeCity}`,
+      description: "An Interactive Map to help you understand the City's Real Estate",
+      icon: TrendingUp,
+      iconBg: "bg-teal-50",
+      iconColor: "text-teal-600",
+      stats: [
+        { label: "Sales Transactions", value: "250" },
+        { label: "Current Rate/Sq.ft", value: "₹7,533" },
+        { label: "Gross Sales Value", value: "₹192 Cr." },
+        { label: "Changes", value: "+₹440", isPositive: true },
+      ],
+      cta: "Explore Now"
+    },
+    {
+      title: "Top Builders",
+      subtitle: `in ${activeCity}`,
+      description: "RERA registered developers with verified track records",
+      icon: Building2,
+      iconBg: "bg-amber-50",
+      iconColor: "text-amber-600",
+      builders: [
+        { name: "Prestige Group", projects: 85, rating: 4.8 },
+        { name: "Brigade Group", projects: 72, rating: 4.7 },
+        { name: "Sobha Limited", projects: 58, rating: 4.9 },
+        { name: "Godrej Properties", projects: 45, rating: 4.6 },
+      ],
+      cta: "View All"
+    },
+    {
+      title: "Price Trends",
+      subtitle: `in ${activeCity}`,
+      description: "Track locality-wise price movements and growth patterns",
+      icon: MapPin,
+      iconBg: "bg-blue-50",
+      iconColor: "text-blue-600",
+      localities: [
+        { name: "Whitefield", price: "₹15,200/sqft", change: "+12%" },
+        { name: "Sarjapur Road", price: "₹9,800/sqft", change: "+18%" },
+        { name: "Electronic City", price: "₹7,500/sqft", change: "+15%" },
+        { name: "Hebbal", price: "₹12,800/sqft", change: "+10%" },
+      ],
+      cta: "See Analysis"
+    }
   ];
 
   return (
-    <section className="py-12 md:py-20 px-4 bg-gradient-to-b from-[#04080f] via-[#08121f] to-[#050a14]">
-      <div className="max-w-5xl mx-auto">
+    <section className="py-12 md:py-16 px-4 bg-white">
+      <div className="max-w-6xl mx-auto">
         
-        {/* Section Header */}
-        <div className="text-center mb-10 md:mb-14">
-          <span className="inline-block text-[10px] md:text-xs tracking-[0.2em] uppercase text-amber-400/80 mb-3 font-light">
-            Market Intelligence
-          </span>
-          <h2 className="text-xl md:text-2xl lg:text-3xl font-extralight text-white/95 tracking-wide">
-            Bangalore Real Estate Insights
+        {/* Header */}
+        <div className="mb-6 md:mb-8">
+          <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-900 mb-2">
+            Property Price Insights in India
           </h2>
-          <p className="text-slate-500 text-xs md:text-sm mt-2 font-light tracking-wide">
-            Karnataka Kaveri Portal & RERA Data
+          <p className="text-sm md:text-base text-gray-600 leading-relaxed">
+            Get accurate property price insights with city-wise trends, median rates, and micro-market comparisons.{" "}
+            <span className="font-medium text-gray-900 cursor-pointer hover:underline">Read More</span>
           </p>
         </div>
 
-        {/* Key Statistics - Minimal Cards */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-10 md:mb-14">
-          {keyStats.map((stat, index) => (
-            <div 
-              key={index}
-              className="text-center py-5 md:py-6 px-3 rounded-xl bg-white/[0.02] border border-white/[0.04]"
+        {/* City Tabs */}
+        <div className="flex gap-2 md:gap-3 mb-6 md:mb-8 overflow-x-auto pb-2 scrollbar-hide">
+          {cities.map((city) => (
+            <button
+              key={city}
+              onClick={() => setActiveCity(city)}
+              className={`px-4 md:px-6 py-2 md:py-2.5 rounded-full text-sm md:text-base font-medium whitespace-nowrap transition-all ${
+                activeCity === city
+                  ? "bg-gray-900 text-white"
+                  : "bg-white text-gray-700 border border-gray-300 hover:border-gray-400"
+              }`}
             >
-              <div className="text-lg md:text-2xl font-extralight text-white/90 tracking-tight mb-1">
-                {stat.value}
-              </div>
-              <div className="text-[10px] md:text-xs text-amber-400/70 font-light tracking-wide uppercase">
-                {stat.label}
-              </div>
-              <div className="text-[9px] md:text-[10px] text-slate-600 font-light mt-0.5">
-                {stat.sublabel}
-              </div>
-            </div>
+              {city}
+            </button>
           ))}
         </div>
 
-        {/* Two Column Layout */}
-        <div className="grid md:grid-cols-2 gap-4 md:gap-6">
+        {/* Insight Cards - Horizontal Scroll on Mobile */}
+        <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide md:grid md:grid-cols-3 md:overflow-visible md:pb-0">
           
-          {/* Top Builders */}
-          <div className="rounded-2xl bg-white/[0.015] border border-white/[0.04] p-5 md:p-6">
-            <div className="flex items-center gap-2.5 mb-5">
-              <div className="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-amber-500/10 flex items-center justify-center">
-                <Crown className="w-3.5 h-3.5 md:w-4 md:h-4 text-amber-500/70" />
-              </div>
+          {/* Card 1: Heatmap */}
+          <div className="flex-shrink-0 w-[85vw] md:w-auto snap-start bg-white border border-gray-200 rounded-2xl p-5 md:p-6 hover:shadow-lg transition-shadow">
+            <div className="flex items-start justify-between mb-4">
               <div>
-                <h3 className="text-sm md:text-base font-light text-white/90">Top Developers</h3>
-                <p className="text-[10px] md:text-xs text-slate-600 font-light">RERA Registered</p>
+                <h3 className="text-base md:text-lg font-semibold text-gray-900">{insightCards[0].title}</h3>
+                <p className="text-xs md:text-sm text-gray-500">{insightCards[0].subtitle}</p>
+              </div>
+              <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl ${insightCards[0].iconBg} flex items-center justify-center`}>
+                <TrendingUp className={`w-5 h-5 md:w-6 md:h-6 ${insightCards[0].iconColor}`} />
               </div>
             </div>
             
-            <div className="space-y-2">
-              {topBuilders.map((builder, index) => (
-                <div 
-                  key={index}
-                  className="flex items-center justify-between py-3 px-3 rounded-lg bg-white/[0.02] border border-white/[0.03] group hover:border-amber-500/20 transition-colors"
-                >
-                  <div className="flex items-center gap-3">
-                    <span className="w-5 h-5 md:w-6 md:h-6 rounded-md bg-gradient-to-br from-amber-500/15 to-amber-600/5 flex items-center justify-center text-amber-400/80 text-[10px] md:text-xs font-medium">
-                      {index + 1}
+            <div className="flex items-start gap-2 mb-4 p-3 bg-teal-50/50 rounded-lg">
+              <Lightbulb className="w-4 h-4 text-teal-600 mt-0.5 flex-shrink-0" />
+              <p className="text-xs md:text-sm text-gray-600 leading-relaxed">{insightCards[0].description}</p>
+            </div>
+
+            {/* Stats Grid */}
+            <div className="grid grid-cols-2 gap-3 mb-5">
+              {insightCards[0].stats?.map((stat, idx) => (
+                <div key={idx} className="bg-gray-50 rounded-lg p-2.5 md:p-3">
+                  <p className="text-[10px] md:text-xs text-gray-500 mb-0.5">{stat.label}</p>
+                  <p className={`text-sm md:text-base font-semibold ${stat.isPositive ? 'text-green-600' : 'text-gray-900'}`}>
+                    {stat.value}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <button className="w-full py-2.5 md:py-3 text-sm md:text-base font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl transition-colors flex items-center justify-center gap-2">
+              {insightCards[0].cta}
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+
+          {/* Card 2: Top Builders */}
+          <div className="flex-shrink-0 w-[85vw] md:w-auto snap-start bg-white border border-gray-200 rounded-2xl p-5 md:p-6 hover:shadow-lg transition-shadow">
+            <div className="flex items-start justify-between mb-4">
+              <div>
+                <h3 className="text-base md:text-lg font-semibold text-gray-900">{insightCards[1].title}</h3>
+                <p className="text-xs md:text-sm text-gray-500">{insightCards[1].subtitle}</p>
+              </div>
+              <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl ${insightCards[1].iconBg} flex items-center justify-center`}>
+                <Building2 className={`w-5 h-5 md:w-6 md:h-6 ${insightCards[1].iconColor}`} />
+              </div>
+            </div>
+            
+            <div className="flex items-start gap-2 mb-4 p-3 bg-amber-50/50 rounded-lg">
+              <Lightbulb className="w-4 h-4 text-amber-600 mt-0.5 flex-shrink-0" />
+              <p className="text-xs md:text-sm text-gray-600 leading-relaxed">{insightCards[1].description}</p>
+            </div>
+
+            {/* Builders List */}
+            <div className="space-y-2 mb-5">
+              {insightCards[1].builders?.map((builder, idx) => (
+                <div key={idx} className="flex items-center justify-between py-2 px-3 bg-gray-50 rounded-lg">
+                  <div className="flex items-center gap-2">
+                    <span className="w-5 h-5 rounded bg-amber-100 text-amber-700 text-[10px] md:text-xs font-medium flex items-center justify-center">
+                      {idx + 1}
                     </span>
-                    <div>
-                      <div className="text-xs md:text-sm font-light text-white/85 group-hover:text-amber-400/90 transition-colors">
-                        {builder.name}
-                      </div>
-                      <div className="text-[9px] md:text-[10px] text-slate-600 font-light">
-                        {builder.specialty}
-                      </div>
-                    </div>
+                    <span className="text-xs md:text-sm font-medium text-gray-900">{builder.name}</span>
                   </div>
-                  <div className="text-right">
-                    <div className="text-[10px] md:text-xs text-slate-400 font-light">
-                      {builder.projects} Projects
-                    </div>
-                    <div className="text-[9px] md:text-[10px] text-amber-500/60 font-light">
-                      ★ {builder.rating}
-                    </div>
+                  <span className="text-[10px] md:text-xs text-gray-500">{builder.projects} projects</span>
+                </div>
+              ))}
+            </div>
+
+            <button className="w-full py-2.5 md:py-3 text-sm md:text-base font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl transition-colors flex items-center justify-center gap-2">
+              {insightCards[1].cta}
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+
+          {/* Card 3: Price Trends */}
+          <div className="flex-shrink-0 w-[85vw] md:w-auto snap-start bg-white border border-gray-200 rounded-2xl p-5 md:p-6 hover:shadow-lg transition-shadow">
+            <div className="flex items-start justify-between mb-4">
+              <div>
+                <h3 className="text-base md:text-lg font-semibold text-gray-900">{insightCards[2].title}</h3>
+                <p className="text-xs md:text-sm text-gray-500">{insightCards[2].subtitle}</p>
+              </div>
+              <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl ${insightCards[2].iconBg} flex items-center justify-center`}>
+                <MapPin className={`w-5 h-5 md:w-6 md:h-6 ${insightCards[2].iconColor}`} />
+              </div>
+            </div>
+            
+            <div className="flex items-start gap-2 mb-4 p-3 bg-blue-50/50 rounded-lg">
+              <Lightbulb className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
+              <p className="text-xs md:text-sm text-gray-600 leading-relaxed">{insightCards[2].description}</p>
+            </div>
+
+            {/* Localities List */}
+            <div className="space-y-2 mb-5">
+              {insightCards[2].localities?.map((locality, idx) => (
+                <div key={idx} className="flex items-center justify-between py-2 px-3 bg-gray-50 rounded-lg">
+                  <span className="text-xs md:text-sm font-medium text-gray-900">{locality.name}</span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] md:text-xs text-gray-600">{locality.price}</span>
+                    <span className="text-[10px] md:text-xs font-medium text-green-600">{locality.change}</span>
                   </div>
                 </div>
               ))}
             </div>
-          </div>
 
-          {/* Price Heat Map */}
-          <div className="rounded-2xl bg-white/[0.015] border border-white/[0.04] p-5 md:p-6">
-            <div className="flex items-center gap-2.5 mb-5">
-              <div className="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-sky-500/10 flex items-center justify-center">
-                <MapPin className="w-3.5 h-3.5 md:w-4 md:h-4 text-sky-500/70" />
-              </div>
-              <div>
-                <h3 className="text-sm md:text-base font-light text-white/90">Price per Sq.Ft</h3>
-                <p className="text-[10px] md:text-xs text-slate-600 font-light">2025 Average Rates</p>
-              </div>
-            </div>
-            
-            <div className="grid grid-cols-2 gap-2 md:gap-3">
-              {priceHeatMap.map((area, index) => (
-                <div 
-                  key={index}
-                  className="py-3 px-3 rounded-lg bg-white/[0.02] border border-white/[0.03] group hover:border-sky-500/20 transition-colors"
-                >
-                  <div className="flex items-center justify-between mb-1.5">
-                    <span className="text-[10px] md:text-xs font-light text-white/80 group-hover:text-sky-400/90 transition-colors">
-                      {area.area}
-                    </span>
-                    <span className={`text-[8px] md:text-[9px] px-1.5 py-0.5 rounded font-light ${
-                      area.tier === 'premium' 
-                        ? 'bg-amber-500/10 text-amber-400/80' 
-                        : area.tier === 'growth'
-                        ? 'bg-sky-500/10 text-sky-400/80'
-                        : 'bg-emerald-500/10 text-emerald-400/80'
-                    }`}>
-                      +{area.change}%
-                    </span>
-                  </div>
-                  <div className="text-sm md:text-base font-extralight text-white/75 tracking-tight">
-                    ₹{area.price}
-                  </div>
-                  <div className="text-[8px] md:text-[9px] text-slate-600 font-light">
-                    per sq.ft
-                  </div>
-                </div>
-              ))}
-            </div>
-            
-            {/* Minimal Legend */}
-            <div className="flex items-center justify-center gap-4 md:gap-6 mt-4 pt-4 border-t border-white/[0.04]">
-              <div className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-400/60"></span>
-                <span className="text-[9px] md:text-[10px] text-slate-500 font-light">Premium</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-sky-400/60"></span>
-                <span className="text-[9px] md:text-[10px] text-slate-500 font-light">Growth</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400/60"></span>
-                <span className="text-[9px] md:text-[10px] text-slate-500 font-light">Emerging</span>
-              </div>
-            </div>
+            <button className="w-full py-2.5 md:py-3 text-sm md:text-base font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl transition-colors flex items-center justify-center gap-2">
+              {insightCards[2].cta}
+              <ArrowRight className="w-4 h-4" />
+            </button>
           </div>
         </div>
 
-        {/* Source Attribution */}
-        <div className="mt-8 text-center">
-          <p className="text-[9px] md:text-[10px] text-slate-600 font-light tracking-wide">
-            Data from Karnataka IGR, Kaveri 2.0 & RERA Karnataka · Q1 2025
-          </p>
-        </div>
+        {/* Source */}
+        <p className="text-center text-[10px] md:text-xs text-gray-400 mt-6 md:mt-8">
+          Data from Karnataka IGR, Kaveri 2.0 & RERA Karnataka · Updated Q1 2025
+        </p>
       </div>
     </section>
   );
