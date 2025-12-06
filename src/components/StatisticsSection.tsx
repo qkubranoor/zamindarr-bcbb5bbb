@@ -1,25 +1,20 @@
 import { useEffect, useState, useRef } from "react";
-import { supabase } from "@/integrations/supabase/client";
 
 const StatisticsSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [counters, setCounters] = useState([0, 0, 0, 0, 0]);
-  const [visitorCount, setVisitorCount] = useState(0);
   const sectionRef = useRef<HTMLDivElement>(null);
-  const hasTrackedVisit = useRef(false);
 
   const stats = [
     {
       value: 100,
       suffix: "+",
-      label: "Premium Clients Served",
-      isStatic: true
+      label: "Premium Clients Served"
     },
     {
-      value: visitorCount,
-      suffix: "",
-      label: "Website Visitors",
-      isVisitorCount: true
+      value: 135,
+      suffix: "k+",
+      label: "Platform Visitors"
     },
     {
       value: 10000,
@@ -37,25 +32,6 @@ const StatisticsSection = () => {
       label: "Accuracy Across Land Records & Reports"
     }
   ];
-
-  // Track visitor and fetch count
-  useEffect(() => {
-    const trackVisitor = async () => {
-      if (hasTrackedVisit.current) return;
-      hasTrackedVisit.current = true;
-
-      try {
-        const { data, error } = await supabase.rpc('increment_visitor_count');
-        if (!error && data) {
-          setVisitorCount(data);
-        }
-      } catch (err) {
-        console.error('Error tracking visitor:', err);
-      }
-    };
-
-    trackVisitor();
-  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -78,39 +54,20 @@ const StatisticsSection = () => {
     if (isVisible) {
       const animateCounters = () => {
         stats.forEach((stat, index) => {
-          if (stat.isVisitorCount) {
-            // For visitor count, animate to current value
-            let currentValue = 0;
-            const targetValue = visitorCount;
-            const increment = Math.max(1, targetValue / 100);
-            const timer = setInterval(() => {
-              currentValue += increment;
-              if (currentValue >= targetValue) {
-                currentValue = targetValue;
-                clearInterval(timer);
-              }
-              setCounters(prev => {
-                const newCounters = [...prev];
-                newCounters[index] = Math.floor(currentValue);
-                return newCounters;
-              });
-            }, 50);
-          } else {
-            let currentValue = 0;
-            const increment = stat.value / 100;
-            const timer = setInterval(() => {
-              currentValue += increment;
-              if (currentValue >= stat.value) {
-                currentValue = stat.value;
-                clearInterval(timer);
-              }
-              setCounters(prev => {
-                const newCounters = [...prev];
-                newCounters[index] = Math.floor(currentValue);
-                return newCounters;
-              });
-            }, 50);
-          }
+          let currentValue = 0;
+          const increment = stat.value / 100;
+          const timer = setInterval(() => {
+            currentValue += increment;
+            if (currentValue >= stat.value) {
+              currentValue = stat.value;
+              clearInterval(timer);
+            }
+            setCounters(prev => {
+              const newCounters = [...prev];
+              newCounters[index] = Math.floor(currentValue);
+              return newCounters;
+            });
+          }, 50);
         });
       };
 
@@ -123,7 +80,7 @@ const StatisticsSection = () => {
 
       return () => clearInterval(loopTimer);
     }
-  }, [isVisible, visitorCount]);
+  }, [isVisible]);
 
   const getIcon = (index: number) => {
     switch(index) {
@@ -193,7 +150,7 @@ const StatisticsSection = () => {
               <div className="relative z-10">
                 <div className="flex items-start justify-between mb-1">
                   <div className="text-2xl md:text-3xl font-light text-primary tabular-nums tracking-tight">
-                    {stat.isVisitorCount ? counters[index] : counters[index]}{stat.suffix}
+                    {counters[index]}{stat.suffix}
                   </div>
                   
                   {/* Icon */}
