@@ -1,4 +1,4 @@
-import { TrendingUp, Building2, MapPin, BarChart3, Crown, ArrowUpRight } from "lucide-react";
+import { Crown, MapPin, TrendingUp } from "lucide-react";
 
 const MarketInsightsSection = () => {
   const topBuilders = [
@@ -10,141 +10,160 @@ const MarketInsightsSection = () => {
   ];
 
   const priceHeatMap = [
-    { area: "Whitefield", price: "₹15,200", change: "+12%", tier: "high" },
-    { area: "Sarjapur Road", price: "₹9,800", change: "+18%", tier: "medium" },
-    { area: "Electronic City", price: "₹7,500", change: "+15%", tier: "medium" },
-    { area: "Hebbal", price: "₹12,800", change: "+10%", tier: "high" },
-    { area: "Devanahalli", price: "₹6,200", change: "+22%", tier: "growth" },
-    { area: "Marathahalli", price: "₹11,500", change: "+8%", tier: "high" },
+    { area: "Whitefield", price: "15,200", change: 12, tier: "premium" },
+    { area: "Sarjapur Road", price: "9,800", change: 18, tier: "growth" },
+    { area: "Electronic City", price: "7,500", change: 15, tier: "growth" },
+    { area: "Hebbal", price: "12,800", change: 10, tier: "premium" },
+    { area: "Devanahalli", price: "6,200", change: 22, tier: "emerging" },
+    { area: "Marathahalli", price: "11,500", change: 8, tier: "premium" },
   ];
 
-  const registrationStats = [
-    { label: "Q3 2024 Registrations", value: "25,259", subtext: "Housing Units" },
-    { label: "Avg. Transaction Value", value: "₹85L", subtext: "Per Property" },
-    { label: "YoY Price Appreciation", value: "79%", subtext: "5-Year Growth" },
-    { label: "Active RERA Projects", value: "4,200+", subtext: "Registered" },
+  const keyStats = [
+    { value: "25,259", label: "Q3 2024 Registrations", sublabel: "Housing Units" },
+    { value: "₹85L", label: "Avg. Transaction", sublabel: "Per Property" },
+    { value: "79%", label: "5-Year Growth", sublabel: "Price Appreciation" },
+    { value: "4,200+", label: "RERA Projects", sublabel: "Active Listings" },
   ];
-
-  const getTierColor = (tier: string) => {
-    switch (tier) {
-      case "high": return "bg-amber-500/20 text-amber-400 border-amber-500/30";
-      case "medium": return "bg-sky-500/20 text-sky-400 border-sky-500/30";
-      case "growth": return "bg-emerald-500/20 text-emerald-400 border-emerald-500/30";
-      default: return "bg-slate-500/20 text-slate-400 border-slate-500/30";
-    }
-  };
 
   return (
-    <section className="py-16 px-4 bg-gradient-to-b from-[#030712] via-[#0a1628] to-[#071224]">
-      <div className="max-w-6xl mx-auto">
+    <section className="py-12 md:py-20 px-4 bg-gradient-to-b from-[#04080f] via-[#08121f] to-[#050a14]">
+      <div className="max-w-5xl mx-auto">
+        
         {/* Section Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 mb-4">
-            <BarChart3 className="w-4 h-4 text-amber-400" />
-            <span className="text-amber-400 text-xs font-medium tracking-wider uppercase">Market Intelligence</span>
-          </div>
-          <h2 className="text-2xl md:text-3xl font-light text-white mb-3">
-            Bangalore Real Estate <span className="text-amber-400">Insights</span>
+        <div className="text-center mb-10 md:mb-14">
+          <span className="inline-block text-[10px] md:text-xs tracking-[0.2em] uppercase text-amber-400/80 mb-3 font-light">
+            Market Intelligence
+          </span>
+          <h2 className="text-xl md:text-2xl lg:text-3xl font-extralight text-white/95 tracking-wide">
+            Bangalore Real Estate Insights
           </h2>
-          <p className="text-slate-400 text-sm max-w-xl mx-auto">
-            Data sourced from Karnataka Kaveri Portal & RERA registrations
+          <p className="text-slate-500 text-xs md:text-sm mt-2 font-light tracking-wide">
+            Karnataka Kaveri Portal & RERA Data
           </p>
         </div>
 
-        {/* Stats Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
-          {registrationStats.map((stat, index) => (
+        {/* Key Statistics - Minimal Cards */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-10 md:mb-14">
+          {keyStats.map((stat, index) => (
             <div 
               key={index}
-              className="bg-gradient-to-br from-slate-800/40 to-slate-900/40 border border-slate-700/30 rounded-xl p-4 text-center backdrop-blur-sm"
+              className="text-center py-5 md:py-6 px-3 rounded-xl bg-white/[0.02] border border-white/[0.04]"
             >
-              <div className="text-2xl md:text-3xl font-light text-white mb-1">{stat.value}</div>
-              <div className="text-amber-400 text-xs font-medium mb-0.5">{stat.label}</div>
-              <div className="text-slate-500 text-xs">{stat.subtext}</div>
+              <div className="text-lg md:text-2xl font-extralight text-white/90 tracking-tight mb-1">
+                {stat.value}
+              </div>
+              <div className="text-[10px] md:text-xs text-amber-400/70 font-light tracking-wide uppercase">
+                {stat.label}
+              </div>
+              <div className="text-[9px] md:text-[10px] text-slate-600 font-light mt-0.5">
+                {stat.sublabel}
+              </div>
             </div>
           ))}
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          {/* Top Builders Card */}
-          <div className="bg-gradient-to-br from-[#0f1f3d]/80 to-[#071224]/80 border border-slate-700/30 rounded-2xl p-6 backdrop-blur-sm">
-            <div className="flex items-center gap-3 mb-5">
-              <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center">
-                <Crown className="w-5 h-5 text-amber-400" />
+        {/* Two Column Layout */}
+        <div className="grid md:grid-cols-2 gap-4 md:gap-6">
+          
+          {/* Top Builders */}
+          <div className="rounded-2xl bg-white/[0.015] border border-white/[0.04] p-5 md:p-6">
+            <div className="flex items-center gap-2.5 mb-5">
+              <div className="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-amber-500/10 flex items-center justify-center">
+                <Crown className="w-3.5 h-3.5 md:w-4 md:h-4 text-amber-500/70" />
               </div>
               <div>
-                <h3 className="text-white font-medium">Top Builders</h3>
-                <p className="text-slate-400 text-xs">RERA Registered Developers</p>
+                <h3 className="text-sm md:text-base font-light text-white/90">Top Developers</h3>
+                <p className="text-[10px] md:text-xs text-slate-600 font-light">RERA Registered</p>
               </div>
             </div>
             
-            <div className="space-y-3">
+            <div className="space-y-2">
               {topBuilders.map((builder, index) => (
                 <div 
                   key={index}
-                  className="flex items-center justify-between p-3 rounded-lg bg-slate-800/30 border border-slate-700/20 hover:border-amber-500/30 transition-colors group"
+                  className="flex items-center justify-between py-3 px-3 rounded-lg bg-white/[0.02] border border-white/[0.03] group hover:border-amber-500/20 transition-colors"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-500/20 to-amber-600/10 border border-amber-500/20 flex items-center justify-center">
-                      <span className="text-amber-400 text-sm font-medium">{index + 1}</span>
-                    </div>
+                    <span className="w-5 h-5 md:w-6 md:h-6 rounded-md bg-gradient-to-br from-amber-500/15 to-amber-600/5 flex items-center justify-center text-amber-400/80 text-[10px] md:text-xs font-medium">
+                      {index + 1}
+                    </span>
                     <div>
-                      <div className="text-white text-sm font-medium group-hover:text-amber-400 transition-colors">{builder.name}</div>
-                      <div className="text-slate-500 text-xs">{builder.specialty}</div>
+                      <div className="text-xs md:text-sm font-light text-white/85 group-hover:text-amber-400/90 transition-colors">
+                        {builder.name}
+                      </div>
+                      <div className="text-[9px] md:text-[10px] text-slate-600 font-light">
+                        {builder.specialty}
+                      </div>
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="text-slate-300 text-sm">{builder.projects} Projects</div>
-                    <div className="text-amber-400 text-xs">★ {builder.rating}</div>
+                    <div className="text-[10px] md:text-xs text-slate-400 font-light">
+                      {builder.projects} Projects
+                    </div>
+                    <div className="text-[9px] md:text-[10px] text-amber-500/60 font-light">
+                      ★ {builder.rating}
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Price Heat Map Card */}
-          <div className="bg-gradient-to-br from-[#0f1f3d]/80 to-[#071224]/80 border border-slate-700/30 rounded-2xl p-6 backdrop-blur-sm">
-            <div className="flex items-center gap-3 mb-5">
-              <div className="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center">
-                <MapPin className="w-5 h-5 text-sky-400" />
+          {/* Price Heat Map */}
+          <div className="rounded-2xl bg-white/[0.015] border border-white/[0.04] p-5 md:p-6">
+            <div className="flex items-center gap-2.5 mb-5">
+              <div className="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-sky-500/10 flex items-center justify-center">
+                <MapPin className="w-3.5 h-3.5 md:w-4 md:h-4 text-sky-500/70" />
               </div>
               <div>
-                <h3 className="text-white font-medium">Price per Sq.Ft</h3>
-                <p className="text-slate-400 text-xs">Average Rates by Locality (2025)</p>
+                <h3 className="text-sm md:text-base font-light text-white/90">Price per Sq.Ft</h3>
+                <p className="text-[10px] md:text-xs text-slate-600 font-light">2025 Average Rates</p>
               </div>
             </div>
             
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-2 md:gap-3">
               {priceHeatMap.map((area, index) => (
                 <div 
                   key={index}
-                  className="p-3 rounded-lg bg-slate-800/30 border border-slate-700/20 hover:border-sky-500/30 transition-colors group"
+                  className="py-3 px-3 rounded-lg bg-white/[0.02] border border-white/[0.03] group hover:border-sky-500/20 transition-colors"
                 >
-                  <div className="flex items-start justify-between mb-2">
-                    <span className="text-white text-sm font-medium group-hover:text-sky-400 transition-colors">{area.area}</span>
-                    <span className={`text-xs px-1.5 py-0.5 rounded border ${getTierColor(area.tier)}`}>
-                      {area.change}
+                  <div className="flex items-center justify-between mb-1.5">
+                    <span className="text-[10px] md:text-xs font-light text-white/80 group-hover:text-sky-400/90 transition-colors">
+                      {area.area}
+                    </span>
+                    <span className={`text-[8px] md:text-[9px] px-1.5 py-0.5 rounded font-light ${
+                      area.tier === 'premium' 
+                        ? 'bg-amber-500/10 text-amber-400/80' 
+                        : area.tier === 'growth'
+                        ? 'bg-sky-500/10 text-sky-400/80'
+                        : 'bg-emerald-500/10 text-emerald-400/80'
+                    }`}>
+                      +{area.change}%
                     </span>
                   </div>
-                  <div className="text-lg text-slate-300 font-light">{area.price}</div>
-                  <div className="text-slate-500 text-xs">per sq.ft</div>
+                  <div className="text-sm md:text-base font-extralight text-white/75 tracking-tight">
+                    ₹{area.price}
+                  </div>
+                  <div className="text-[8px] md:text-[9px] text-slate-600 font-light">
+                    per sq.ft
+                  </div>
                 </div>
               ))}
             </div>
             
-            {/* Legend */}
-            <div className="flex items-center gap-4 mt-4 pt-4 border-t border-slate-700/30">
+            {/* Minimal Legend */}
+            <div className="flex items-center justify-center gap-4 md:gap-6 mt-4 pt-4 border-t border-white/[0.04]">
               <div className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-amber-400"></span>
-                <span className="text-slate-400 text-xs">Premium</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-400/60"></span>
+                <span className="text-[9px] md:text-[10px] text-slate-500 font-light">Premium</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-sky-400"></span>
-                <span className="text-slate-400 text-xs">Established</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-sky-400/60"></span>
+                <span className="text-[9px] md:text-[10px] text-slate-500 font-light">Growth</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-                <span className="text-slate-400 text-xs">High Growth</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400/60"></span>
+                <span className="text-[9px] md:text-[10px] text-slate-500 font-light">Emerging</span>
               </div>
             </div>
           </div>
@@ -152,8 +171,8 @@ const MarketInsightsSection = () => {
 
         {/* Source Attribution */}
         <div className="mt-8 text-center">
-          <p className="text-slate-500 text-xs">
-            Data sourced from Karnataka IGR, Kaveri 2.0 Portal & RERA Karnataka • Updated Q1 2025
+          <p className="text-[9px] md:text-[10px] text-slate-600 font-light tracking-wide">
+            Data from Karnataka IGR, Kaveri 2.0 & RERA Karnataka · Q1 2025
           </p>
         </div>
       </div>
