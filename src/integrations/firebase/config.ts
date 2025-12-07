@@ -10,32 +10,15 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
-// Check if Firebase config is available
-const isFirebaseConfigured = Boolean(
-  firebaseConfig.apiKey && 
-  firebaseConfig.projectId && 
-  firebaseConfig.appId
-);
-
-// Initialize Firebase only if configured
-let app: FirebaseApp | null = null;
-let auth: Auth | null = null;
-
-if (isFirebaseConfigured) {
-  try {
-    if (getApps().length === 0) {
-      app = initializeApp(firebaseConfig);
-    } else {
-      app = getApps()[0];
-    }
-    auth = getAuth(app);
-  } catch (error) {
-    console.warn('Firebase initialization failed:', error);
-  }
+// Initialize Firebase
+let app: FirebaseApp;
+if (getApps().length === 0) {
+  app = initializeApp(firebaseConfig);
 } else {
-  console.info('Firebase not configured - running without Firebase auth');
+  app = getApps()[0];
 }
 
-export { auth };
+// Initialize Firebase Authentication and get a reference to the service
+export const auth = getAuth(app);
 export default app;
 
