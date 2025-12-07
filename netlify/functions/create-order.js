@@ -48,10 +48,6 @@ exports.handler = async (event, context) => {
       };
     }
 
-    // Build notify URL for webhook
-    const baseUrl = process.env.URL || process.env.DEPLOY_PRIME_URL || '';
-    const notifyUrl = baseUrl ? `${baseUrl}/.netlify/functions/cashfree-webhook` : (process.env.CASHFREE_NOTIFY_URL || '');
-
     // Create order request
     const orderRequest = {
       order_amount: amountNum,
@@ -64,7 +60,7 @@ exports.handler = async (event, context) => {
       },
       order_meta: {
         return_url: return_url,
-        notify_url: notifyUrl,
+        notify_url: process.env.CASHFREE_NOTIFY_URL || '',
       },
       order_note: customer_details.order_note || service_name || '',
     };
