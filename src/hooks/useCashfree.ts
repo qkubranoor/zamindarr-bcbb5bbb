@@ -91,7 +91,13 @@ export const useCashfree = (config: CashfreeConfig) => {
       ...(options?.appearance && { appearance: options.appearance }),
     };
 
-    return await cashfree.checkout(checkoutOptions);
+    try {
+      const result = await cashfree.checkout(checkoutOptions);
+      return result;
+    } catch (error) {
+      console.error('Cashfree checkout error:', error);
+      throw error;
+    }
   }, [cashfree]);
 
   const verifyPayment = useCallback(async (orderId: string): Promise<PaymentVerification> => {

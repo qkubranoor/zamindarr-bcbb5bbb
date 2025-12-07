@@ -5,12 +5,18 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import DocumentVerificationForm from "./DocumentVerificationForm";
+import { AuthDialog } from "./AuthDialog";
+import { useAuth } from "@/contexts/AuthContext";
+import PropertyDetailsForm from "./PropertyDetailsForm";
 
 const ServicesSection = () => {
   const [selectedService, setSelectedService] = useState<{
     name: string;
     price: string;
   } | null>(null);
+  const [authDialogOpen, setAuthDialogOpen] = useState(false);
+  const [showPropertyForm, setShowPropertyForm] = useState(false);
+  const { isAuthenticated } = useAuth();
   
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -59,14 +65,43 @@ const ServicesSection = () => {
 
   const handleRequestService = (service: { title: string; price?: string; originalPrice?: string; discountedPrice?: string }) => {
     console.log('Button clicked for service:', service.title);
-    setSelectedService({
-      name: service.title,
-      price: service.discountedPrice || service.originalPrice || service.price || "Contact for pricing"
-    });
+    
+    if (!isAuthenticated) {
+      // Show auth dialog if not signed in
+      setAuthDialogOpen(true);
+      // Store service info to show form after auth
+      setSelectedService({
+        name: service.title,
+        price: service.discountedPrice || service.originalPrice || service.price || "Contact for pricing"
+      });
+    } else {
+      // User is signed in, show property form directly
+      setSelectedService({
+        name: service.title,
+        price: service.discountedPrice || service.originalPrice || service.price || "Contact for pricing"
+      });
+      setShowPropertyForm(true);
+    }
+  };
+
+  const handleAuthSuccess = () => {
+    // After successful auth, show property form
+    if (selectedService) {
+      setShowPropertyForm(true);
+    }
   };
 
   const handleCloseForm = () => {
     setSelectedService(null);
+    setShowPropertyForm(false);
+  };
+
+  const handleAuthDialogClose = (open: boolean) => {
+    setAuthDialogOpen(open);
+    // If dialog is closed without authentication, clear selected service
+    if (!open && !isAuthenticated) {
+      setSelectedService(null);
+    }
   };
 
   const scrollLeft = () => {
@@ -393,13 +428,29 @@ const ServicesSection = () => {
         </div>
       </section>
 
-      {selectedService && (
-        <DocumentVerificationForm
-          onClose={handleCloseForm}
-          serviceName={selectedService.name}
-          servicePrice={selectedService.price}
-        />
+      {selectedService && isAuthenticated && (
+        <>
+          {showPropertyForm ? (
+            <PropertyDetailsForm
+              onClose={handleCloseForm}
+              serviceName={selectedService.name}
+              servicePrice={selectedService.price}
+            />
+          ) : (
+            <DocumentVerificationForm
+              onClose={handleCloseForm}
+              serviceName={selectedService.name}
+              servicePrice={selectedService.price}
+            />
+          )}
+        </>
       )}
+      
+      <AuthDialog 
+        open={authDialogOpen} 
+        onOpenChange={handleAuthDialogClose}
+        onAuthSuccess={handleAuthSuccess}
+      />
     </>
   );
 };
