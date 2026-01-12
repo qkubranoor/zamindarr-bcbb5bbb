@@ -13,22 +13,22 @@ const TargetAudienceSection = () => {
   ];
 
   return (
-    <section className="pt-0 pb-2 lg:pb-4 text-center">
+    <section className="pt-2 pb-4 lg:pt-4 lg:pb-8 text-center">
       {/* Desktop */}
       <div className="hidden lg:block">
-        <div className="inline-flex items-center gap-3">
-          <div className="h-px w-8 bg-gradient-to-r from-transparent to-slate-300"></div>
-          <span className="text-xs tracking-[0.2em] uppercase text-slate-400 font-light">For</span>
-          <div className="h-12 overflow-hidden w-52">
+        <div className="inline-flex items-center gap-4">
+          <div className="h-px w-12 bg-gradient-to-r from-transparent to-slate-300"></div>
+          <span className="text-sm tracking-[0.25em] uppercase text-slate-400 font-light">For</span>
+          <div className="h-14 overflow-hidden w-64">
             <div className="animate-slideUpDesktop">
               {professions.map((profession) => (
-                <div key={profession} className="h-12 flex items-center justify-center text-xl font-medium bg-gradient-to-r from-[#1e3a8a] to-[#3b82f6] bg-clip-text text-transparent">
+                <div key={profession} className="h-14 flex items-center justify-center text-2xl font-medium bg-gradient-to-r from-[#1e3a8a] to-[#3b82f6] bg-clip-text text-transparent">
                   {profession}
                 </div>
               ))}
             </div>
           </div>
-          <div className="h-px w-8 bg-gradient-to-l from-transparent to-slate-300"></div>
+          <div className="h-px w-12 bg-gradient-to-l from-transparent to-slate-300"></div>
         </div>
       </div>
 
