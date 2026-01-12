@@ -29,15 +29,30 @@ const CategorySection = () => {
   ];
 
   return (
-    <section className="py-6 md:py-10 px-4">
+    <section className="py-6 md:py-8 lg:py-12 px-4">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-4 gap-2.5 md:gap-6 lg:gap-8 justify-items-center max-w-[340px] md:max-w-2xl lg:max-w-4xl mx-auto">
+        {/* Mobile: compact 4-column grid */}
+        <div className="grid grid-cols-4 gap-2.5 justify-items-center max-w-[340px] mx-auto md:hidden">
           {categories.map((category) => (
             <CategoryCard
               key={category.title}
               title={category.title}
               image={category.image}
               link={category.link}
+              variant="mobile"
+            />
+          ))}
+        </div>
+        
+        {/* Desktop: larger cards with proper spacing */}
+        <div className="hidden md:flex justify-center gap-8 lg:gap-12">
+          {categories.map((category) => (
+            <CategoryCard
+              key={category.title}
+              title={category.title}
+              image={category.image}
+              link={category.link}
+              variant="desktop"
             />
           ))}
         </div>
